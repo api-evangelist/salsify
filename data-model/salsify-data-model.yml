@@ -1,0 +1,202 @@
+generated: '2026-08-02'
+method: derived
+source: openapi/salsify-api-settings-openapi.json, openapi/salsify-write-operations-openapi.json,
+  openapi/salsify-non-v1-endpoints-openapi.json, https://developers.salsify.com/docs/product-object,
+  https://developers.salsify.com/docs/records-overview
+namespace:
+  prefix: 'salsify:'
+  note: >-
+    Salsify-managed system fields are namespaced with salsify: to separate them from
+    customer-defined properties, which are addressed by their own property ID.
+entities:
+- name: Organization
+  id_field: org_id
+  description: >-
+    The tenant. Every REST path is scoped by the organization ID taken from the Salsify
+    application URL immediately after /orgs/. Rate limits and permissions are per organization.
+  operations:
+  - GraphQL organization / organizations
+  docs: https://developers.salsify.com/docs/organization-id
+- name: Product
+  id_field: 'salsify:id'
+  description: >-
+    The core PXM entity - a sellable item with system fields plus arbitrary customer-defined
+    properties, optionally organized into a parent/variant hierarchy.
+  operations:
+  - read-product-record
+  - bulk-read-products
+  - add-a-product
+  - bulk-create-products
+  - update-product
+  - bulk-update-products
+  - bulk-upsert-products
+  - delete-product
+  - bulk-delete-products
+  docs: https://developers.salsify.com/docs/product-object
+- name: Record
+  id_field: 'salsify:id'
+  description: >-
+    The generalized entity model that supersedes Product-only modelling. A record belongs to
+    a record type and carries the same property/value shape as a product.
+  operations:
+  - read-record
+  - bulk-read-records
+  - create-record
+  - bulk-create-records
+  - update-record
+  - bulk-update-records
+  - bulk-upsert-records
+  - delete-record
+  - bulk-delete-records
+  docs: https://developers.salsify.com/docs/records-overview
+- name: RecordType
+  id_field: 'salsify:id'
+  description: The schema/classification a record belongs to.
+  operations:
+  - read-record-types
+- name: Property
+  id_field: 'salsify:id'
+  description: >-
+    A customer-defined attribute definition. Property IDs are used in report headers, channel
+    mappings and filters.
+  operations:
+  - read-property
+  - bulk-create-new-properties
+  - update-property
+  - bulk-upsert-properties
+  - delete-property
+  - bulk-delete-properties
+- name: DigitalAsset
+  id_field: 'salsify:id'
+  alt_id_field: asset_id
+  description: >-
+    An image, video, document or other media object with its own metadata, referenced by
+    products and records.
+  operations:
+  - get-digital-asset
+  - bulk-read-digital-assets
+  - create-a-digital-asset-metadata
+  - add-multiple-digital-assets
+  - refresh-digital-assets
+  - update-digital-asset-metadata
+  - update-multiple-digital-assets
+  - bulk-upsert-digital-assets
+  - delete-multiple-digital-assets
+- name: List
+  id_field: list_id
+  description: >-
+    A saved (static or smart) set of products, records or digital assets. Lists drive webhook
+    subscriptions, exports and channel scope.
+  operations:
+  - add-list-members
+  - add-list-members-1
+  docs: https://developers.salsify.com/docs/list-membership-overview
+- name: Import
+  id_field: import_id
+  description: A configured ingestion of product/record/asset data from a mount point or FTP source.
+  operations:
+  - creating-a-json-import-from-a-mount-point
+  - creating-a-json-import-from-ftp   # docs-only; not in any published OpenAPI
+  - updating-an-import-to-point-at-a-new-mount-point
+- name: ImportRun
+  id_field: import_run_id
+  description: One asynchronous execution of an import, polled for status or announced by webhook.
+  operations:
+  - starting-an-import-run
+  - getting-the-status-of-an-import-run
+- name: UploadMount
+  id_field: key
+  description: >-
+    A pre-signed S3 upload target created by the API; the client POSTs the file directly to
+    the returned url with the returned form_data.
+  operations:
+  - create-a-mount-point
+- name: ExportRun
+  id_field: export_id
+  description: One asynchronous export execution producing a downloadable JSON/JSONL result.
+  operations:
+  - start-export-run
+  - get-export-status
+  docs: https://developers.salsify.com/docs/export-overview
+- name: Account
+  id_field: id
+  description: GraphQL-only entity representing a Salsify account across organizations.
+  surface: graphql
+- name: ConfigurationManifest
+  id_field: id
+  description: >-
+    GraphQL-only entity describing a versioned, installable bundle of organization
+    configuration (entity types and their versions).
+  surface: graphql
+  docs: https://developers.salsify.com/docs/configuration-manifests-overview
+relationships:
+- from: Organization
+  to: Product
+  type: has_many
+  via: org_id
+- from: Organization
+  to: Record
+  type: has_many
+  via: org_id
+- from: Organization
+  to: Property
+  type: has_many
+  via: org_id
+- from: Organization
+  to: DigitalAsset
+  type: has_many
+  via: org_id
+- from: Organization
+  to: List
+  type: has_many
+  via: org_id
+- from: Organization
+  to: Import
+  type: has_many
+  via: org_id
+- from: Organization
+  to: ExportRun
+  type: has_many
+  via: org_id
+- from: Product
+  to: Product
+  type: belongs_to
+  via: 'salsify:parent_id'
+  note: Parent/variant hierarchy; product-change webhooks carry a parent_products array.
+- from: Record
+  to: RecordType
+  type: belongs_to
+  via: record_type
+- from: Product
+  to: Property
+  type: has_many
+  via: property id keys on the product document
+- from: Record
+  to: Property
+  type: has_many
+  via: property id keys on the record document
+- from: Product
+  to: DigitalAsset
+  type: has_many
+  via: digital asset reference properties
+- from: List
+  to: Product
+  type: has_many
+  via: list membership (add-list-members / add-list-members-1)
+- from: Import
+  to: ImportRun
+  type: has_many
+  via: import_id
+- from: Import
+  to: UploadMount
+  type: has_one
+  via: mount point key
+- from: Account
+  to: Organization
+  type: has_many
+  via: AccountOrganization (GraphQL)
+soft_delete:
+  field: 'salsify:destroyed_at'
+  note: >-
+    Destroyed products and digital assets are surfaced in webhooks and exports with
+    salsify:destroyed_at set to the delete date rather than simply disappearing.

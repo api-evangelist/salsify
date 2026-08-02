@@ -1,0 +1,3470 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "No API Explorer (for destructive calls & not well defined parameters)",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://app.salsify.com/api/v1/orgs"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "x-bearer-format": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/{org_id}/digital_assets/{salsify:id}": {
+      "put": {
+        "summary": "Update Digital Asset Metadata",
+        "description": "",
+        "operationId": "update-digital-asset-metadata",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "salsify:id",
+            "in": "path",
+            "description": "The identifier for the digital asset you want to replace.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "source_url": {
+                    "type": "string",
+                    "description": "Public-facing, non-login URL for the location of the digital asset you want to replace the current asset with. Don't include if you aren't making an update to the digital asset's source."
+                  },
+                  "additional_custom_metadata": {
+                    "type": "string",
+                    "description": "Additional optional custom metadata can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "//Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        \"Invalid reference to category Asset Photographer = 'Seymour Parrish'\"\n    ]\n}\n\n//occurs where you attempt an update to an enumerated property type, but the value isn't in the enumerated list. Add the value to the property itself, then associate the property value to the digital asset."
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Updates must be applied to existing assets."
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Invalid reference to category Asset Photographer = 'Seymour Parrish'"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/dandelion_new_10002 \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'content-type: application/json' \\\n  -d '{ \n    \"salsify:source_url\":\"https://img.epochtimes.com.tw/upload/images/2016/05/03/195413_medium.jpg\",\n    \"salsify:name\":\"dandelion_flower_angle\",\n    \"Asset Use\":\"Print Catalog\"\n}'\n# where org_id = s-999-999-999-999, salsify:id=dandelion_new_10002, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/dandelion_new_10002\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"{ \\n    \\\"salsify:name\\\":\\\"dandelion_flower_print\\\",\\n    \\\"Asset Use\\\":\\\"Print Catalog\\\"\\n}\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id=dandelion_new_10002, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"{ \\n    \\\"salsify:name\\\":\\\"dandelion_flower_print\\\",\\n    \\\"Asset Use\\\":\\\"Print Catalog\\\"\\n}\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\"\n    }\n\nconn.request(\"PUT\", \"/api/v1/orgs/s-999-999-999-999/digital_assets/dandelion_new_10002\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=dandelion_new_10002, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/digital_assets": {
+      "delete": {
+        "summary": "Delete Multiple Digital Assets",
+        "description": "",
+        "operationId": "delete-multiple-digital-assets",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "salsify:id"
+                ],
+                "properties": {
+                  "salsify:id": {
+                    "type": "string",
+                    "description": "The identifier to use for the asset. A randomly generated ID is assigned if not specified."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\"kitty.png\", \"9a7e78da65cae09786b8df124c8fcab942d4d5fa\"]'\n  \n# where org_id = s-999-999-999-999, salsify:id =kitty.png, 9a7e78da65cae09786b8df124c8fcab942d4d5fa, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"[\\\"kitty.png\\\", \\\"9a7e78da65cae09786b8df124c8fcab942d4d5fa\\\"]\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id =kitty.png, 9a7e78da65cae09786b8df124c8fcab942d4d5fa, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\\"kitty.png\\\", \\\"9a7e78da65cae09786b8df124c8fcab942d4d5fa\\\"]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-999-999-999-999/digital_assets\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id =kitty.png, 9a7e78da65cae09786b8df124c8fcab942d4d5fa, and api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      },
+      "post": {
+        "summary": "Create Multiple Digital Assets",
+        "description": "",
+        "operationId": "add-multiple-digital-assets",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "salsify:source_URL"
+                ],
+                "properties": {
+                  "salsify:source_URL": {
+                    "type": "string",
+                    "description": "A public-facing HTTP(S) URL for the digital asset file."
+                  },
+                  "salsify:id": {
+                    "type": "string",
+                    "description": "The identifier to use for the asset. A randomly generated ID is assigned if not specified."
+                  },
+                  "salsify:name": {
+                    "type": "string",
+                    "description": "Digital asset name. The filename is used if not specified."
+                  },
+                  "additional_metadata": {
+                    "type": "string",
+                    "description": "Additional optional metadata ([system](https://salsify.readme.io/v1.0/reference#section-digital-asset-metadata-attributes) or custom) can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "[\n    {\n        \"salsify:id\": \"kitty.png\",\n        \"salsify:source_url\": \"https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png\",\n        \"salsify:name\": \"kitten-cat-fluffy-cat-cute-62321.jpeg\",\n        \"salsify:created_at\": \"2018-04-19T20:24:43.855Z\",\n        \"salsify:updated_at\": \"2018-04-19T20:24:43.855Z\",\n        \"salsify:status\": \"in_progress\",\n        \"salsify:asset_resource_type\": \"raw\",\n        \"salsify:system_id\": \"s-999-999-999-999\",\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    },\n    {\n        \"salsify:id\": \"9a7e78da65cae09786b8df124c8fcab942d4d5fa\",\n        \"salsify:source_url\": \"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\",\n        \"salsify:name\": \"pexels-photo-774731.jpeg\",\n        \"salsify:created_at\": \"2018-04-19T20:24:43.855Z\",\n        \"salsify:updated_at\": \"2018-04-19T20:24:43.855Z\",\n        \"salsify:status\": \"in_progress\",\n        \"salsify:asset_resource_type\": \"raw\",\n        \"salsify:system_id\": \"s-999-999-999-999\",\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    }\n]"
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "salsify:id": {
+                        "type": "string",
+                        "example": "kitty.png"
+                      },
+                      "salsify:source_url": {
+                        "type": "string",
+                        "example": "https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png"
+                      },
+                      "salsify:name": {
+                        "type": "string",
+                        "example": "kitten-cat-fluffy-cat-cute-62321.jpeg"
+                      },
+                      "salsify:created_at": {
+                        "type": "string",
+                        "example": "2018-04-19T20:24:43.855Z"
+                      },
+                      "salsify:updated_at": {
+                        "type": "string",
+                        "example": "2018-04-19T20:24:43.855Z"
+                      },
+                      "salsify:status": {
+                        "type": "string",
+                        "example": "in_progress"
+                      },
+                      "salsify:asset_resource_type": {
+                        "type": "string",
+                        "example": "raw"
+                      },
+                      "salsify:system_id": {
+                        "type": "string",
+                        "example": "s-999-999-999-999"
+                      },
+                      "Manufacturer": {
+                        "type": "string",
+                        "example": "Wildflower Imports, Inc."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n  {\n    \"salsify:id\": \"kitty.png\",\n    \"salsify:source_url\": \"https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png\"\n  },\n  {\n    \"salsify:source_url\": \"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\"\n  }\n]\n'\n# where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Post.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"[\\n  {\\n    \\\"salsify:id\\\": \\\"kitty.png\\\",\\n    \\\"salsify:source_url\\\": \\\"https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png\\\"\\n  },\\n  {\\n    \\\"salsify:source_url\\\": \\\"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\\\"\\n  }\\n]\\n\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n  {\\n    \\\"salsify:id\\\": \\\"kitty.png\\\",\\n    \\\"salsify:source_url\\\": \\\"https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png\\\"\\n  },\\n  {\\n    \\\"salsify:source_url\\\": \\\"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\\\"\\n  }\\n]\\n\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"POST\", \"/api/v1/orgs/s-999-999-999-999/digital_assets\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      },
+      "put": {
+        "summary": "Update Multiple Digital Assets",
+        "description": "",
+        "operationId": "update-multiple-digital-assets",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "salsify:id"
+                ],
+                "properties": {
+                  "salsify:id": {
+                    "type": "string",
+                    "description": "The identifier to use for the asset. A randomly generated ID is assigned if not specified."
+                  },
+                  "source_URL": {
+                    "type": "string",
+                    "description": "An HTTP(S) URL of a public image on the Internet."
+                  },
+                  "salsify:name": {
+                    "type": "string",
+                    "description": "Digital asset name. The filename is used if not specified."
+                  },
+                  "additional_metadata": {
+                    "type": "string",
+                    "description": "Additional optional metadata can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-99/digital_assets \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n\t\t\"salsify:id\":\"9864e3935012248a88bbada36448cea6bcd5a899\",\n\t\t\"salsify:name\":\"dandelion_test_update\",\n\t\t\"Asset Use\":\"Print Catalog\"\n\t},\n\t{\n\t\t\"salsify:id\":\"2b58bb47c3cb6d85d002bf92824010e09b0bcae5\",\n    \t\"salsify:name\":\"dandelion_flower_print\",\n    \t\"Asset Use\":\"Print Catalog\"\n\t}\n]'\n'\n# where org_id = s-999-999-999-999, salsify:id = 9864e3935012248a88bbada36448cea6bcd5a899 and 2b58bb47c3cb6d85d002bf92824010e09b0bcae5, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest[\"Cache-Control\"] = 'no-cache'\nrequest.body = \"[\\n\\t{\\n\\t\\t\\\"salsify:id\\\":\\\"9864e3935012248a88bbada36448cea6bcd5a899\\\",\\n\\t\\t\\\"salsify:name\\\":\\\"dandelion_test_update\\\",\\n\\t\\t\\\"Asset Use\\\":\\\"Print Catalog\\\"\\n\\t},\\n\\t{\\n\\t\\t\\\"salsify:id\\\":\\\"2b58bb47c3cb6d85d002bf92824010e09b0bcae5\\\",\\n    \\t\\\"salsify:name\\\":\\\"dandelion_flower_print\\\",\\n    \\t\\\"Asset Use\\\":\\\"Print Catalog\\\"\\n\\t}\\n]\"\n\nresponse = http.request(request)\nputs response.read_body\n# where org_id = s-999-999-999-999, salsify:id= 9864e3935012248a88bbada36448cea6bcd5a899, 2b58bb47c3cb6d85d002bf92824010e09b0bcae5, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n\\t\\t\\\"salsify:id\\\":\\\"9864e3935012248a88bbada36448cea6bcd5a899\\\",\\n\\t\\t\\\"salsify:name\\\":\\\"dandelion_test_update\\\",\\n\\t\\t\\\"Asset Use\\\":\\\"Print Catalog\\\"\\n\\t},\\n\\t{\\n\\t\\t\\\"salsify:id\\\":\\\"2b58bb47c3cb6d85d002bf92824010e09b0bcae5\\\",\\n    \\t\\\"salsify:name\\\":\\\"dandelion_flower_print\\\",\\n    \\t\\\"Asset Use\\\":\\\"Print Catalog\\\"\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer = YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    'Cache-Control': \"no-cache\",\n    }\n\nconn.request(\"PUT\", \"/api/v1/orgs/s-999-999-999-999/digital_assets\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id= 9864e3935012248a88bbada36448cea6bcd5a899 and 2b58bb47c3cb6d85d002bf92824010e09b0bcae5, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/products/{product_id}": {
+      "put": {
+        "summary": "Update Product",
+        "description": "",
+        "operationId": "update-product",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "product_id": {
+                    "type": "string",
+                    "description": "Value to identify product, stored in property with unique product identifier role in your Salsify organization."
+                  },
+                  "properties": {
+                    "type": "string",
+                    "description": "Properties can be added in value pairs. {property_id} : {property_value} where property_id is a Salsify property, and property_value is the corresponding property value. If property_id does not exist in org, property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when salsify:id does not exist or org ID is incorrect."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        \"s-e62b9a19-6443-4f61-bfce-6540a86c511z is not a valid salsify uuid\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "s-e62b9a19-6443-4f61-bfce-6540a86c511z is not a valid salsify uuid"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-99/products/123 \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n    \"Product ID\":\"123\",\n    \"Product Name\":\"My Test Product'\\''s Name\",\n    \"Brand\": \"Miscellus\"\n\t}\n]'\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n    \\\"Product ID\\\":\\\"123\\\",\\n    \\\"Product Name\\\":\\\"My Test Product's Name\\\",\\n    \\\"Brand\\\": \\\"Miscellus\\\"\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"PUT\", \"api/v1/orgs/s-999-999-999-999/products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"[\\n\\t{\\n    \\\"Product ID\\\":\\\"123\\\",\\n    \\\"Product Name\\\":\\\"My Test Product's Name\\\",\\n    \\\"Brand\\\": \\\"Miscellus\\\"\\n\\t}\\n]\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "python",
+            "ruby"
+          ]
+        }
+      },
+      "delete": {
+        "summary": "Delete Product",
+        "description": "",
+        "operationId": "delete-product",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "product_id",
+            "in": "path",
+            "description": "Unique value that identifies product and stored in the property that holds the product identifier role in Salsify. Send as an array of product ID values; property id label is not sent.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        \"Updates must be applied to existing assets.\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Updates must be applied to existing assets."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/123 \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/x-www-form-urlencoded' \\\n  \n  # where org_id = s-999-999-999-999, salsify:id= 123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/123\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/x-www-form-urlencoded'\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, product_id= 123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app,salsify,com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/x-www-form-urlencoded\",\n\n    }\n\nconn.request(\"DELETE\", \"api,v1,orgs,s-999-999-999-99,products,123\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, product_id= 123, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/products/": {
+      "post": {
+        "summary": "Create Product",
+        "description": "",
+        "operationId": "add-a-product",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "product_name": {
+                    "type": "string",
+                    "description": "Property ID for the property that is set as the product name role in Salsify. Product name will be left blank if not included."
+                  },
+                  "additional_properties": {
+                    "type": "string",
+                    "description": "Additional information to store in properties associated with the product, sent in value pairs of `property_id : property_value`. Property IDs that don't exist in the Salsify org will be created as default string data type. Accepts multiple property values as arrays."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "201",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"salsify:id\": \"My New Product\",\n    \"salsify:created_at\": \"2017-12-04T16:29:38.181Z\",\n    \"salsify:updated_at\": \"2017-12-04T16:29:38.181Z\",\n    \"salsify:version\": 0,\n    \"salsify:profile_asset_id\": null,\n    \"salsify:system_id\": \"s-999-999-999-999\",\n    \"Product ID\": \"My New Product\",\n    \"Product Name\": \"New Product Name\",\n    \"Manufacturer\": \"Wildflower Imports, Inc.\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "salsify:id": {
+                      "type": "string",
+                      "example": "My New Product"
+                    },
+                    "salsify:created_at": {
+                      "type": "string",
+                      "example": "2017-12-04T16:29:38.181Z"
+                    },
+                    "salsify:updated_at": {
+                      "type": "string",
+                      "example": "2017-12-04T16:29:38.181Z"
+                    },
+                    "salsify:version": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "salsify:profile_asset_id": {},
+                    "salsify:system_id": {
+                      "type": "string",
+                      "example": "s-999-999-999-999"
+                    },
+                    "Product ID": {
+                      "type": "string",
+                      "example": "My New Product"
+                    },
+                    "Product Name": {
+                      "type": "string",
+                      "example": "New Product Name"
+                    },
+                    "Manufacturer": {
+                      "type": "string",
+                      "example": "Wildflower Imports, Inc."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Product ID property missing": {
+                    "value": "{\n    \"errors\": [\n        \"Missing required property your-product-id\"\n    ]\n}\n\n//where your-product-id is the property ID of the property that serves the salsify:id role."
+                  },
+                  "Product ID value is not unique": {
+                    "value": "{\n    \"errors\": [\n        \"A product already exists with the same id.\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Product ID property missing",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Missing required property your-product-id"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Product ID value is not unique",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "A product already exists with the same id."
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'content-type: application/json' \\\n  -d '{\n\t\"Product ID\":\"My New Product\",\n\t\"Product Name\":\"New Product Name\"\n}'\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products\")\n\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Post.new(url)\nrequest[\"authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"content-type\"] = 'application/json'\nrequest.body = \"{\\n\\t\\\"Product ID\\\":\\\"My New Product\\\",\\n\\t\\\"Product Name\\\":\\\"New Product Name\\\"\\n}\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"{\\n\\t\\\"Product ID\\\":\\\"My New Product\\\",\\n\\t\\\"Product Name\\\":\\\"New Product Name\\\"\\n}\"\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'content-type': \"application/json\"\n    }\n\nconn.request(\"POST\", \"/api/v1/orgs/s-999-999-999-999/products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/properties": {
+      "post": {
+        "summary": "Bulk Create New Properties",
+        "description": "",
+        "operationId": "bulk-create-new-properties",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "salsify:id"
+                ],
+                "properties": {
+                  "salsify:id": {
+                    "type": "string",
+                    "description": "Unique identifier for property. Used in report headers, channel mapping, etc. Cannot start with `salsify`,  `=`, or `_`. Case sensitive."
+                  },
+                  "salsify:name": {
+                    "type": "string",
+                    "description": "Property name, if different from ID. Best practice is for property ID and name to match. If not specified, property name will be filled with property ID value."
+                  },
+                  "system_metadata": {
+                    "type": "string",
+                    "description": "Include values for any system metadata you want to set for the property. See Properties Overview for full list."
+                  },
+                  "custom_metadata": {
+                    "type": "string",
+                    "description": "Set any custom metadata you want to include with the property."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "[\n    {\n        \"salsify:id\": \"test_ID\",\n        \"salsify:name\": \"test_name\",\n        \"salsify:data_type\": \"string\",\n        \"salsify:entity_types\": [],\n        \"salsify:is_facetable\": true,\n        \"salsify:attribute_group\": \"General\",\n        \"salsify:position\": null,\n        \"salsify:help_text\": \"This is a test property\",\n        \"salsify:manage_permissions\": null,\n        \"salsify:read_permissions\": null,\n        \"salsify:hidden_permissions\": null,\n        \"salsify:created_at\": \"2018-09-10T13:43:12.128Z\",\n        \"salsify:updated_at\": \"2018-09-10T13:43:12.128Z\",\n        \"salsify:type\": \"property\",\n        \"salsify:system_id\": \"s-999-999-999-999\"\n    },\n    {\n        \"salsify:id\": \"test_ID2\",\n        \"salsify:name\": \"test_name2\",\n        \"salsify:data_type\": \"string\",\n        \"salsify:entity_types\": [],\n        \"salsify:is_facetable\": true,\n        \"salsify:attribute_group\": \"General\",\n        \"salsify:position\": null,\n        \"salsify:help_text\": \"This is a test property\",\n        \"salsify:manage_permissions\": null,\n        \"salsify:read_permissions\": null,\n        \"salsify:hidden_permissions\": null,\n        \"salsify:created_at\": \"2018-09-10T13:43:12.128Z\",\n        \"salsify:updated_at\": \"2018-09-10T13:43:12.128Z\",\n        \"salsify:type\": \"property\",\n        \"salsify:system_id\": \"s-999-999-999-999\"\n    }\n]"
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "salsify:id": {
+                        "type": "string",
+                        "example": "test_ID"
+                      },
+                      "salsify:name": {
+                        "type": "string",
+                        "example": "test_name"
+                      },
+                      "salsify:data_type": {
+                        "type": "string",
+                        "example": "string"
+                      },
+                      "salsify:entity_types": {
+                        "type": "array"
+                      },
+                      "salsify:is_facetable": {
+                        "type": "boolean",
+                        "example": true,
+                        "default": true
+                      },
+                      "salsify:attribute_group": {
+                        "type": "string",
+                        "example": "General"
+                      },
+                      "salsify:position": {},
+                      "salsify:help_text": {
+                        "type": "string",
+                        "example": "This is a test property"
+                      },
+                      "salsify:manage_permissions": {},
+                      "salsify:read_permissions": {},
+                      "salsify:hidden_permissions": {},
+                      "salsify:created_at": {
+                        "type": "string",
+                        "example": "2018-09-10T13:43:12.128Z"
+                      },
+                      "salsify:updated_at": {
+                        "type": "string",
+                        "example": "2018-09-10T13:43:12.128Z"
+                      },
+                      "salsify:type": {
+                        "type": "string",
+                        "example": "property"
+                      },
+                      "salsify:system_id": {
+                        "type": "string",
+                        "example": "s-999-999-999-999"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n\t\t\"salsify:id\": \"test_ID\",\n\t\t\"salsify:name\": \"test_name\",\n\t\t\"salsify:data_type\": \"string\",\n\t\t\"salsify:is_facetable\": true,\n    \t\"salsify:attribute_group\": \"General\",\n    \t\"salsify:position\": null,\n    \t\"salsify:help_text\": \"This is a test property\",\n    \t\"salsify:manage_permissions\": null,\n    \t\"salsify:read_permissions\": null,\n    \t\"salsify:hidden_permissions\": null,\n    \t\"salsify:type\": \"property\"\n\t},\n\t{\n    \t\"salsify:id\": \"test_ID2\",\n    \t\"salsify:name\": \"test_name2\",\n    \t\"salsify:data_type\": \"string\",\n    \t\"salsify:is_facetable\": true,\n    \t\"salsify:attribute_group\": \"General\",\n    \t\"salsify:position\": null,\n    \t\"salsify:help_text\": \"This is a test property\",\n    \t\"salsify:manage_permissions\": null,\n    \t\"salsify:read_permissions\": null,\n    \t\"salsify:hidden_permissions\": null,\n    \t\"salsify:type\": \"property\"\n\t}\n]'\n# where org_id = s-999-999-999-999, salsify:id=test_ID, api_token = YOUR-AUTH-TOKEN\n"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Post.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"[\\n\\t{\\n\\t\\t\\\"salsify:id\\\": \\\"test_ID\\\",\\n\\t\\t\\\"salsify:name\\\": \\\"test_name\\\",\\n\\t\\t\\\"salsify:data_type\\\": \\\"string\\\",\\n\\t\\t\\\"salsify:is_facetable\\\": true,\\n    \\t\\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\t\\\"salsify:position\\\": null,\\n    \\t\\\"salsify:help_text\\\": \\\"This is a test property\\\",\\n    \\t\\\"salsify:manage_permissions\\\": null,\\n    \\t\\\"salsify:read_permissions\\\": null,\\n    \\t\\\"salsify:hidden_permissions\\\": null,\\n    \\t\\\"salsify:type\\\": \\\"property\\\"\\n\\t},\\n\\t{\\n    \\t\\\"salsify:id\\\": \\\"test_ID2\\\",\\n    \\t\\\"salsify:name\\\": \\\"test_name2\\\",\\n    \\t\\\"salsify:data_type\\\": \\\"string\\\",\\n    \\t\\\"salsify:is_facetable\\\": true,\\n    \\t\\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\t\\\"salsify:position\\\": null,\\n    \\t\\\"salsify:help_text\\\": \\\"This is a test property\\\",\\n    \\t\\\"salsify:manage_permissions\\\": null,\\n    \\t\\\"salsify:read_permissions\\\": null,\\n    \\t\\\"salsify:hidden_permissions\\\": null,\\n    \\t\\\"salsify:type\\\": \\\"property\\\"\\n\\t}\\n]\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id=test_ID, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n\\t\\t\\\"salsify:id\\\": \\\"test_ID\\\",\\n\\t\\t\\\"salsify:name\\\": \\\"test_name\\\",\\n\\t\\t\\\"salsify:data_type\\\": \\\"string\\\",\\n\\t\\t\\\"salsify:is_facetable\\\": true,\\n    \\t\\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\t\\\"salsify:position\\\": null,\\n    \\t\\\"salsify:help_text\\\": \\\"This is a test property\\\",\\n    \\t\\\"salsify:manage_permissions\\\": null,\\n    \\t\\\"salsify:read_permissions\\\": null,\\n    \\t\\\"salsify:hidden_permissions\\\": null,\\n    \\t\\\"salsify:type\\\": \\\"property\\\"\\n\\t},\\n\\t{\\n    \\t\\\"salsify:id\\\": \\\"test_ID2\\\",\\n    \\t\\\"salsify:name\\\": \\\"test_name2\\\",\\n    \\t\\\"salsify:data_type\\\": \\\"string\\\",\\n    \\t\\\"salsify:is_facetable\\\": true,\\n    \\t\\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\t\\\"salsify:position\\\": null,\\n    \\t\\\"salsify:help_text\\\": \\\"This is a test property\\\",\\n    \\t\\\"salsify:manage_permissions\\\": null,\\n    \\t\\\"salsify:read_permissions\\\": null,\\n    \\t\\\"salsify:hidden_permissions\\\": null,\\n    \\t\\\"salsify:type\\\": \\\"property\\\"\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"POST\", \"api/v1/orgs/s-999-999-999-999/properties\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=test_ID, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      },
+      "delete": {
+        "summary": "Bulk Delete Properties",
+        "description": "",
+        "operationId": "bulk-delete-properties",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "salsify:id"
+                ],
+                "properties": {
+                  "salsify:id": {
+                    "type": "string",
+                    "description": "Unique identifier for each property, sent as an array."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"ids\": [\n    \"delete-property-id\",\n    \"test_ID\"\n  ]\n}'\n\n  # where org_id = s-999-999-999-999, salsify:id=delete-property-id & test_ID, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/delete-property-id\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\n\nresponse = http.request(request)\nputs response.read_body\n\n  # where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-999-999-999-999/properties/delete-property-id\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/lists/{list_id}/members": {
+      "put": {
+        "summary": "Add List Members",
+        "description": "",
+        "operationId": "add-list-members",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "list_id",
+            "in": "path",
+            "description": "Identifier for the list being updated. List ID can be found by navigating to the Salsify list; ID follows `product_lists` or `digital_asset_lists`. See List Membership Overview for how to find the list ID.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "member_id": {
+                    "type": "string",
+                    "description": "Salsify product ID for the products to be added to the list."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        \"985050 could not be found or is not a product\",\n        \"981929 could not be found or is not a product\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "985050 could not be found or is not a product"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-492247e8-0e24-47e9-8af5-d07defe563dc/lists/121718/members \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"data\" : {\n    \"member_ids\" : [\"985050\",\"981929\"]\n  }\n}\n\n# where org_id = s-999-999-999-999, member_ids=985050 and 981929, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/lists/121718/members\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"{\\n  \\\"data\\\" : {\\n    \\\"member_ids\\\" : [\\\"985050\\\",\\\"981929\\\"]\\n  }\\n}\\n\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, list_id=121718, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"{\\n  \\\"data\\\" : {\\n    \\\"member_ids\\\" : [\\\"985050\\\",\\\"981929\\\"]\\n  }\\n}\\n\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"PUT\", \"api/v1/orgs/s-999-999-999-999/lists/121718/members\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, list_id=121718, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      },
+      "delete": {
+        "summary": "Delete List Members",
+        "description": "",
+        "operationId": "add-list-members-1",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "list_id",
+            "in": "path",
+            "description": "Identifier for the list being updated. List ID can be found by navigating to the Salsify list; ID follows `product_lists` or `digital_asset_lists`",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        \"985050 could not be found or is not a product\",\n        \"981929 could not be found or is not a product\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "985050 could not be found or is not a product"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/lists/182215/members \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"data\" : {\n    \"member_ids\" : [\"985050\",\"981929\"]\n  }\n}\n'\n\n# where org_id = s-999-999-999-999, salsify:id=985050 and 981929, list ID=182215, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/lists/182215/members\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest[\"Cache-Control\"] = 'no-cache'\nrequest.body = \"{\\n  \\\"data\\\" : {\\n    \\\"member_ids\\\" : [\\\"985050\\\",\\\"981929\\\"]\\n  }\\n}\\n\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id=985050 and 981929, list ID=182215, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"{\\n  \\\"data\\\" : {\\n    \\\"member_ids\\\" : [\\\"985050\\\",\\\"981929\\\"]\\n  }\\n}\\n\"\n\nheaders = {\n    'Authorization': \"Bearer 7f96387bcfbc9a4777f70c77db165f222e6f07d5a2a1cf317d7a743e7bf7277e\",\n    'Content-Type': \"application/json\",\n    'Cache-Control': \"no-cache\",\n    'Postman-Token': \"735e5117-bdff-4e75-b312-5a60403b66aa\"\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-492247e8-0e24-47e9-8af5-d07defe563dc/lists/182215/members\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/properties/{salsify:id}": {
+      "delete": {
+        "summary": "Delete Property",
+        "description": "",
+        "operationId": "delete-property",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "salsify:id",
+            "in": "path",
+            "description": "Unique identifier for the property. Used in report headers, channel mapping, etc.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/delete-property-id \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n\n  # where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/delete-property-id\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\n\nresponse = http.request(request)\nputs response.read_body\n\n  # where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-999-999-999-999/properties/delete-property-id\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      },
+      "put": {
+        "summary": "Update Property",
+        "description": "",
+        "operationId": "update-property",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "salsify:id",
+            "in": "path",
+            "description": "Unique identifier for the property. Used in report headers, channel mapping, etc.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "metadata_id": {
+                    "type": "string",
+                    "description": "Property metadata can be added in value pairs. `{metadata_id} : {metadata_value}` where `metadata_id` is the metadata id being associated with the Salsify property, and `metadata_value` is the corresponding metadata value. If `metadata_id` does not exist in org, metadata property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/ASIN \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n\"salsify:help_text\":\"Amazon Unique Identifier\"\n}\n'\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/ASIN\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"{\\n\\\"salsify:help_text\\\":\\\"Amazon Unique Identifier\\\"\\n}\\n\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"{\\n\\\"salsify:help_text\\\":\\\"Amazon Unique Identifier\\\"\\n}\\n\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"PUT\", \"api/v1/orgs/s-999-999-999-999/properties/ASIN\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{organization_id}/digital_assets": {
+      "post": {
+        "summary": "Create a Digital Asset & Metadata",
+        "description": "",
+        "operationId": "create-a-digital-asset-metadata",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "salsify:source_url"
+                ],
+                "properties": {
+                  "salsify:source_url": {
+                    "type": "string",
+                    "description": "An HTTP(S) URL of a public image on the Internet."
+                  },
+                  "salsify:id": {
+                    "type": "string",
+                    "description": "The identifier to use for the asset. A randomly generated ID is assigned if not specified."
+                  },
+                  "additional_metadata": {
+                    "type": "string",
+                    "description": "Additional optional metadata ([system](https://salsify.readme.io/v1.0/reference#section-digital-asset-metadata-attributes) or custom) can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"salsify:id\": \"dandelion_new_10002\",\n    \"salsify:source_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg\",\n    \"salsify:name\": \"dandelion_flower.png\",\n    \"salsify:created_at\": \"2017-11-28T19:18:17.913Z\",\n    \"salsify:updated_at\": \"2017-11-28T19:18:17.913Z\",\n    \"salsify:status\": \"in_progress\",\n    \"salsify:asset_resource_type\": \"raw\",\n    \"salsify:system_id\": \"s-999-999-999-999\",\n    \"Asset Photographer\": \"LB Jeffreys\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "salsify:id": {
+                      "type": "string",
+                      "example": "dandelion_new_10002"
+                    },
+                    "salsify:source_url": {
+                      "type": "string",
+                      "example": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg"
+                    },
+                    "salsify:name": {
+                      "type": "string",
+                      "example": "dandelion_flower.png"
+                    },
+                    "salsify:created_at": {
+                      "type": "string",
+                      "example": "2017-11-28T19:18:17.913Z"
+                    },
+                    "salsify:updated_at": {
+                      "type": "string",
+                      "example": "2017-11-28T19:18:17.913Z"
+                    },
+                    "salsify:status": {
+                      "type": "string",
+                      "example": "in_progress"
+                    },
+                    "salsify:asset_resource_type": {
+                      "type": "string",
+                      "example": "raw"
+                    },
+                    "salsify:system_id": {
+                      "type": "string",
+                      "example": "s-999-999-999-999"
+                    },
+                    "Asset Photographer": {
+                      "type": "string",
+                      "example": "LB Jeffreys"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        \"Given external id (dandelion_new_10002) already exists\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Given external id (dandelion_new_10002) already exists"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'content-type: application/json' \\\n  -d '{ \n    \"salsify:source_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg\",\n    \"salsify:name\":\"dandelion_flower.png\",\n    \"salsify:id\":\"dandelion_new_10002\",\n    \"Asset Photographer\":\"LB Jeffreys\"\n}'\n# where org_id = s-999-999-999-999, salsify:id = dandelion_new_1002, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets\")\n\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Post.new(url)\nrequest[\"authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"content-type\"] = 'application/json'\nrequest.body = \"{ \\n    \\\"salsify:source_url\\\": \\\"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg\\\",\\n    \\\"salsify:name\\\":\\\"dandelion_flower.png\\\",\\n    \\\"salsify:id\\\":\\\"dandelion_new_10002\\\",\\n    \\\"Asset Photographer\\\":\\\"LB Jeffreys\\\"\\n}\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id = dandelion_new_1002, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"{ \\n    \\\"salsify:source_url\\\": \\\"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg\\\",\\n    \\\"salsify:name\\\":\\\"dandelion_flower.png\\\",\\n    \\\"salsify:id\\\":\\\"dandelion_new_10002\\\",\\n    \\\"Asset Photographer\\\":\\\"LB Jeffreys\\\"\\n}\"\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'content-type': \"application/json\"\n    }\n\nconn.request(\"POST\", \"/api/v1/orgs/s-999-999-999-999/digital_assets\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id = dandelion_new_1002, and api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/products": {
+      "delete": {
+        "summary": "Bulk Delete Products",
+        "description": "",
+        "operationId": "bulk-delete-products",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "product_id"
+                ],
+                "properties": {
+                  "product_id": {
+                    "type": "string",
+                    "description": "Unique value that identifies product and stored in the property that holds the product identifier role in Salsify. Send as an array of product ID values; property id label is not sent."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        \"Updates must be applied to existing assets.\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "Updates must be applied to existing assets."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\"123\",\"456\"]'\n  \n  # where org_id = s-999-999-999-999, salsify:id= My New Product, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"[\\\"123\\\",\\\"456\\\"]\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id= My New Product, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\\"123\\\",\\\"456\\\"]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\"\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-999-999-999-999/products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id= My New Product, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      },
+      "post": {
+        "summary": "Bulk Create Products",
+        "description": "",
+        "operationId": "bulk-create-products",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "product_ID"
+                ],
+                "properties": {
+                  "product_ID": {
+                    "type": "string",
+                    "description": "Property ID of the property that is set as the product ID role in Salsify. Product ID value cannot begin with  `=`, `_`, or `salsify`. Must be unique, and is case sensitive."
+                  },
+                  "product_name": {
+                    "type": "string",
+                    "description": "Property ID for the property that is set as the product name role in Salsify. Product name will be left blank if not included."
+                  },
+                  "additional_properties": {
+                    "type": "string",
+                    "description": "Additional information to store in properties associated with the product, sent in value pairs of `property_id : property_value`. Property IDs that don't exist in the Salsify org will be created as default string data type. Accepts multiple property values as arrays."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "201",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "[\n    {\n        \"salsify:id\": \"123\",\n        \"salsify:created_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:updated_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:version\": 0,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-73cae1fc-f7c2-45c7-bce4-3cc8185ac5a5\",\n        \"Product ID\": \"123\",\n        \"Product Name\": \"Product 123\",\n        \"Short Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\",\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    },\n    {\n        \"salsify:id\": \"456\",\n        \"salsify:created_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:updated_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:version\": 0,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-d158ff9d-e327-4c8e-bc13-1139b250ed56\",\n        \"Product ID\": \"456\",\n        \"Product Name\": \"Product 456\",\n        \"Material\": \"plastic\",\n        \"Tags\": [\n            \"headphones\",\n            \"noise cancelling\"\n        ],\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    }\n]"
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "salsify:id": {
+                        "type": "string",
+                        "example": "123"
+                      },
+                      "salsify:created_at": {
+                        "type": "string",
+                        "example": "2018-10-04T22:30:03.910Z"
+                      },
+                      "salsify:updated_at": {
+                        "type": "string",
+                        "example": "2018-10-04T22:30:03.910Z"
+                      },
+                      "salsify:version": {
+                        "type": "integer",
+                        "example": 0,
+                        "default": 0
+                      },
+                      "salsify:profile_asset_id": {},
+                      "salsify:system_id": {
+                        "type": "string",
+                        "example": "s-73cae1fc-f7c2-45c7-bce4-3cc8185ac5a5"
+                      },
+                      "Product ID": {
+                        "type": "string",
+                        "example": "123"
+                      },
+                      "Product Name": {
+                        "type": "string",
+                        "example": "Product 123"
+                      },
+                      "Short Description": {
+                        "type": "string",
+                        "example": "These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise."
+                      },
+                      "Manufacturer": {
+                        "type": "string",
+                        "example": "Wildflower Imports, Inc."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Product ID property missing": {
+                    "value": "{\n    \"errors\": [\n        \"Missing required property your-product-id\"\n    ]\n}\n\n//where your-product-id is the property ID of the property that serves the salsify:id role."
+                  },
+                  "Product ID value is not unique": {
+                    "value": "{\n    \"errors\": [\n        \"A product already exists with the same id.\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Product ID property missing",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Missing required property your-product-id"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Product ID value is not unique",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "A product already exists with the same id."
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n  {\n    \"Product ID\":\"123\",\n    \"Product Name\":\"Product 123\",\n    \"Short Description\":\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n  },\n  {\n    \"Product ID\":\"456\",\n    \"Product Name\":\"Product 456\",\n    \"Material\":\"plastic\",\n    \"Tags\":[\"headphones\",\"noise cancelling\"]\n  }\n]'\n\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products\")\n\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Post.new(url)\nrequest[\"authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"content-type\"] = 'application/json'\nrequest.body = \"{\\n\\t\\\"Product ID\\\":\\\"My New Product\\\",\\n\\t\\\"Product Name\\\":\\\"New Product Name\\\"\\n}\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n  {\\n    \\\"Product ID\\\":\\\"123\\\",\\n    \\\"Product Name\\\":\\\"Product 123\\\",\\n    \\\"Short Description\\\":\\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\"\\n  },\\n  {\\n    \\\"Product ID\\\":\\\"456\\\",\\n    \\\"Product Name\\\":\\\"Product 456\\\",\\n    \\\"Material\\\":\\\"plastic\\\",\\n    \\\"Tags\\\":[\\\"headphones\\\",\\\"noise cancelling\\\"]\\n  }\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n\n    }\n\nconn.request(\"POST\", \"api,v1,orgs,s-492247e8-0e24-47e9-8af5-d07defe563dc,products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      },
+      "put": {
+        "summary": "Bulk Update Products",
+        "description": "",
+        "operationId": "bulk-update-products",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "product_id"
+                ],
+                "properties": {
+                  "product_id": {
+                    "type": "string",
+                    "description": "Value to identify product, stored in property with unique product identifier role in your Salsify organization."
+                  },
+                  "properties": {
+                    "type": "string",
+                    "description": "Properties can be added in value pairs. {property_id} : {property_value} where property_id is a Salsify property, and property_value is the corresponding property value. If property_id does not exist in org, property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when salsify:id does not exist or org ID is incorrect."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        [\n            \"Product '123' does not exist.\"\n        ],\n        []\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "Product '123' does not exist."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n    \"Product ID\":\"123\",\n    \"Product Name\":\"My Test Product'\\''s Name\",\n    \"Brand\": null\n\t},\n\t{\n    \"Product ID\":\"456\",\n    \"Product Name\":\"Another Test Product\",\n    \"Short Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\",\n    \"Tags\": [\n        \"headphones\",\n        \"noise cancelling\",\n        \"wireless\"\n    \t]\n\t}\n]'\n\n# where org_id = s-999-999-999-999, product_id=123,456 api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n    \\\"Product ID\\\":\\\"123\\\",\\n    \\\"Product Name\\\":\\\"My Test Product's Name\\\",\\n    \\\"Brand\\\": null\\n\\t},\\n\\t{\\n    \\\"Product ID\\\":\\\"456\\\",\\n    \\\"Product Name\\\":\\\"Another Test Product\\\",\\n    \\\"Short Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\",\\n    \\\"Tags\\\": [\\n        \\\"headphones\\\",\\n        \\\"noise cancelling\\\",\\n        \\\"wireless\\\"\\n    \\t]\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n\n    }\n\nconn.request(\"PUT\", \"api,v1,orgs,s-999-999-999-999,products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"[\\n\\t{\\n    \\\"Product ID\\\":\\\"123\\\",\\n    \\\"Product Name\\\":\\\"My Test Product's Name\\\",\\n    \\\"Brand\\\": null\\n\\t},\\n\\t{\\n    \\\"Product ID\\\":\\\"456\\\",\\n    \\\"Product Name\\\":\\\"Another Test Product\\\",\\n    \\\"Short Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\",\\n    \\\"Tags\\\": [\\n        \\\"headphones\\\",\\n        \\\"noise cancelling\\\",\\n        \\\"wireless\\\"\\n    \\t]\\n\\t}\\n]\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "python",
+            "ruby"
+          ]
+        }
+      }
+    },
+    "/{org_id}/products/_upsert": {
+      "put": {
+        "summary": "Bulk Upsert Products",
+        "description": "Upserts allow you to update and create a product in the same call.",
+        "operationId": "bulk-upsert-products",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "product_id": {
+                    "type": "string",
+                    "description": "Value to identify product, stored in property with unique product identifier role in your Salsify organization."
+                  },
+                  "properties": {
+                    "type": "string",
+                    "description": "Properties can be added in value pairs. {property_id} : {property_value} where property_id is a Salsify property, and property_value is the corresponding property value. If property_id does not exist in org, property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "[\n    {\n        \"salsify:id\": \"123\",\n        \"salsify:created_at\": \"2020-01-23T17:37:53.817Z\",\n        \"salsify:updated_at\": \"2020-06-23T15:16:49.838Z\",\n        \"salsify:version\": 14,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-0e218edb-6896-4bfd-ae5d-1b8186fa9f1f\",\n        \"Product ID\": \"2010028\",\n        \"Product Name\": \"Updating Existing Product\",\n        \"Category\": \"Accesories\",\n        \"Additional Product Images\": \"b1f8814701086a42e6a528858c2dde4095e0cc72\",\n        \"Color\": \"Blue\",\n        \"Cost\": \"14.99\",\n        \"Description\": \"Add edited description here.\"\n    },\n    {\n        \"salsify:id\": \"456\",\n        \"salsify:created_at\": \"2020-06-22T21:05:29.269Z\",\n        \"salsify:updated_at\": \"2020-06-23T15:16:49.844Z\",\n        \"salsify:version\": 0,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-7b50012e-0e34-4176-992a-8624ab44ba34\",\n        \"Product ID\": \"456\",\n        \"Product Name\": \"Creates New Product\",\n        \"Product Status\": \"In Process\",\n        \"Last Workflow Update\": \"2020-06-22\",\n        \"Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n    }\n]"
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "salsify:id": {
+                        "type": "string",
+                        "example": "123"
+                      },
+                      "salsify:created_at": {
+                        "type": "string",
+                        "example": "2020-01-23T17:37:53.817Z"
+                      },
+                      "salsify:updated_at": {
+                        "type": "string",
+                        "example": "2020-06-23T15:16:49.838Z"
+                      },
+                      "salsify:version": {
+                        "type": "integer",
+                        "example": 14,
+                        "default": 0
+                      },
+                      "salsify:profile_asset_id": {},
+                      "salsify:system_id": {
+                        "type": "string",
+                        "example": "s-0e218edb-6896-4bfd-ae5d-1b8186fa9f1f"
+                      },
+                      "Product ID": {
+                        "type": "string",
+                        "example": "2010028"
+                      },
+                      "Product Name": {
+                        "type": "string",
+                        "example": "Updating Existing Product"
+                      },
+                      "Category": {
+                        "type": "string",
+                        "example": "Accesories"
+                      },
+                      "Additional Product Images": {
+                        "type": "string",
+                        "example": "b1f8814701086a42e6a528858c2dde4095e0cc72"
+                      },
+                      "Color": {
+                        "type": "string",
+                        "example": "Blue"
+                      },
+                      "Cost": {
+                        "type": "string",
+                        "example": "14.99"
+                      },
+                      "Description": {
+                        "type": "string",
+                        "example": "Add edited description here."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": ""
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        [\n            \"A locale must be specified to update localizable property Short Description\"\n        ],\n        [\n            \"A locale must be specified to update localizable property Short Description\"\n        ]\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "A locale must be specified to update localizable property Short Description"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location --request PUT 'https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/_upsert' \\\n--header 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n--header 'Content-Type: application/json' \\\n--data-raw '[\n  {\n    \"Product ID\": \"123\",\n    \"Product Name\": \"Updating Existing Product\",\n    \"Description\": \"Add edited description here.\"\n  },\n  {\n  \t\"Product ID\": \"456\",\n  \t\"Product Name\": \"Creates New Product\",\n    \"Brand\": null,\n    \"Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n  }\n]'\n\n# where org_id = s-999-999-999-999, product_id=123,456 api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\npayload = \"[\\n  {\\n    \\\"Product ID\\\": \\\"123\\\",\\n    \\\"Product Name\\\": \\\"Updating Existing Product\\\",\\n    \\\"Description\\\": \\\"Add edited description here.\\\"\\n  },\\n  {\\n  \\t\\\"Product ID\\\": \\\"456\\\",\\n  \\t\\\"Product Name\\\": \\\"Creates New Product\\\",\\n    \\\"Brand\\\": null,\\n    \\\"Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\"\\n  }\\n]\"\n\nheaders = {\n  'Authorization': 'Bearer YOUR-AUTH-TOKEN',\n  'Content-Type': 'application/json'\n  \n}\n\nconn.request(\"PUT\", \"/api/v1/orgs/s-999-999-999-999/products/_upsert\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require \"uri\"\nrequire \"net/http\"\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/_upsert\")\n\nhttps = Net::HTTP.new(url.host, url.port);\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Content-Type\"] = [\"application/json\", \"application/json\"]\nrequest[\"Authorization\"] = \"Bearer YOUR-AUTH-TOKEN\"\nrequest.body = \"[\\n  {\\n    \\\"Product ID\\\": \\\"123\\\",\\n    \\\"Product Name\\\": \\\"Updating Existing Product\\\",\\n    \\\"Description\\\": \\\"Add edited description here.\\\"\\n  },\\n  {\\n  \\t\\\"Product ID\\\": \\\"456\\\",\\n  \\t\\\"Product Name\\\": \\\"Creates New Product\\\",\\n    \\\"Brand\\\": null,\\n    \\\"Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\"\\n  }\\n]\"\n\nresponse = https.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "python",
+            "ruby"
+          ]
+        }
+      }
+    },
+    "/{organization_id}/properties/_upsert": {
+      "put": {
+        "summary": "Bulk Upsert Properties",
+        "description": "",
+        "operationId": "bulk-upsert-properties",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "salsify:id": {
+                    "type": "string",
+                    "description": "Unique identifier for property. Used in report headers, channel mapping, etc. Cannot start with `salsify`,  `=`, or `_`. Case sensitive."
+                  },
+                  "salsify:name": {
+                    "type": "string",
+                    "description": "Property name, if different from ID. Best practice is for property ID and name to match. If not specified, property name will be filled with property ID value."
+                  },
+                  "salsify:system_metadata": {
+                    "type": "string",
+                    "description": "Include values for any system metadata you want to set for the property. See Properties Overview for full list."
+                  },
+                  "salsify:custom_metadata": {
+                    "type": "string",
+                    "description": "Set any custom metadata you want to include with the property."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "[\n    null,\n    null\n]"
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"errors\": [\n        [],\n        [\n        \"salsify:data_type must be in string, rich_text, link, html, enumerated, \tdigital_asset, boolean, number, date, compound, complex, product, quantified_product\"\n        ]\n    ]\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location --request PUT 'https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/_upsert' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n--data-raw '[\n  {\n    \"salsify:id\": \"Formatted Retail Price\",\n    \"salsify:name\": \"Formatted Retail Price\",\n    \"salsify:help_text\": \"Update the property'\\''s Help Text here.\"\n  },\n  {\n  \t\"salsify:id\": \"testProperty_ID\",\n  \t\"salsify:name\": \"testProperty_Name\",\n    \"salsify:data_type\": \"digital_asset\",\n    \"salsify:attribute_group\": \"General\",\n    \"salsify:position\": null,\n    \"salsify:help_text\": \"This is a new property\",\n    \"salsify:manage_permissions\": null,\n    \"salsify:read_permissions\": null,\n    \"salsify:hidden_permissions\": null,\n    \"salsify:type\": \"property\"\n  }\n]'\n\n# where org_id = s-999-999-999-999, salsify:id=testProperty_ID, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require \"uri\"\nrequire \"net/http\"\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/_upsert\")\n\nhttps = Net::HTTP.new(url.host, url.port);\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Content-Type\"] = \"application/json\"\nrequest[\"Authorization\"] = \"Bearer YOUR-AUTH-TOKEN\"\nrequest.body = \"[\\n  {\\n    \\\"salsify:id\\\": \\\"Formatted Retail Price\\\",\\n    \\\"salsify:name\\\": \\\"Formatted Retail Price\\\",\\n    \\\"salsify:help_text\\\": \\\"Update the property's Help Text here.\\\"\\n  },\\n  {\\n  \\t\\\"salsify:id\\\": \\\"testProperty_ID\\\",\\n  \\t\\\"salsify:name\\\": \\\"testProperty_Name\\\",\\n    \\\"salsify:data_type\\\": \\\"digital_asset\\\",\\n    \\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\\"salsify:position\\\": null,\\n    \\\"salsify:help_text\\\": \\\"This is a new property\\\",\\n    \\\"salsify:manage_permissions\\\": null,\\n    \\\"salsify:read_permissions\\\": null,\\n    \\\"salsify:hidden_permissions\\\": null,\\n    \\\"salsify:type\\\": \\\"property\\\"\\n  }\\n]\"\n\nresponse = https.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id=testProperty_ID, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"[\\n  {\\n    \\\"salsify:id\\\": \\\"Formatted Retail Price\\\",\\n    \\\"salsify:name\\\": \\\"Formatted Retail Price\\\",\\n    \\\"salsify:help_text\\\": \\\"Update the property's Help Text here.\\\"\\n  },\\n  {\\n  \\t\\\"salsify:id\\\": \\\"testProperty_ID\\\",\\n  \\t\\\"salsify:name\\\": \\\"testProperty_Name\\\",\\n    \\\"salsify:data_type\\\": \\\"digital_asset\\\",\\n    \\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\\"salsify:position\\\": null,\\n    \\\"salsify:help_text\\\": \\\"This is a new property\\\",\\n    \\\"salsify:manage_permissions\\\": null,\\n    \\\"salsify:read_permissions\\\": null,\\n    \\\"salsify:hidden_permissions\\\": null,\\n    \\\"salsify:type\\\": \\\"property\\\"\\n  }\\n]\"\nheaders = {\n  'Content-Type': 'application/json',\n  'Authorization': 'Bearer YOUR-AUTH-TOKEN'\n}\nconn.request(\"PUT\", \"/api/v1/orgs/s-999-999-999-999/properties/_upsert\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=testProperty_ID, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{organization_id}/digital_assets/_upsert": {
+      "put": {
+        "summary": "Bulk Upsert Digital Assets",
+        "description": "",
+        "operationId": "bulk-upsert-digital-assets",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "salsify:id": {
+                    "type": "string",
+                    "description": "The identifier to use for the asset. A randomly generated ID is assigned if not specified."
+                  },
+                  "salsify:url": {
+                    "type": "string",
+                    "description": "An HTTP(S) URL of a public image on the Internet."
+                  },
+                  "salsify:name": {
+                    "type": "string",
+                    "description": "Digital asset name. The filename is used if not specified."
+                  },
+                  "additional_metadata": {
+                    "type": "string",
+                    "description": "Additional optional metadata can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "[\n    null,\n    null\n]"
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location --request PUT 'https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/_upsert' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n--data-raw '[\n  {\n    \"salsify:id\": \"a951636a612b403636a162a69fb0228a52fb90cf\",\n    \"salsify:url\": \"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\",\n    \"salsify:name\": \"Update Digital Asset\"\n  },\n  {\n    \"salsify:url\": \"https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n  \t\"salsify:name\": \"New Image Upload\"\n  }\n]'\n\n# where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require \"uri\"\nrequire \"net/http\"\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/_upsert\")\n\nhttps = Net::HTTP.new(url.host, url.port);\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Content-Type\"] = \"application/json\"\nrequest[\"Authorization\"] = \"Bearer YOUR-AUTH-TOKEN\"\nrequest.body = \"[\\n  {\\n    \\\"salsify:id\\\": \\\"a951636a612b403636a162a69fb0228a52fb90cf\\\",\\n    \\\"salsify:url\\\": \\\"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\\\",\\n    \\\"salsify:name\\\": \\\"Update Digital Asset\\\"\\n  },\\n  {\\n    \\\"salsify:url\\\": \\\"https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\\\",\\n  \\t\\\"salsify:name\\\": \\\"New Image Upload\\\"\\n  }\\n]\"\n\nresponse = https.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"[\\n  {\\n    \\\"salsify:id\\\": \\\"a951636a612b403636a162a69fb0228a52fb90cf\\\",\\n    \\\"salsify:url\\\": \\\"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\\\",\\n    \\\"salsify:name\\\": \\\"Update Digital Asset\\\"\\n  },\\n  {\\n    \\\"salsify:url\\\": \\\"https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\\\",\\n  \\t\\\"salsify:name\\\": \\\"New Image Upload\\\"\\n  }\\n]\"\nheaders = {\n  'Content-Type': 'application/json',\n  'Authorization': 'Bearer jX9UZ8L3XVXLgry8wC7zPS3e7UDG0XGULfeS7YaOHNY'\n}\nconn.request(\"PUT\", \"/api/v1/orgs/s-085029dd-4e06-45ef-a61a-85ac1e80a33d/digital_assets/_upsert\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/records/": {
+      "post": {
+        "summary": "Create Record",
+        "description": "",
+        "operationId": "create-record",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "record_name": {
+                    "type": "string",
+                    "description": "Property ID for the property that is set as the record name role in Salsify. Record name will be left blank if not included."
+                  },
+                  "additional_properties": {
+                    "type": "string",
+                    "description": "Additional information to store in properties associated with the record, sent in value pairs of `property_id : property_value`. Property IDs that don't exist in the Salsify org will be created as default string data type. Accepts multiple property values as arrays."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "201",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"salsify:id\": \"My New Record\",\n    \"salsify:created_at\": \"2017-12-04T16:29:38.181Z\",\n    \"salsify:updated_at\": \"2017-12-04T16:29:38.181Z\",\n    \"salsify:version\": 0,\n    \"salsify:profile_asset_id\": null,\n    \"salsify:system_id\": \"s-999-999-999-999\",\n    \"Record ID\": \"My New Record\",\n    \"Record Name\": \"New Record Name\",\n    \"Manufacturer\": \"Wildflower Imports, Inc.\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "salsify:id": {
+                      "type": "string",
+                      "example": "My New Record"
+                    },
+                    "salsify:created_at": {
+                      "type": "string",
+                      "example": "2017-12-04T16:29:38.181Z"
+                    },
+                    "salsify:updated_at": {
+                      "type": "string",
+                      "example": "2017-12-04T16:29:38.181Z"
+                    },
+                    "salsify:version": {
+                      "type": "integer",
+                      "example": 0,
+                      "default": 0
+                    },
+                    "salsify:profile_asset_id": {},
+                    "salsify:system_id": {
+                      "type": "string",
+                      "example": "s-999-999-999-999"
+                    },
+                    "Record ID": {
+                      "type": "string",
+                      "example": "My New Record"
+                    },
+                    "Record Name": {
+                      "type": "string",
+                      "example": "New Record Name"
+                    },
+                    "Manufacturer": {
+                      "type": "string",
+                      "example": "Wildflower Imports, Inc."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Record ID property missing": {
+                    "value": "{\n    \"errors\": [\n        \"Missing required property your-record-id\"\n    ]\n}\n\n//where your-record-id is the property ID of the property that serves the salsify:id role."
+                  },
+                  "Record ID value is not unique": {
+                    "value": "{\n    \"errors\": [\n        \"A record already exists with the same id.\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Record ID property missing",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Missing required property your-record-id"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Record ID value is not unique",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "A record already exists with the same id."
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'content-type: application/json' \\\n  -d '{\n\t\"Record ID\":\"My New Record\",\n\t\"Record Name\":\"New Record Name\"\n}'\n# where org_id = s-999-999-999-999, Record ID is the system record identifier, and api_token = YOUR-AUTH-TOKEN",
+              "name": "cURL"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records\")\n\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Post.new(url)\nrequest[\"authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"content-type\"] = 'application/json'\nrequest.body = \"{\\n\\t\\\"Record ID\\\":\\\"My New Record\\\",\\n\\t\\\"Record Name\\\":\\\"New Record Name\\\"\\n}\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, Record ID is the system record identifier, and api_token = YOUR-AUTH-TOKEN",
+              "name": "Ruby"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"{\\n\\t\\\"Record ID\\\":\\\"My New Record\\\",\\n\\t\\\"Record Name\\\":\\\"New Record Name\\\"\\n}\"\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'content-type': \"application/json\"\n    }\n\nconn.request(\"POST\", \"/api/v1/orgs/s-999-999-999-999/records\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n# where org_id = s-999-999-999-999, Record ID is the system record identifier, and api_token = YOUR-AUTH-TOKEN",
+              "name": "Python"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/records": {
+      "post": {
+        "summary": "Bulk Create Records",
+        "description": "",
+        "operationId": "bulk-create-records",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "record_id"
+                ],
+                "properties": {
+                  "record_id": {
+                    "type": "string",
+                    "description": "Property ID of the property that is set as the record ID role in Salsify. Record ID value cannot begin with `=`, `_`, or `salsify`. Must be unique, and is case sensitive."
+                  },
+                  "record_name": {
+                    "type": "string",
+                    "description": "Property ID for the property that is set as the record name role in Salsify. Record name will be left blank if not included."
+                  },
+                  "additional_properties": {
+                    "type": "string",
+                    "description": "Additional information to store in properties associated with the record, sent in value pairs of `property_id : property_value`. Property IDs that don't exist in the Salsify org will be created with a default string data type. Accepts multiple property values as arrays."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "201",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "[\n    {\n        \"salsify:id\": \"123\",\n        \"salsify:created_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:updated_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:version\": 0,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-73cae1fc-f7c2-45c7-bce4-3cc8185ac5a5\",\n        \"Record ID\": \"123\",\n        \"Record Name\": \"Record 123\",\n        \"Short Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\",\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    },\n    {\n        \"salsify:id\": \"456\",\n        \"salsify:created_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:updated_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:version\": 0,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-d158ff9d-e327-4c8e-bc13-1139b250ed56\",\n        \"Record ID\": \"456\",\n        \"Record Name\": \"Record 456\",\n        \"Material\": \"plastic\",\n        \"Tags\": [\n            \"headphones\",\n            \"noise cancelling\"\n        ],\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    }\n]"
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "salsify:id": {
+                        "type": "string",
+                        "example": "123"
+                      },
+                      "salsify:created_at": {
+                        "type": "string",
+                        "example": "2018-10-04T22:30:03.910Z"
+                      },
+                      "salsify:updated_at": {
+                        "type": "string",
+                        "example": "2018-10-04T22:30:03.910Z"
+                      },
+                      "salsify:version": {
+                        "type": "integer",
+                        "example": 0,
+                        "default": 0
+                      },
+                      "salsify:profile_asset_id": {},
+                      "salsify:system_id": {
+                        "type": "string",
+                        "example": "s-73cae1fc-f7c2-45c7-bce4-3cc8185ac5a5"
+                      },
+                      "Record ID": {
+                        "type": "string",
+                        "example": "123"
+                      },
+                      "Record Name": {
+                        "type": "string",
+                        "example": "Record 123"
+                      },
+                      "Short Description": {
+                        "type": "string",
+                        "example": "These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise."
+                      },
+                      "Manufacturer": {
+                        "type": "string",
+                        "example": "Wildflower Imports, Inc."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Record ID property missing": {
+                    "value": "{\n    \"errors\": [\n        \"Missing required property your-record-id\"\n    ]\n}\n\n//where your-record-id is the property ID of the property that serves the salsify:id role."
+                  },
+                  "Record ID value is not unique": {
+                    "value": "{\n    \"errors\": [\n        \"A record already exists with the same id.\"\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Record ID property missing",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Missing required property your-record-id"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Record ID value is not unique",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "A record already exists with the same id."
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n  {\n    \"Record ID\":\"123\",\n    \"Record Name\":\"Record 123\",\n    \"Short Description\":\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n  },\n  {\n    \"Record ID\":\"456\",\n    \"Record Name\":\"Record 456\",\n    \"Material\":\"plastic\",\n    \"Tags\":[\"headphones\",\"noise cancelling\"]\n  }\n]'\n\n# where org_id = s-999-999-999-999, Record ID is the system record identifier, and api_token = YOUR-AUTH-TOKEN",
+              "name": "cURL"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records\")\n\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Post.new(url)\nrequest[\"authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"content-type\"] = 'application/json'\nrequest.body = \"{\\n\\t\\\"Record ID\\\":\\\"My New Record\\\",\\n\\t\\\"Record Name\\\":\\\"New Record Name\\\"\\n}\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, Record ID is the system record identifier, and api_token = YOUR-AUTH-TOKEN",
+              "name": "Ruby"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n  {\\n    \\\"Record ID\\\":\\\"123\\\",\\n    \\\"Record Name\\\":\\\"Record 123\\\",\\n    \\\"Short Description\\\":\\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\"\\n  },\\n  {\\n    \\\"Record ID\\\":\\\"456\\\",\\n    \\\"Record Name\\\":\\\"Record 456\\\",\\n    \\\"Material\\\":\\\"plastic\\\",\\n    \\\"Tags\\\":[\\\"headphones\\\",\\\"noise cancelling\\\"]\\n  }\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"POST\", \"api,v1,orgs,s-492247e8-0e24-47e9-8af5-d07defe563dc,records\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, Record ID is the system record identifier, and api_token = YOUR-AUTH-TOKEN",
+              "name": "Python"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      },
+      "put": {
+        "summary": "Bulk Update Records",
+        "description": "",
+        "operationId": "bulk-update-records",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "record_id"
+                ],
+                "properties": {
+                  "record_id": {
+                    "type": "string",
+                    "description": "Value to identify record, stored in property with unique record identifier role in your Salsify organization."
+                  },
+                  "properties": {
+                    "type": "string",
+                    "description": "Properties can be added in value pairs. {property_id} : {property_value} where property_id is a Salsify property, and property_value is the corresponding property value. If property_id does not exist in org, property will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when salsify:id does not exist or org ID is incorrect."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Record Does not Exist": {
+                    "value": "{\n    \"errors\": [\n        [\n            \"Record '123' does not exist.\"\n        ],\n        []\n    ]\n}"
+                  },
+                  "Missing Record ID Property": {
+                    "value": "{\n    \"errors\": [\n        [\n            \"Missing required property Record ID\"\n        ]\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Record Does not Exist",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "example": "Record '123' does not exist."
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Missing Record ID Property",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "example": "Missing required property Record ID"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n    \"Record ID\":\"123\",\n    \"Record Name\":\"My Test Record'\\''s Name\",\n    \"Brand\": null\n\t},\n\t{\n    \"Record ID\":\"456\",\n    \"Record Name\":\"Another Test Record\",\n    \"Short Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\",\n    \"Tags\": [\n        \"headphones\",\n        \"noise cancelling\",\n        \"wireless\"\n    \t]\n\t}\n]'\n\n# where org_id = s-999-999-999-999, record_id=123,456 api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"[\\n\\t{\\n    \\\"Record ID\\\":\\\"123\\\",\\n    \\\"Record Name\\\":\\\"My Test Record's Name\\\",\\n    \\\"Brand\\\": null\\n\\t},\\n\\t{\\n    \\\"Record ID\\\":\\\"456\\\",\\n    \\\"Record Name\\\":\\\"Another Test Record\\\",\\n    \\\"Short Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\",\\n    \\\"Tags\\\": [\\n        \\\"headphones\\\",\\n        \\\"noise cancelling\\\",\\n        \\\"wireless\\\"\\n    \\t]\\n\\t}\\n]\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, record_id=123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n    \\\"Record ID\\\":\\\"123\\\",\\n    \\\"Record Name\\\":\\\"My Test Record's Name\\\",\\n    \\\"Brand\\\": null\\n\\t},\\n\\t{\\n    \\\"Record ID\\\":\\\"456\\\",\\n    \\\"Record Name\\\":\\\"Another Test Record\\\",\\n    \\\"Short Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\",\\n    \\\"Tags\\\": [\\n        \\\"headphones\\\",\\n        \\\"noise cancelling\\\",\\n        \\\"wireless\\\"\\n    \\t]\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n\n    }\n\nconn.request(\"PUT\", \"api,v1,orgs,s-999-999-999-999,records\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, records_id=123, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      },
+      "delete": {
+        "summary": "Bulk Delete Records",
+        "description": "",
+        "operationId": "bulk-delete-records",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "default": "application/json"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Your Authentication Bearer Token",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "record_id"
+                ],
+                "properties": {
+                  "record_id": {
+                    "type": "string",
+                    "description": "Unique value that identifies records and stored in the property that holds the record identifier role in Salsify. Send as an array of record ID values; property id label is not sent."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when the action is forbidden for the user."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Record Not Found": {
+                    "value": "{\n    \"errors\": [\n        [\n            \"Record 123 not found\"\n        ]\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "Record 123 not found"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\"123\",\"456\"]'\n  \n  # where org_id = s-999-999-999-999, salsify:id= My New Record, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"[\\\"123\\\",\\\"456\\\"]\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id= My New Record, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\\"123\\\",\\\"456\\\"]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\"\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-999-999-999-999/records\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id= My New Record, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/records/{record_id}": {
+      "put": {
+        "summary": "Update Record",
+        "description": "",
+        "operationId": "update-record",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "record_id",
+            "in": "path",
+            "description": "Value to identify record, stored in property with unique record identifier role in your Salsify organization.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "properties"
+                ],
+                "properties": {
+                  "properties": {
+                    "type": "string",
+                    "description": "Properties can be added in value pairs. `{property_id} : {property_value}` where property_id is a Salsify property, and property_value is the corresponding property value. If property_id does not exist in the org, the property will be auto-created. The record_id must also be included in the body parameters."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify."
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when salsify:id does not exist or org ID is incorrect."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Invalid Salsify UUID": {
+                    "value": "{ \"errors\": [ \"s-e62b9a19-6443-4f61-bfce-6540a86c511z is not a valid salsify uuid\" ] }"
+                  },
+                  "Missing Required Record ID Property": {
+                    "value": "{\n    \"errors\": [\n        [\n            \"Missing required property Record ID\"\n        ]\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Invalid Salsify UUID",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "s-e62b9a19-6443-4f61-bfce-6540a86c511z is not a valid salsify uuid"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Missing Required Record ID Property",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "example": "Missing required property Record ID"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-99/records/123 \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n    \"Record ID\":\"123\",\n    \"Record Name\":\"My Test Record'\\''s Name\",\n    \"Brand\": \"Miscellus\"\n\t}\n]'\n\n# where org_id = s-999-999-999-999, record_id=123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records/123\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest.body = \"[\\n\\t{\\n    \\\"Record ID\\\":\\\"123\\\",\\n    \\\"Record Name\\\":\\\"My Test Record's Name\\\",\\n    \\\"Brand\\\": \\\"Miscellus\\\"\\n\\t}\\n]\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, record_id=123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n    \\\"Record ID\\\":\\\"123\\\",\\n    \\\"Record Name\\\":\\\"My Test Record's Name\\\",\\n    \\\"Brand\\\": \\\"Miscellus\\\"\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"PUT\", \"api/v1/orgs/s-999-999-999-999/records/123\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, records_id=123, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/records/_upsert": {
+      "put": {
+        "summary": "Bulk Upsert Records",
+        "description": "Upsert allows you to update and create a record in the same call.",
+        "operationId": "bulk-upsert-records",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "record_id"
+                ],
+                "properties": {
+                  "record_id": {
+                    "type": "string",
+                    "description": "Value to identify record, stored in property with unique record identifier role in your Salsify organization."
+                  },
+                  "properties": {
+                    "type": "string",
+                    "description": "Properties can be added in value pairs. {property_id} : {property_value} where property_id is a Salsify property, and property_value is the corresponding property value. If property_id does not exist in org, a property with that id will be created."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "[\n    {\n        \"salsify:id\": \"123\",\n        \"salsify:created_at\": \"2020-01-23T17:37:53.817Z\",\n        \"salsify:updated_at\": \"2020-06-23T15:16:49.838Z\",\n        \"salsify:version\": 14,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-0e218edb-6896-4bfd-ae5d-1b8186fa9f1f\",\n        \"Record ID\": \"2010028\",\n        \"Record Name\": \"Updating Existing Record\",\n        \"Category\": \"Accesories\",\n        \"Additional Record Images\": \"b1f8814701086a42e6a528858c2dde4095e0cc72\",\n        \"Color\": \"Blue\",\n        \"Cost\": \"14.99\",\n        \"Description\": \"Add edited description here.\"\n    },\n    {\n        \"salsify:id\": \"456\",\n        \"salsify:created_at\": \"2020-06-22T21:05:29.269Z\",\n        \"salsify:updated_at\": \"2020-06-23T15:16:49.844Z\",\n        \"salsify:version\": 0,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-7b50012e-0e34-4176-992a-8624ab44ba34\",\n        \"Record ID\": \"456\",\n        \"Record Name\": \"Creates New Record\",\n        \"Record Status\": \"In Process\",\n        \"Last Workflow Update\": \"2020-06-22\",\n        \"Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n    }\n]"
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "salsify:id": {
+                        "type": "string",
+                        "example": "123"
+                      },
+                      "salsify:created_at": {
+                        "type": "string",
+                        "example": "2020-01-23T17:37:53.817Z"
+                      },
+                      "salsify:updated_at": {
+                        "type": "string",
+                        "example": "2020-06-23T15:16:49.838Z"
+                      },
+                      "salsify:version": {
+                        "type": "integer",
+                        "example": 14,
+                        "default": 0
+                      },
+                      "salsify:profile_asset_id": {},
+                      "salsify:system_id": {
+                        "type": "string",
+                        "example": "s-0e218edb-6896-4bfd-ae5d-1b8186fa9f1f"
+                      },
+                      "Record ID": {
+                        "type": "string",
+                        "example": "2010028"
+                      },
+                      "Record Name": {
+                        "type": "string",
+                        "example": "Updating Existing Record"
+                      },
+                      "Category": {
+                        "type": "string",
+                        "example": "Accesories"
+                      },
+                      "Additional Record Images": {
+                        "type": "string",
+                        "example": "b1f8814701086a42e6a528858c2dde4095e0cc72"
+                      },
+                      "Color": {
+                        "type": "string",
+                        "example": "Blue"
+                      },
+                      "Cost": {
+                        "type": "string",
+                        "example": "14.99"
+                      },
+                      "Description": {
+                        "type": "string",
+                        "example": "Add edited description here."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when the request is malformed."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Missing locale for localized properties": {
+                    "value": "{\n    \"errors\": [\n        [\n            \"A locale must be specified to update localizable property Short Description\"\n        ],\n        [\n            \"A locale must be specified to update localizable property Short Description\"\n        ]\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "example": "A locale must be specified to update localizable property Short Description"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl --location --request PUT 'https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records/_upsert' \\\n--header 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n--header 'Content-Type: application/json' \\\n--data-raw '[\n  {\n    \"Record ID\": \"123\",\n    \"Record Name\": \"Updating Existing Record\",\n    \"Description\": \"Add edited description here.\"\n  },\n  {\n  \t\"Record ID\": \"456\",\n  \t\"Record Name\": \"Creates New Record\",\n    \"Brand\": null,\n    \"Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n  }\n]'\n\n# where org_id = s-999-999-999-999, record_id=123,456 api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require \"uri\"\nrequire \"net/http\"\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records/_upsert\")\n\nhttps = Net::HTTP.new(url.host, url.port);\nhttps.use_ssl = true\n\nrequest = Net::HTTP::Put.new(url)\nrequest[\"Content-Type\"] = [\"application/json\", \"application/json\"]\nrequest[\"Authorization\"] = \"Bearer YOUR-AUTH-TOKEN\"\nrequest.body = \"[\\n  {\\n    \\\"Record ID\\\": \\\"123\\\",\\n    \\\"Record Name\\\": \\\"Updating Existing Record\\\",\\n    \\\"Description\\\": \\\"Add edited description here.\\\"\\n  },\\n  {\\n  \\t\\\"Record ID\\\": \\\"456\\\",\\n  \\t\\\"Record Name\\\": \\\"Creates New Record\\\",\\n    \\\"Brand\\\": null,\\n    \\\"Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\"\\n  }\\n]\"\n\nresponse = https.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, record_id=123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\npayload = \"[\\n  {\\n    \\\"Record ID\\\": \\\"123\\\",\\n    \\\"Record Name\\\": \\\"Updating Existing Record\\\",\\n    \\\"Description\\\": \\\"Add edited description here.\\\"\\n  },\\n  {\\n  \\t\\\"Record ID\\\": \\\"456\\\",\\n  \\t\\\"Record Name\\\": \\\"Creates New Record\\\",\\n    \\\"Brand\\\": null,\\n    \\\"Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\"\\n  }\\n]\"\n\nheaders = {\n  'Authorization': 'Bearer YOUR-AUTH-TOKEN',\n  'Content-Type': 'application/json'\n  \n}\n\nconn.request(\"PUT\", \"/api/v1/orgs/s-999-999-999-999/records/_upsert\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, record_id=123, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/records/{product_id}": {
+      "delete": {
+        "summary": "Delete Record",
+        "description": "",
+        "operationId": "delete-record",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "record_id",
+            "in": "path",
+            "description": "Unique value that identifies records and stored in the property that holds the record identifier role in Salsify.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "204",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when content is successfully updated in Salsify"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when the user does not have permission to delete the record"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Record Doesn't Exist": {
+                    "value": "Returned when the record id specified does not exist"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records/123 \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/x-www-form-urlencoded' \\\n  \n  # where org_id = s-999-999-999-999, salsify:id= 123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records/123\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/x-www-form-urlencoded'\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, record_id= 123, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app,salsify,com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/x-www-form-urlencoded\",\n\n    }\n\nconn.request(\"DELETE\", \"api,v1,orgs,s-999-999-999-99,records,123\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, record_id= 123, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/record_types": {
+      "get": {
+        "summary": "Read Record Types",
+        "description": "Used to query for all available record types.",
+        "operationId": "read-record-types",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"data\": [\n        {\n            \"salsify:id\": \"Products\",\n            \"salsify:name\": \"Products\",\n            \"salsify:created_at\": \"2021-09-03T14:42:49.970Z\",\n            \"salsify:updated_at\": \"2021-09-03T14:42:49.970Z\"\n        },\n        {\n            \"salsify:id\": \"Colors\",\n            \"salsify:name\": \"Colors\",\n            \"salsify:created_at\": \"2021-09-03T14:43:02.107Z\",\n            \"salsify:updated_at\": \"2021-09-03T14:43:02.107Z\"\n        }\n    ],\n    \"meta\": {\n        \"current_page\": 1,\n        \"per_page\": 30,\n        \"total_entries\": 2\n    }\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "salsify:id": {
+                            "type": "string",
+                            "example": "Products"
+                          },
+                          "salsify:name": {
+                            "type": "string",
+                            "example": "Products"
+                          },
+                          "salsify:created_at": {
+                            "type": "string",
+                            "example": "2021-09-03T14:42:49.970Z"
+                          },
+                          "salsify:updated_at": {
+                            "type": "string",
+                            "example": "2021-09-03T14:42:49.970Z"
+                          }
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer",
+                          "example": 1,
+                          "default": 0
+                        },
+                        "per_page": {
+                          "type": "integer",
+                          "example": 30,
+                          "default": 0
+                        },
+                        "total_entries": {
+                          "type": "integer",
+                          "example": 2,
+                          "default": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Returned when a request is malformed and cannot be found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X GET \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/record_types \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN'\n\n# where org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/record_types\")\n\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Get.new(url)\nrequest[\"authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    }\n\nconn.request(\"GET\", \"/api/v1/orgs/s-999-999-999-999/record_types\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "key": "Authorization",
+        "value": "Bearer {api_key}"
+      }
+    ]
+  },
+  "x-readme-fauxas": true
+}

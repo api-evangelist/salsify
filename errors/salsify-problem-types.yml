@@ -1,0 +1,91 @@
+generated: '2026-08-02'
+method: derived
+source: openapi/salsify-api-settings-openapi.json, openapi/salsify-non-v1-endpoints-openapi.json, openapi/salsify-write-operations-openapi.json,
+  https://developers.salsify.com/docs/rate-limiting-1
+format: salsify-json
+problem_json: false
+notes: Salsify does not implement RFC 9457 application/problem+json. Error bodies are plain JSON objects;
+  several 400/403/404 responses in the published specs are declared as text/plain. Statuses below are
+  the ones actually declared across the three published OpenAPI documents, plus 429 which is documented
+  in the rate-limiting guide but not modelled in any spec.
+problems:
+- status: 400
+  title: Bad Request
+  description: The request was malformed - an unknown query parameter, an invalid filter expression, or
+    a body that could not be parsed.
+  content_types:
+  - application/json
+  - text/plain
+  occurrences: 20
+  source_operations:
+  - openapi/salsify-api-settings-openapi.json#read-product-record
+  - openapi/salsify-api-settings-openapi.json#read-property
+  - openapi/salsify-api-settings-openapi.json#read-record
+  - openapi/salsify-api-settings-openapi.json#refresh-digital-assets
+  - openapi/salsify-non-v1-endpoints-openapi.json#creating-a-json-import-from-a-mount-point
+  - openapi/salsify-non-v1-endpoints-openapi.json#get-export-status
+  - openapi/salsify-non-v1-endpoints-openapi.json#start-export-run
+  - openapi/salsify-non-v1-endpoints-openapi.json#starting-an-import-run
+- status: 401
+  title: Unauthorized
+  description: No Authorization header was supplied, the API key is invalid, or the OAuth 2.0 access token
+    has expired (tokens are valid for 2 hours).
+  content_types:
+  - application/json
+  occurrences: 2
+  source_operations:
+  - openapi/salsify-api-settings-openapi.json#get-digital-asset
+  - openapi/salsify-non-v1-endpoints-openapi.json#create-a-mount-point
+- status: 403
+  title: Forbidden
+  description: The authenticated user's Salsify permissions do not allow this action on this organization's
+    data.
+  content_types:
+  - application/json
+  - text/plain
+  occurrences: 2
+  source_operations:
+  - openapi/salsify-write-operations-openapi.json#bulk-delete-records
+  - openapi/salsify-write-operations-openapi.json#delete-record
+- status: 404
+  title: Not Found
+  description: The organization, product, record, property, digital asset, import or export run identified
+    in the path does not exist.
+  content_types:
+  - application/json
+  - text/plain
+  occurrences: 7
+  source_operations:
+  - openapi/salsify-api-settings-openapi.json#get-digital-asset
+  - openapi/salsify-non-v1-endpoints-openapi.json#getting-the-status-of-an-import-run
+  - openapi/salsify-write-operations-openapi.json#bulk-update-products
+  - openapi/salsify-write-operations-openapi.json#bulk-update-records
+  - openapi/salsify-write-operations-openapi.json#delete-record
+  - openapi/salsify-write-operations-openapi.json#update-product
+  - openapi/salsify-write-operations-openapi.json#update-record
+- status: 422
+  title: Unprocessable Entity
+  description: The request was well formed but semantically invalid - most commonly a required property
+    is missing, a property value fails validation, or a referenced entity does not exist.
+  content_types:
+  - application/json
+  occurrences: 22
+  source_operations:
+  - openapi/salsify-api-settings-openapi.json#bulk-read-digital-assets
+  - openapi/salsify-api-settings-openapi.json#bulk-read-products
+  - openapi/salsify-api-settings-openapi.json#bulk-read-records
+  - openapi/salsify-non-v1-endpoints-openapi.json#starting-an-import-run
+  - openapi/salsify-write-operations-openapi.json#add-a-product
+  - openapi/salsify-write-operations-openapi.json#add-list-members
+  - openapi/salsify-write-operations-openapi.json#add-list-members-1
+  - openapi/salsify-write-operations-openapi.json#bulk-create-products
+- status: 429
+  title: Too Many Requests
+  description: The organization exceeded its 10,000 requests per hour limit (or a user exceeded 5,000
+    session requests per hour). The counter resets at the top of the hour; see x-ratelimit-reset.
+  content_types:
+  - application/json
+  occurrences: 0
+  declared_in_openapi: false
+  source_operations: []
+  docs: https://developers.salsify.com/docs/rate-limiting-1

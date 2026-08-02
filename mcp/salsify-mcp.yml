@@ -1,0 +1,68 @@
+generated: '2026-08-02'
+method: searched
+status: published
+source: https://app.salsify.com/mcp
+server:
+  name: salsify
+  transport: http
+  url: https://app.salsify.com/mcp
+  vendor: Salsify
+  first_party: true
+authorization:
+  required: true
+  scheme: OAuth 2.1 bearer
+  challenge: 'WWW-Authenticate: Bearer resource="https://app.salsify.com/mcp/.well-known/oauth-protected-resource"'
+  protected_resource_metadata: https://app.salsify.com/.well-known/oauth-protected-resource/mcp
+  authorization_servers:
+  - https://app.salsify.com
+  authorization_endpoint: https://app.salsify.com/oauth/authorize
+  token_endpoint: https://app.salsify.com/oauth/token
+  grant_types_supported:
+  - authorization_code
+  code_challenge_methods_supported:
+  - S256
+  scopes_supported:
+  - claudeai
+tools:
+  discovered: false
+  note: >-
+    An anonymous POST of {"jsonrpc":"2.0","id":1,"method":"tools/list"} to
+    https://app.salsify.com/mcp returns HTTP 401 {"error":"Authentication required"}.
+    The live tool list and per-tool inputSchema require an authenticated OAuth bearer
+    token, so no tool set is recorded here. Salsify does not publish a tool list in
+    its docs or llms.txt. Nothing is inferred or fabricated - see
+    mcp/salsify-tool-crosswalk.yml for the REST surface an authenticated crosswalk
+    would be mapped against.
+related_servers:
+- name: salsify-docs (ReadMe)
+  url: https://developers.salsify.com/mcp
+  first_party: false
+  vendor: ReadMe
+  transport: http
+  authorization:
+    required: true
+    protected_resource_metadata: https://developers.salsify.com/.well-known/oauth-protected-resource/mcp
+    authorization_servers:
+    - https://dash.readme.com/oidc
+  note: >-
+    Documentation-search MCP server provided by the ReadMe developer-hub platform that
+    hosts developers.salsify.com. Standard ReadMe tool names reserved by the hub config:
+    search, fetch, list-specs, list-endpoints, search-endpoints, get-endpoint,
+    get-server-variables, execute-request.
+x-evidence:
+  fetched: '2026-08-02'
+  probes:
+  - url: https://app.salsify.com/mcp
+    method: POST tools/list
+    http_status: 401
+    body: '{"error":"Authentication required"}'
+  - url: https://app.salsify.com/.well-known/oauth-protected-resource/mcp
+    http_status: 200
+    content_type: application/json
+  - url: https://app.salsify.com/.well-known/oauth-authorization-server
+    http_status: 200
+    content_type: application/json
+  - url: https://developers.salsify.com/mcp
+    method: POST tools/list
+    http_status: 401
+    body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization required"},"id":null}'

@@ -1,0 +1,117 @@
+generated: '2026-08-02'
+method: derived
+source: openapi/*.json + mcp/salsify-mcp.yml + graphql/salsify-graphql-schema-overview.md
+surfaces:
+  openapi:
+  - file: openapi/salsify-api-settings-openapi.json
+    server: https://app.salsify.com/api/v1/orgs
+    operations: 8
+    gated: false
+  - file: openapi/salsify-write-operations-openapi.json
+    server: https://app.salsify.com/api/v1/orgs
+    operations: 28
+    gated: false
+  - file: openapi/salsify-non-v1-endpoints-openapi.json
+    server: https://app.salsify.com/api/orgs
+    operations: 7
+    gated: false
+  graphql:
+    endpoint: https://api.salsify.com/graphql
+    introspection_gated: true
+    introspection_response: '401 {"error":"You need to sign in before continuing."}'
+    published_schema: graphql/salsify-graphql-schema-overview.md
+    root_query_fields:
+    - account
+    - organization
+    - accounts
+    - organizations
+    - provisionOrganizationRequest
+  mcp:
+    url: https://app.salsify.com/mcp
+    tools_list_gated: true
+    tools_list_response: '401 {"error":"Authentication required"}'
+crosswalk: []
+mcp_only: []
+rest_only:
+- capability: Products
+  operations:
+  - read-product-record
+  - bulk-read-products
+  - add-a-product
+  - bulk-create-products
+  - update-product
+  - bulk-update-products
+  - bulk-upsert-products
+  - delete-product
+  - bulk-delete-products
+- capability: Records
+  operations:
+  - read-record
+  - bulk-read-records
+  - read-record-types
+  - create-record
+  - bulk-create-records
+  - update-record
+  - bulk-update-records
+  - bulk-upsert-records
+  - delete-record
+  - bulk-delete-records
+- capability: Properties
+  operations:
+  - read-property
+  - bulk-create-new-properties
+  - update-property
+  - bulk-upsert-properties
+  - delete-property
+  - bulk-delete-properties
+- capability: Digital Assets
+  operations:
+  - get-digital-asset
+  - bulk-read-digital-assets
+  - create-a-digital-asset-metadata
+  - add-multiple-digital-assets
+  - refresh-digital-assets
+  - update-digital-asset-metadata
+  - update-multiple-digital-assets
+  - bulk-upsert-digital-assets
+  - delete-multiple-digital-assets
+- capability: List membership
+  operations:
+  - add-list-members
+  - add-list-members-1
+- capability: Imports
+  operations:
+  - create-a-mount-point
+  - creating-a-json-import-from-a-mount-point
+  - updating-an-import-to-point-at-a-new-mount-point
+  - starting-an-import-run
+  - getting-the-status-of-an-import-run
+- capability: Exports
+  operations:
+  - start-export-run
+  - get-export-status
+graphql_only:
+- field: accounts
+  reason: Account / organization administration is exposed only through the GraphQL API.
+- field: organizations
+  reason: No public REST operation lists or reads organizations.
+- field: provisionOrganizationRequest
+  reason: Organization provisioning is GraphQL-only (early access).
+- field: configurationManifest*
+  reason: Configuration manifest install/version surface exists only in GraphQL.
+coverage:
+  tools_named: 0
+  tools_bound: 0
+  mcp_only: 0
+  graphql_only: 4
+  rest_operations_total: 43
+  docs_only_operations:
+  - creating-a-json-import-from-ftp  # documented on the hub, absent from every published OpenAPI
+  - create-a-mount-point-1           # S3 upload step; its ReadMe definition ships zero paths
+  rest_operations_with_tool: 0
+  note: >-
+    Both the Salsify MCP tools/list and the GraphQL introspection endpoint are
+    auth-gated, and Salsify publishes no tool list in its docs or llms.txt. No tool
+    names exist to bind, so crosswalk[] is deliberately empty rather than guessed.
+    Re-run this artifact with an authenticated bearer token to populate crosswalk[]
+    against the rest_only[] operations enumerated above.

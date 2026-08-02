@@ -1,0 +1,107 @@
+generated: '2026-08-02'
+method: probed
+source: live GET of /.well-known/* on every apis.yml and OpenAPI servers[] host
+notes: >-
+  app.salsify.com and api.salsify.com answer HTTP 200 with an HTML "Salsify Cookie
+  Agreement" page for ANY unknown /.well-known/* path. Only responses whose
+  content-type is application/json and whose body parses as the expected document
+  are recorded as real hits below; the HTML 200s are recorded as false-positive
+  catch-alls so a later round does not re-treat them as discoveries.
+hosts:
+- host: https://app.salsify.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: salsify-oauth-authorization-server.json
+    spec: RFC 8414
+    real: true
+  - path: /.well-known/oauth-protected-resource/mcp
+    status: 200
+    content_type: application/json
+    file: salsify-oauth-protected-resource-mcp.json
+    spec: RFC 9728
+    real: true
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    real: false
+    note: SPA/cookie-consent catch-all HTML, not an RFC 9116 document
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html
+    real: false
+    note: SPA/cookie-consent catch-all HTML; Salsify publishes OAuth 2.0 metadata, not OIDC discovery
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: text/html
+    real: false
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html
+    real: false
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: text/html
+    real: false
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    real: false
+    note: HTML cookie-consent page, NOT an A2A AgentCard; no a2a/ artifact written
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: text/html
+    real: false
+- host: https://api.salsify.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    real: true
+    note: Same RFC 8414 document as app.salsify.com (shared origin)
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    real: false
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    real: false
+- host: https://developers.salsify.com
+  documents:
+  - path: /.well-known/oauth-protected-resource/mcp
+    status: 200
+    content_type: application/json
+    real: true
+    note: >-
+      ReadMe-hosted documentation MCP server resource metadata; authorization server
+      is https://dash.readme.com/oidc (ReadMe, not Salsify).
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://www.salsify.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+security_txt:
+  published: false
+  note: >-
+    No RFC 9116 security.txt on any Salsify host. Salsify does publish a responsible
+    disclosure policy at https://www.salsify.com/responsible-disclosure with
+    vdp@salsify.com as the reporting contact - see security/salsify-vulnerability-disclosure.yml.

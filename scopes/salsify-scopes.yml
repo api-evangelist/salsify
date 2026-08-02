@@ -1,0 +1,45 @@
+generated: '2026-08-02'
+method: searched
+source: https://developers.salsify.com/docs/oauth2
+docs: https://developers.salsify.com/docs/oauth2
+metadata: well-known/salsify-oauth-authorization-server.json
+schemes:
+- name: Salsify OAuth 2.0
+  source: https://developers.salsify.com/docs/oauth2
+  issuer: https://app.salsify.com
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://app.salsify.com/oauth/authorize
+    tokenUrl: https://app.salsify.com/oauth/token
+    refreshUrl: https://app.salsify.com/oauth/token
+    code_challenge_methods_supported:
+    - S256
+scopes:
+- scope: all
+  description: >-
+    The only scope Salsify's OAuth 2.0 implementation currently issues for third-party
+    integrations. It grants the full set of permissions the authorizing user holds -
+    there is no finer-grained read/write or per-resource scope surface.
+  flows:
+  - authorizationCode
+  sources:
+  - https://developers.salsify.com/docs/oauth2
+- scope: claudeai
+  description: >-
+    Scope advertised in scopes_supported by the RFC 8414 authorization-server metadata
+    at https://app.salsify.com/.well-known/oauth-authorization-server. It is the scope
+    used by the first-party Salsify MCP server at https://app.salsify.com/mcp.
+  flows:
+  - authorizationCode
+  sources:
+  - well-known/salsify-oauth-authorization-server.json
+notes:
+- >-
+  Scope granularity is coarse. Salsify's own documentation states "We only support the
+  all scope at the moment which includes the full set of permissions that the user has."
+  Least privilege is therefore enforced by the permissions of the user the integration
+  authenticates as, not by OAuth scopes.
+- >-
+  None of the three published OpenAPI documents declare an oauth2 securityScheme, so this
+  artifact could not be derived mechanically from the specs; it was read from the docs
+  and the live authorization-server metadata.

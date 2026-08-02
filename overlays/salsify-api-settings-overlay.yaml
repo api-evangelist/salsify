@@ -1,0 +1,37 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Salsify API Settings (read operations)
+  version: 1.0.0
+extends: openapi/salsify-api-settings-openapi.json
+x-generated: '2026-08-02'
+x-method: generated
+x-source: harvested from https://developers.salsify.com (ReadMe api-registry)
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: salsify
+    x-apievangelist-harvested: '2026-08-02'
+    x-apievangelist-source: https://developers.salsify.com/reference
+    x-apievangelist-operations: 8
+    x-apievangelist-artifacts:
+      authentication: authentication/salsify-authentication.yml
+      scopes: scopes/salsify-scopes.yml
+      conventions: conventions/salsify-conventions.yml
+      errors: errors/salsify-problem-types.yml
+      lifecycle: lifecycle/salsify-lifecycle.yml
+      rate_limits: rate-limits/salsify-rate-limits.yml
+      data_model: data-model/salsify-data-model.yml
+      webhooks: asyncapi/salsify-webhooks.yml
+- target: $.components.securitySchemes.sec0
+  update:
+    description: >-
+      Salsify user API key (or an OAuth 2.0 Bearer access token) sent in the Authorization
+      header. Generate a personal key at https://app.salsify.com/app/profile/edit/api.
+    x-apievangelist-docs: https://developers.salsify.com/docs/authentication-model
+- target: $.servers[0]
+  update:
+    x-apievangelist-rate-limit: 10000 requests per hour per organization
+    x-apievangelist-rate-limit-headers:
+    - x-ratelimit-limit
+    - x-ratelimit-remaining
+    - x-ratelimit-reset

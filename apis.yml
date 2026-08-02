@@ -1,23 +1,178 @@
 aid: salsify
 name: Salsify
-description: 'Salsify is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Salsify is a product experience management (PXM) and supplier experience
+  management (SXM) platform used by brands, distributors and retailers to centralize
+  product content, digital assets and syndication to the digital shelf. The Salsify
+  platform exposes a REST API at app.salsify.com/api/v1/orgs covering products, records,
+  properties, digital assets, list membership, imports and export runs, an early-access
+  GraphQL API at api.salsify.com/graphql for accounts, organizations and configuration
+  manifests, a webhook surface for product, digital asset, channel and import events
+  with X.509/SHA-256 signature verification, and an OAuth 2.0 authorization server
+  plus a first-party Model Context Protocol server at app.salsify.com/mcp.'
 url: https://raw.githubusercontent.com/api-evangelist/salsify/refs/heads/main/apis.yml
+image: https://www.salsify.com/hubfs/Salsify%20-%20Product%20Experience%20Management%20PXM%20-%20Feature%20Image.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment
 specificationVersion: '0.20'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
-apis: []
+- Product Experience Management
+- Product Information Management
+- Digital Asset Management
+- Commerce
+- Retail
+- Syndication
+- Data Management
+- SaaS
+apis:
+- aid: salsify:rest
+  name: Salsify REST API
+  description: 'The Salsify REST API gives programmatic access to everything in a Salsify
+    organization: products, records, properties, digital assets, list membership, imports
+    and export runs. All request and response bodies are JSON, requests are authenticated
+    with a per-user API key (or an OAuth 2.0 bearer token) in the Authorization header,
+    and every organization is limited to 10,000 requests per hour.'
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - Products
+  - Records
+  - Properties
+  - Digital Assets
+  - Imports
+  - Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-api-settings-openapi.json
+  - type: OpenAPI
+    url: openapi/salsify-write-operations-openapi.json
+  - type: OpenAPI
+    url: openapi/salsify-non-v1-endpoints-openapi.json
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
+- aid: salsify:graphql
+  name: Salsify GraphQL API
+  description: 'Early-access public GraphQL API for operating on Salsify accounts, organizations,
+    configuration manifests and organization provisioning requests. Authenticated with
+    a bearer API token; introspection requires authentication, and the published schema
+    reference is mirrored in graphql/.'
+  humanURL: https://developers.salsify.com/reference/graphql-schema-overview
+  baseURL: https://api.salsify.com/graphql
+  tags:
+  - GraphQL
+  - Accounts
+  - Organizations
+  properties:
+  - type: GraphQL
+    url: graphql/salsify-graphql.yml
+  - type: GraphQLSchema
+    url: graphql/salsify-graphql-schema-overview.md
+  - type: Documentation
+    url: https://developers.salsify.com/docs/graphql-authorization
+- aid: salsify:mcp
+  name: Salsify MCP Server
+  description: 'First-party remote Model Context Protocol server hosted by Salsify at
+    app.salsify.com/mcp. Streamable HTTP transport, protected by OAuth 2.1 with RFC 9728
+    protected-resource metadata pointing at the app.salsify.com authorization server;
+    tools/list requires an authenticated bearer token.'
+  humanURL: https://app.salsify.com/mcp
+  baseURL: https://app.salsify.com/mcp
+  tags:
+  - MCP
+  - Agents
+  properties:
+  - type: MCPServer
+    url: mcp/salsify-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/salsify-tool-crosswalk.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: VulnerabilityDisclosure
+  url: security/salsify-vulnerability-disclosure.yml
 - type: Website
-  url: https://forgeglobal.com/salsify_stock/
+  url: https://www.salsify.com/
+- type: DeveloperPortal
+  url: https://developers.salsify.com/
+- type: Documentation
+  url: https://developers.salsify.com/docs/overview
+- type: APIReference
+  url: https://developers.salsify.com/reference
+- type: GettingStarted
+  url: https://developers.salsify.com/docs/integration-with-salsify
+- type: Authentication
+  url: authentication/salsify-authentication.yml
+- type: OAuthScopes
+  url: scopes/salsify-scopes.yml
+- type: Support
+  url: https://help.salsify.com/ProductXM/s/
+- type: Blog
+  url: https://www.salsify.com/blog
+- type: GitHubOrganization
+  url: https://github.com/salsify
+- type: SignUp
+  url: https://www.salsify.com/demo
+- type: Login
+  url: https://app.salsify.com/
+- type: TermsOfService
+  url: https://www.salsify.com/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.salsify.com/privacy-policy
+- type: StatusPage
+  url: https://status.salsify.com/
+- type: Compliance
+  url: https://www.salsify.com/security-and-reliability
+- type: TrustCenter
+  url: security/salsify-trust-center.yml
+- type: ChangeLog
+  url: changelog/salsify-changelog.yml
+- type: Packages
+  url: packages/salsify-packages.yml
+- type: SDKs
+  url: packages/salsify-packages.yml
+- type: WellKnown
+  url: well-known/salsify-well-known.yml
+- type: Conformance
+  url: conformance/salsify-conformance.yml
+- type: ErrorCatalog
+  url: errors/salsify-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/salsify-lifecycle.yml
+- type: Conventions
+  url: conventions/salsify-conventions.yml
+- type: DataModel
+  url: data-model/salsify-data-model.yml
+- type: RateLimits
+  url: rate-limits/salsify-rate-limits.yml
+- type: Webhooks
+  url: asyncapi/salsify-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/salsify-agentic-access.yml
+- type: DomainSecurity
+  url: security/salsify-domain-security.yml
+- type: Security
+  url: https://www.salsify.com/responsible-disclosure
+- type: Overlay
+  url: overlays/salsify-api-settings-overlay.yaml
+- type: Overlay
+  url: overlays/salsify-write-operations-overlay.yaml
+- type: Overlay
+  url: overlays/salsify-non-v1-endpoints-overlay.yaml
+- type: LLMsTxt
+  url: llms/salsify-llms.txt
+x-enrichment:
+  date: '2026-08-02'
+  status: enriched
+  artifacts_added: 35
+  pass: local-v1

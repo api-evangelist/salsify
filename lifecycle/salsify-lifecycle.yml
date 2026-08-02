@@ -1,0 +1,55 @@
+generated: '2026-08-02'
+method: searched
+source: https://developers.salsify.com/docs/url-path-update-april-2017
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://app.salsify.com/api/v1/orgs
+  note: >-
+    A second, unversioned surface at https://app.salsify.com/api/orgs carries the imports
+    and export-run endpoints (published by Salsify as the "Non-v1 endpoints" definition).
+  history:
+  - date: '2017-04'
+    change: >-
+      URL path update - Salsify migrated API paths; documented at
+      https://developers.salsify.com/docs/url-path-update-april-2017
+    docs: https://developers.salsify.com/docs/url-path-update-april-2017
+graphql:
+  status: early access
+  stability: >-
+    Salsify's own documentation states "The GraphQL APIs are in early access and are liable
+    to change."
+  docs: https://developers.salsify.com/docs/graphql-authorization
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    Salsify publishes no RFC 8594 Sunset/Deprecation header contract and no dated API
+    deprecation policy page. The only historical breaking change published on the developer
+    hub is the April 2017 URL path update.
+deprecated_operations: []
+status_page:
+  url: https://status.salsify.com/
+  platform: Atlassian Statuspage
+  api: https://status.salsify.com/api/v2/summary.json
+  components_tracked:
+  - Salsify application
+  - Channel integrations (including Amazon)
+  verified: '2026-08-02'
+sla:
+  url: https://www.salsify.com/legal/terms-of-service
+  uptime_target: null
+  note: >-
+    Service availability commitments are referenced in the Terms of Service; Salsify does
+    not publish a numeric uptime target on its public security or legal pages.
+release_notes:
+- url: https://help.salsify.com/ProductXM/s/release-notes
+  name: ProductXM release notes (Salsify Help Center)
+- url: https://www.salsify.com/resources/webinar/whats-new-at-salsify-q3-2026
+  name: What's New at Salsify - quarterly product update
+support:
+  help_center: https://help.salsify.com/ProductXM/s/
+  note: >-
+    API access is licence-gated. Salsify documents that "API access is not included in all
+    Salsify organizations, and its availability is based on your license type."

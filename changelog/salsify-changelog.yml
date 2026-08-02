@@ -1,0 +1,59 @@
+generated: '2026-08-02'
+method: searched
+source: https://help.salsify.com/ProductXM/s/release-notes
+scheme: quarterly product releases; REST API surface versioned as v1 in the URI path
+current_version: v1
+surfaces:
+- name: ProductXM Release Notes
+  url: https://help.salsify.com/ProductXM/s/release-notes
+  cadence: continuous
+  note: Salsify Help Center release-notes surface for the ProductXM platform (HTTP 200 verified 2026-08-02).
+- name: What's New at Salsify (quarterly)
+  url: https://www.salsify.com/whats-new
+  cadence: quarterly
+  format: webinar + summary page
+  note: >-
+    Quarterly product update. The historical per-quarter pages (e.g. /whats-new-2024-q3)
+    now redirect to https://www.salsify.com/customer-blog; the current quarters are
+    published as webinar resource pages.
+- name: Developer hub page timestamps
+  url: https://developers.salsify.com/llms.txt
+  note: >-
+    Every developer-hub page carries an updatedAt timestamp in its markdown frontmatter,
+    which is the finest-grained dated signal Salsify publishes for the API surface itself.
+entries:
+- version: Q3 2026
+  date: '2026'
+  url: https://www.salsify.com/resources/webinar/whats-new-at-salsify-q3-2026
+  breaking: false
+  highlights:
+  - Quarterly What's New at Salsify product update
+- version: Q2 2026
+  date: '2026'
+  url: https://www.salsify.com/resources/webinar/whats-new-at-salsify-q2-2026
+  breaking: false
+  highlights:
+  - AI-powered product announcements unveiled at the Digital Shelf Summit
+  - New AI tooling and platform intelligence for PXM
+- version: Q1 2026
+  date: '2026'
+  url: https://www.salsify.com/resources/webinar/whats-new-at-salsify-q1-2026
+  breaking: false
+  highlights:
+  - First product roadmap session of 2026
+- version: GraphQL schema refresh
+  date: '2026-05-19'
+  url: https://developers.salsify.com/reference/graphql-schema-overview
+  breaking: false
+  highlights:
+  - GraphQL schema overview reference page updated (updatedAt 2026-05-19)
+- version: Non-v1 endpoints spec update
+  date: '2026-06-22'
+  url: https://developers.salsify.com/reference/start-export-run
+  breaking: false
+  highlights:
+  - Imports/exports OpenAPI definition updated on the developer hub
+notes:
+- >-
+  Salsify does not publish a machine-readable, API-specific dated changelog. entries[]
+  above are the dated release surfaces that could be verified, not a complete history.

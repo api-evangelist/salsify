@@ -1,0 +1,1560 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API Settings",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://app.salsify.com/api/v1/orgs"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sec0": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "x-bearer-format": "bearer",
+        "x-default": ""
+      }
+    }
+  },
+  "security": [
+    {
+      "sec0": []
+    }
+  ],
+  "paths": {
+    "/{org_id}/digital_assets/{asset_id}": {
+      "get": {
+        "summary": "Read Digital Asset Metadata",
+        "description": "Where a user has permission and the digital asset exists, complete digital asset JSON object is returned with its most current information.",
+        "operationId": "get-digital-asset",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "Digital asset unique identifier.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"salsify:id\": \"01d954267e703cb8f9a73c50928e4ca8ed98e115\",\n    \"salsify:url\": \"http://images.salsify.com/image/upload/s--CJemutyy--/cnpfpnp48unsd3n0ok5e.jpg\",\n    \"salsify:name\": \"pink_leather_tote.jpg\",\n    \"salsify:created_at\": \"2016-02-28T00:04:47.191Z\",\n    \"salsify:updated_at\": \"2017-05-21T05:18:34.244Z\",\n    \"salsify:status\": \"completed\",\n    \"salsify:asset_height\": 2795,\n    \"salsify:asset_width\": 2795,\n    \"salsify:asset_resource_type\": \"image\",\n    \"salsify:filename\": \"pink_leather_tote.jpg\",\n    \"salsify:bytes\": 1885251,\n    \"salsify:format\": \"jpg\",\n    \"salsify:etag\": \"5e212cf4ae709184aff2b35ec2d97278\",\n    \"salsify:system_id\": \"s-9999-9999-99999\",\n    \"Asset Keywords\": [\n        \"front view\",\n        \"white isolation\",\n        \"leather tote\"\n    ],\n    \"Asset Color\": \"Blush\",\n    \"Asset Created Date \": \"2016-05-02\",\n    \"Asset Photographer\": \"LB Jeffreys\",\n    \"Manufacturer\": \"Wildflower Imports, Inc.\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "salsify:id": {
+                      "type": "string",
+                      "example": "01d954267e703cb8f9a73c50928e4ca8ed98e115"
+                    },
+                    "salsify:url": {
+                      "type": "string",
+                      "example": "http://images.salsify.com/image/upload/s--CJemutyy--/cnpfpnp48unsd3n0ok5e.jpg"
+                    },
+                    "salsify:name": {
+                      "type": "string",
+                      "example": "pink_leather_tote.jpg"
+                    },
+                    "salsify:created_at": {
+                      "type": "string",
+                      "example": "2016-02-28T00:04:47.191Z"
+                    },
+                    "salsify:updated_at": {
+                      "type": "string",
+                      "example": "2017-05-21T05:18:34.244Z"
+                    },
+                    "salsify:status": {
+                      "type": "string",
+                      "example": "completed"
+                    },
+                    "salsify:asset_height": {
+                      "type": "integer",
+                      "example": 2795,
+                      "default": 0
+                    },
+                    "salsify:asset_width": {
+                      "type": "integer",
+                      "example": 2795,
+                      "default": 0
+                    },
+                    "salsify:asset_resource_type": {
+                      "type": "string",
+                      "example": "image"
+                    },
+                    "salsify:filename": {
+                      "type": "string",
+                      "example": "pink_leather_tote.jpg"
+                    },
+                    "salsify:bytes": {
+                      "type": "integer",
+                      "example": 1885251,
+                      "default": 0
+                    },
+                    "salsify:format": {
+                      "type": "string",
+                      "example": "jpg"
+                    },
+                    "salsify:etag": {
+                      "type": "string",
+                      "example": "5e212cf4ae709184aff2b35ec2d97278"
+                    },
+                    "salsify:system_id": {
+                      "type": "string",
+                      "example": "s-9999-9999-99999"
+                    },
+                    "Asset Keywords": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "front view"
+                      }
+                    },
+                    "Asset Color": {
+                      "type": "string",
+                      "example": "Blush"
+                    },
+                    "Asset Created Date ": {
+                      "type": "string",
+                      "example": "2016-05-02"
+                    },
+                    "Asset Photographer": {
+                      "type": "string",
+                      "example": "LB Jeffreys"
+                    },
+                    "Manufacturer": {
+                      "type": "string",
+                      "example": "Wildflower Imports, Inc."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n  \"error\": \"You need to sign in before continuing.\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "You need to sign in before continuing."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404",
+            "content": {
+              "text/plain": {
+                "examples": {
+                  "Result": {
+                    "value": "Asset ID does not exist in Salsify."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X GET \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/01d954267e703cb8f9a73c50928e4ca8ed98e115 \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n\n# where org_id = s-999-999-999-999, asset_id = 01d954267e703cb8f9a73c50928e4ca8ed98e115, and api_token = YOUR-AUTH-TOKEN\n"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/01d954267e703cb8f9a73c50928e4ca8ed98e115\")\n\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Get.new(url)\nrequest[\"authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, asset_id = 01d954267e703cb8f9a73c50928e4ca8ed98e115, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\"\n    }\n\nconn.request(\"GET\", \"/api/v1/orgs/s-999-999-999-999/digital_assets/01d954267e703cb8f9a73c50928e4ca8ed98e115\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, asset_id = 01d954267e703cb8f9a73c50928e4ca8ed98e115, and api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/products/{salsify:id}": {
+      "get": {
+        "summary": "Read Product Record",
+        "description": "",
+        "operationId": "read-product-record",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "salsify:id",
+            "in": "path",
+            "description": "Salsify product ID",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"salsify:id\": \"102918\",\n    \"salsify:created_at\": \"2016-02-29T20:42:44.488Z\",\n    \"salsify:updated_at\": \"2017-11-28T17:24:45.515Z\",\n    \"salsify:version\": 61,\n    \"salsify:relations_updated_at\": \"2016-11-07T20:09:53.188Z\",\n    \"salsify:profile_asset_id\": null,\n    \"salsify:parent_id\": \"MCS269\",\n    \"salsify:system_id\": \"s-999-999-999-999\",\n    \"Product ID\": \"102918\",\n    \"Product Name\": \"Jetsetter Carry On Roller - Purple\",\n    \"Main Image\": \"8d538dcbfd2d5547f7080f2408e7457e96c0451a\",\n    \"UPC\": \"143287212918\",\n    \"Certifications\": \"TSA-Approved\",\n    \"Assembly Country of Origin\": \"US\",\n    \"Component Country of Origin\": \"China\",\n    \"Warnings\": \"<p>WARNING: To avoid danger of suffocation, keep inner plastic bag away from babies and children. Do not use bag in cribs, beds, carriages or play pens. This bag is not a toy.</p>\",\n    \"Active Date\": [\n        \"2015-05-01\",\n        \"2017-10-17\"\n    ],\n    \"HTML Description\": \"<p>The 21\\\" Spinner is part of the Jetsetter Collection. Pack away any travel worries and woes with the efficient design of the Jettsetter rolling bag. Features top and side carrying handles for easy lifting, dual-tube handle with push-button extension. Maneuvers easily on four 360 degree wheels. Easy upright rolling for minimal arm strain. Jetset in style!</p>\\n<ul>\\n\\t<li>Constructed of 100% polycarbonate material.</li>\\n\\t<li>Four spinner wheels provide a silent and smooth roll.</li>\\n\\t<li>Fully-lined interior with two compartments for organized packing.</li>\\n</ul>\",\n    \"Link\": \"http://salsify.com\",\n    \"YouTube video\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\",\n    \"Formatted Retail Price\": \"$100.74\",\n    \"Formatted Base Wholesale Price\": \"$89.45\",\n    \"Sellable Package Length - Metric\": \"54.991\",\n    \"Formatted MSRP\": \"$110.99\",\n    \"Variant Type\": \"Color\",\n    \"Manufacturer\": \"Wildflower, LLC\",\n    \"Sellable Package Width - Metric\": \"52.5018\",\n    \"Sellable Package Height - Metric\": \"63.1444\",\n    \"Warranty Length (in years)\": \"5\",\n    \"salsify:relations\": [\n        {\n            \"relation_type\": \"Cross-Sell\",\n            \"salsify:target_product_id\": \"241029\",\n            \"salsify:created_at\": \"2016-11-07T20:09:36.914Z\",\n            \"salsify:updated_at\": \"2016-11-07T20:09:36.914Z\"\n        }\n    ],\n    \"salsify:digital_assets\": [\n        {\n            \"salsify:id\": \"8d538dcbfd2d5547f7080f2408e7457e96c0451a\",\n            \"salsify:url\": \"http://images.salsify.com/image/upload/s--u92Eqptx--/u4lc6fg1w17qzturwna3.jpg\",\n            \"salsify:name\": \"purple-carryon.jpg\",\n            \"salsify:created_at\": \"2016-02-28T00:23:28.777Z\",\n            \"salsify:updated_at\": \"2017-05-21T03:18:00.302Z\",\n            \"salsify:status\": \"completed\",\n            \"salsify:asset_height\": 2000,\n            \"salsify:asset_width\": 2000,\n            \"salsify:asset_resource_type\": \"image\",\n            \"salsify:filename\": \"purple-carryon.jpg\",\n            \"salsify:bytes\": 231018,\n            \"salsify:format\": \"jpg\",\n            \"salsify:etag\": \"593ea8d4b29d40c1ed7ef339966a6408\",\n            \"salsify:system_id\": \"s-d94cfcde-cb76-403a-80d3-1d6cbfaa48d9\",\n            \"Brand\": \"Jetsetter\",\n            \"Color\": \"Purple\"\n        }\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "salsify:id": {
+                      "type": "string",
+                      "example": "102918"
+                    },
+                    "salsify:created_at": {
+                      "type": "string",
+                      "example": "2016-02-29T20:42:44.488Z"
+                    },
+                    "salsify:updated_at": {
+                      "type": "string",
+                      "example": "2017-11-28T17:24:45.515Z"
+                    },
+                    "salsify:version": {
+                      "type": "integer",
+                      "example": 61,
+                      "default": 0
+                    },
+                    "salsify:relations_updated_at": {
+                      "type": "string",
+                      "example": "2016-11-07T20:09:53.188Z"
+                    },
+                    "salsify:profile_asset_id": {},
+                    "salsify:parent_id": {
+                      "type": "string",
+                      "example": "MCS269"
+                    },
+                    "salsify:system_id": {
+                      "type": "string",
+                      "example": "s-999-999-999-999"
+                    },
+                    "Product ID": {
+                      "type": "string",
+                      "example": "102918"
+                    },
+                    "Product Name": {
+                      "type": "string",
+                      "example": "Jetsetter Carry On Roller - Purple"
+                    },
+                    "Main Image": {
+                      "type": "string",
+                      "example": "8d538dcbfd2d5547f7080f2408e7457e96c0451a"
+                    },
+                    "UPC": {
+                      "type": "string",
+                      "example": "143287212918"
+                    },
+                    "Certifications": {
+                      "type": "string",
+                      "example": "TSA-Approved"
+                    },
+                    "Assembly Country of Origin": {
+                      "type": "string",
+                      "example": "US"
+                    },
+                    "Component Country of Origin": {
+                      "type": "string",
+                      "example": "China"
+                    },
+                    "Warnings": {
+                      "type": "string",
+                      "example": "<p>WARNING: To avoid danger of suffocation, keep inner plastic bag away from babies and children. Do not use bag in cribs, beds, carriages or play pens. This bag is not a toy.</p>"
+                    },
+                    "Active Date": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "2015-05-01"
+                      }
+                    },
+                    "HTML Description": {
+                      "type": "string",
+                      "example": "<p>The 21\" Spinner is part of the Jetsetter Collection. Pack away any travel worries and woes with the efficient design of the Jettsetter rolling bag. Features top and side carrying handles for easy lifting, dual-tube handle with push-button extension. Maneuvers easily on four 360 degree wheels. Easy upright rolling for minimal arm strain. Jetset in style!</p>\n<ul>\n\t<li>Constructed of 100% polycarbonate material.</li>\n\t<li>Four spinner wheels provide a silent and smooth roll.</li>\n\t<li>Fully-lined interior with two compartments for organized packing.</li>\n</ul>"
+                    },
+                    "Link": {
+                      "type": "string",
+                      "example": "http://salsify.com"
+                    },
+                    "YouTube video": {
+                      "type": "string",
+                      "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    },
+                    "Formatted Retail Price": {
+                      "type": "string",
+                      "example": "$100.74"
+                    },
+                    "Formatted Base Wholesale Price": {
+                      "type": "string",
+                      "example": "$89.45"
+                    },
+                    "Sellable Package Length - Metric": {
+                      "type": "string",
+                      "example": "54.991"
+                    },
+                    "Formatted MSRP": {
+                      "type": "string",
+                      "example": "$110.99"
+                    },
+                    "Variant Type": {
+                      "type": "string",
+                      "example": "Color"
+                    },
+                    "Manufacturer": {
+                      "type": "string",
+                      "example": "Wildflower, LLC"
+                    },
+                    "Sellable Package Width - Metric": {
+                      "type": "string",
+                      "example": "52.5018"
+                    },
+                    "Sellable Package Height - Metric": {
+                      "type": "string",
+                      "example": "63.1444"
+                    },
+                    "Warranty Length (in years)": {
+                      "type": "string",
+                      "example": "5"
+                    },
+                    "salsify:relations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "relation_type": {
+                            "type": "string",
+                            "example": "Cross-Sell"
+                          },
+                          "salsify:target_product_id": {
+                            "type": "string",
+                            "example": "241029"
+                          },
+                          "salsify:created_at": {
+                            "type": "string",
+                            "example": "2016-11-07T20:09:36.914Z"
+                          },
+                          "salsify:updated_at": {
+                            "type": "string",
+                            "example": "2016-11-07T20:09:36.914Z"
+                          }
+                        }
+                      }
+                    },
+                    "salsify:digital_assets": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "salsify:id": {
+                            "type": "string",
+                            "example": "8d538dcbfd2d5547f7080f2408e7457e96c0451a"
+                          },
+                          "salsify:url": {
+                            "type": "string",
+                            "example": "http://images.salsify.com/image/upload/s--u92Eqptx--/u4lc6fg1w17qzturwna3.jpg"
+                          },
+                          "salsify:name": {
+                            "type": "string",
+                            "example": "purple-carryon.jpg"
+                          },
+                          "salsify:created_at": {
+                            "type": "string",
+                            "example": "2016-02-28T00:23:28.777Z"
+                          },
+                          "salsify:updated_at": {
+                            "type": "string",
+                            "example": "2017-05-21T03:18:00.302Z"
+                          },
+                          "salsify:status": {
+                            "type": "string",
+                            "example": "completed"
+                          },
+                          "salsify:asset_height": {
+                            "type": "integer",
+                            "example": 2000,
+                            "default": 0
+                          },
+                          "salsify:asset_width": {
+                            "type": "integer",
+                            "example": 2000,
+                            "default": 0
+                          },
+                          "salsify:asset_resource_type": {
+                            "type": "string",
+                            "example": "image"
+                          },
+                          "salsify:filename": {
+                            "type": "string",
+                            "example": "purple-carryon.jpg"
+                          },
+                          "salsify:bytes": {
+                            "type": "integer",
+                            "example": 231018,
+                            "default": 0
+                          },
+                          "salsify:format": {
+                            "type": "string",
+                            "example": "jpg"
+                          },
+                          "salsify:etag": {
+                            "type": "string",
+                            "example": "593ea8d4b29d40c1ed7ef339966a6408"
+                          },
+                          "salsify:system_id": {
+                            "type": "string",
+                            "example": "s-d94cfcde-cb76-403a-80d3-1d6cbfaa48d9"
+                          },
+                          "Brand": {
+                            "type": "string",
+                            "example": "Jetsetter"
+                          },
+                          "Color": {
+                            "type": "string",
+                            "example": "Purple"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X GET \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/102918 \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  \n# where org_id = s-999-999-999-999, salsify:id=102918, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/102918\")\n\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Get.new(url)\nrequest[\"authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id=102918, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    }\n\nconn.request(\"GET\", \"/api/v1/orgs/s-999-999-999-999/products/102918\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=102918, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/<org_ID>/digital_assets/refresh": {
+      "post": {
+        "summary": "Refresh Digital Assets",
+        "description": "",
+        "operationId": "refresh-digital-assets",
+        "parameters": [
+          {
+            "name": "salsify:id",
+            "in": "path",
+            "description": "The identifier to use for the asset.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/refresh \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\"dandelion_new_10001\"]'\n\n# where org_id = s-999-999-999-999, asset_id = dandelion_new_10001, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/refresh\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Post.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\nrequest[\"Content-Type\"] = 'application/json'\nrequest[\"Cache-Control\"] = 'no-cache'\nrequest.body = \"[\\\"dandelion_new_10001\\\"]\"\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, asset_id = dandelion_new_10001, and api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"[\\\"dandelion_new_10001\\\"]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    'Cache-Control': \"no-cache\",\n    }\n\nconn.request(\"POST\", \"/api/v1/orgs/s-999-999-999-999/digital_assets/refresh\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, asset_id = dandelion_new_10001, and api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_ID}/properties/{salsify:id}": {
+      "get": {
+        "summary": "Read Property",
+        "description": "",
+        "operationId": "read-property",
+        "parameters": [
+          {
+            "name": "salsify:id",
+            "in": "path",
+            "description": "Unique identifier for the property. Used in report headers, channel mapping, etc.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"salsify:id\": \"ASIN\",\n    \"salsify:name\": \"ASIN\",\n    \"salsify:data_type\": \"string\",\n    \"salsify:entity_types\": [\n        \"products\"\n    ],\n    \"salsify:is_facetable\": true,\n    \"salsify:attribute_group\": \"General\",\n    \"salsify:position\": null,\n    \"salsify:help_text\": null,\n    \"salsify:manage_permissions\": null,\n    \"salsify:read_permissions\": null,\n    \"salsify:hidden_permissions\": null,\n    \"salsify:created_at\": \"2017-12-18T14:44:06.991Z\",\n    \"salsify:updated_at\": \"2017-12-18T14:46:09.370Z\",\n    \"salsify:type\": \"property\",\n    \"salsify:system_id\": \"s-999-999-999-999\"\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "salsify:id": {
+                      "type": "string",
+                      "example": "ASIN"
+                    },
+                    "salsify:name": {
+                      "type": "string",
+                      "example": "ASIN"
+                    },
+                    "salsify:data_type": {
+                      "type": "string",
+                      "example": "string"
+                    },
+                    "salsify:entity_types": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "products"
+                      }
+                    },
+                    "salsify:is_facetable": {
+                      "type": "boolean",
+                      "example": true,
+                      "default": true
+                    },
+                    "salsify:attribute_group": {
+                      "type": "string",
+                      "example": "General"
+                    },
+                    "salsify:position": {},
+                    "salsify:help_text": {},
+                    "salsify:manage_permissions": {},
+                    "salsify:read_permissions": {},
+                    "salsify:hidden_permissions": {},
+                    "salsify:created_at": {
+                      "type": "string",
+                      "example": "2017-12-18T14:44:06.991Z"
+                    },
+                    "salsify:updated_at": {
+                      "type": "string",
+                      "example": "2017-12-18T14:46:09.370Z"
+                    },
+                    "salsify:type": {
+                      "type": "string",
+                      "example": "property"
+                    },
+                    "salsify:system_id": {
+                      "type": "string",
+                      "example": "s-999-999-999-999"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X GET \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/ASIN \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN\n\n"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/ASIN\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Get.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n}\n\nconn.request(\"GET\", \"api/v1/orgs/s-999-999-999-999/properties,ASIN\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/records/{salsify:id}": {
+      "get": {
+        "summary": "Read Record",
+        "description": "",
+        "operationId": "read-record",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "salsify_id",
+            "in": "path",
+            "description": "Salsify record ID for uniquely identifying a record.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"salsify:id\": \"102918\",\n    \"salsify:created_at\": \"2016-02-29T20:42:44.488Z\",\n    \"salsify:updated_at\": \"2017-11-28T17:24:45.515Z\",\n    \"salsify:version\": 61,\n    \"salsify:relations_updated_at\": \"2016-11-07T20:09:53.188Z\",\n    \"salsify:profile_asset_id\": null,\n    \"salsify:parent_id\": \"MCS269\",\n    \"salsify:system_id\": \"s-999-999-999-999\",\n    \"Record ID\": \"102918\",\n    \"Record Name\": \"Jetsetter Carry On Roller - Purple\",\n    \"Main Image\": \"8d538dcbfd2d5547f7080f2408e7457e96c0451a\",\n    \"UPC\": \"143287212918\",\n    \"Certifications\": \"TSA-Approved\",\n    \"Assembly Country of Origin\": \"US\",\n    \"Component Country of Origin\": \"China\",\n    \"Warnings\": \"<p>WARNING: To avoid danger of suffocation, keep inner plastic bag away from babies and children. Do not use bag in cribs, beds, carriages or play pens. This bag is not a toy.</p>\",\n    \"Active Date\": [\n        \"2015-05-01\",\n        \"2017-10-17\"\n    ],\n    \"HTML Description\": \"<p>The 21\\\" Spinner is part of the Jetsetter Collection. Pack away any travel worries and woes with the efficient design of the Jettsetter rolling bag. Features top and side carrying handles for easy lifting, dual-tube handle with push-button extension. Maneuvers easily on four 360 degree wheels. Easy upright rolling for minimal arm strain. Jetset in style!</p>\\n<ul>\\n\\t<li>Constructed of 100% polycarbonate material.</li>\\n\\t<li>Four spinner wheels provide a silent and smooth roll.</li>\\n\\t<li>Fully-lined interior with two compartments for organized packing.</li>\\n</ul>\",\n    \"Link\": \"http://salsify.com\",\n    \"YouTube video\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\",\n    \"Formatted Retail Price\": \"$100.74\",\n    \"Formatted Base Wholesale Price\": \"$89.45\",\n    \"Sellable Package Length - Metric\": \"54.991\",\n    \"Formatted MSRP\": \"$110.99\",\n    \"Variant Type\": \"Color\",\n    \"Manufacturer\": \"Wildflower, LLC\",\n    \"Sellable Package Width - Metric\": \"52.5018\",\n    \"Sellable Package Height - Metric\": \"63.1444\",\n    \"Warranty Length (in years)\": \"5\",\n    \"salsify:digital_assets\": [\n        {\n            \"salsify:id\": \"8d538dcbfd2d5547f7080f2408e7457e96c0451a\",\n            \"salsify:url\": \"http://images.salsify.com/image/upload/s--u92Eqptx--/u4lc6fg1w17qzturwna3.jpg\",\n            \"salsify:name\": \"purple-carryon.jpg\",\n            \"salsify:created_at\": \"2016-02-28T00:23:28.777Z\",\n            \"salsify:updated_at\": \"2017-05-21T03:18:00.302Z\",\n            \"salsify:status\": \"completed\",\n            \"salsify:asset_height\": 2000,\n            \"salsify:asset_width\": 2000,\n            \"salsify:asset_resource_type\": \"image\",\n            \"salsify:filename\": \"purple-carryon.jpg\",\n            \"salsify:bytes\": 231018,\n            \"salsify:format\": \"jpg\",\n            \"salsify:etag\": \"593ea8d4b29d40c1ed7ef339966a6408\",\n            \"salsify:system_id\": \"s-d94cfcde-cb76-403a-80d3-1d6cbfaa48d9\",\n            \"Brand\": \"Jetsetter\",\n            \"Color\": \"Purple\"\n        }\n    ]\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "salsify:id": {
+                      "type": "string",
+                      "example": "102918"
+                    },
+                    "salsify:created_at": {
+                      "type": "string",
+                      "example": "2016-02-29T20:42:44.488Z"
+                    },
+                    "salsify:updated_at": {
+                      "type": "string",
+                      "example": "2017-11-28T17:24:45.515Z"
+                    },
+                    "salsify:version": {
+                      "type": "integer",
+                      "example": 61,
+                      "default": 0
+                    },
+                    "salsify:relations_updated_at": {
+                      "type": "string",
+                      "example": "2016-11-07T20:09:53.188Z"
+                    },
+                    "salsify:profile_asset_id": {},
+                    "salsify:parent_id": {
+                      "type": "string",
+                      "example": "MCS269"
+                    },
+                    "salsify:system_id": {
+                      "type": "string",
+                      "example": "s-999-999-999-999"
+                    },
+                    "Record ID": {
+                      "type": "string",
+                      "example": "102918"
+                    },
+                    "Record Name": {
+                      "type": "string",
+                      "example": "Jetsetter Carry On Roller - Purple"
+                    },
+                    "Main Image": {
+                      "type": "string",
+                      "example": "8d538dcbfd2d5547f7080f2408e7457e96c0451a"
+                    },
+                    "UPC": {
+                      "type": "string",
+                      "example": "143287212918"
+                    },
+                    "Certifications": {
+                      "type": "string",
+                      "example": "TSA-Approved"
+                    },
+                    "Assembly Country of Origin": {
+                      "type": "string",
+                      "example": "US"
+                    },
+                    "Component Country of Origin": {
+                      "type": "string",
+                      "example": "China"
+                    },
+                    "Warnings": {
+                      "type": "string",
+                      "example": "<p>WARNING: To avoid danger of suffocation, keep inner plastic bag away from babies and children. Do not use bag in cribs, beds, carriages or play pens. This bag is not a toy.</p>"
+                    },
+                    "Active Date": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "2015-05-01"
+                      }
+                    },
+                    "HTML Description": {
+                      "type": "string",
+                      "example": "<p>The 21\" Spinner is part of the Jetsetter Collection. Pack away any travel worries and woes with the efficient design of the Jettsetter rolling bag. Features top and side carrying handles for easy lifting, dual-tube handle with push-button extension. Maneuvers easily on four 360 degree wheels. Easy upright rolling for minimal arm strain. Jetset in style!</p>\n<ul>\n\t<li>Constructed of 100% polycarbonate material.</li>\n\t<li>Four spinner wheels provide a silent and smooth roll.</li>\n\t<li>Fully-lined interior with two compartments for organized packing.</li>\n</ul>"
+                    },
+                    "Link": {
+                      "type": "string",
+                      "example": "http://salsify.com"
+                    },
+                    "YouTube video": {
+                      "type": "string",
+                      "example": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    },
+                    "Formatted Retail Price": {
+                      "type": "string",
+                      "example": "$100.74"
+                    },
+                    "Formatted Base Wholesale Price": {
+                      "type": "string",
+                      "example": "$89.45"
+                    },
+                    "Sellable Package Length - Metric": {
+                      "type": "string",
+                      "example": "54.991"
+                    },
+                    "Formatted MSRP": {
+                      "type": "string",
+                      "example": "$110.99"
+                    },
+                    "Variant Type": {
+                      "type": "string",
+                      "example": "Color"
+                    },
+                    "Manufacturer": {
+                      "type": "string",
+                      "example": "Wildflower, LLC"
+                    },
+                    "Sellable Package Width - Metric": {
+                      "type": "string",
+                      "example": "52.5018"
+                    },
+                    "Sellable Package Height - Metric": {
+                      "type": "string",
+                      "example": "63.1444"
+                    },
+                    "Warranty Length (in years)": {
+                      "type": "string",
+                      "example": "5"
+                    },
+                    "salsify:digital_assets": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "salsify:id": {
+                            "type": "string",
+                            "example": "8d538dcbfd2d5547f7080f2408e7457e96c0451a"
+                          },
+                          "salsify:url": {
+                            "type": "string",
+                            "example": "http://images.salsify.com/image/upload/s--u92Eqptx--/u4lc6fg1w17qzturwna3.jpg"
+                          },
+                          "salsify:name": {
+                            "type": "string",
+                            "example": "purple-carryon.jpg"
+                          },
+                          "salsify:created_at": {
+                            "type": "string",
+                            "example": "2016-02-28T00:23:28.777Z"
+                          },
+                          "salsify:updated_at": {
+                            "type": "string",
+                            "example": "2017-05-21T03:18:00.302Z"
+                          },
+                          "salsify:status": {
+                            "type": "string",
+                            "example": "completed"
+                          },
+                          "salsify:asset_height": {
+                            "type": "integer",
+                            "example": 2000,
+                            "default": 0
+                          },
+                          "salsify:asset_width": {
+                            "type": "integer",
+                            "example": 2000,
+                            "default": 0
+                          },
+                          "salsify:asset_resource_type": {
+                            "type": "string",
+                            "example": "image"
+                          },
+                          "salsify:filename": {
+                            "type": "string",
+                            "example": "purple-carryon.jpg"
+                          },
+                          "salsify:bytes": {
+                            "type": "integer",
+                            "example": 231018,
+                            "default": 0
+                          },
+                          "salsify:format": {
+                            "type": "string",
+                            "example": "jpg"
+                          },
+                          "salsify:etag": {
+                            "type": "string",
+                            "example": "593ea8d4b29d40c1ed7ef339966a6408"
+                          },
+                          "salsify:system_id": {
+                            "type": "string",
+                            "example": "s-d94cfcde-cb76-403a-80d3-1d6cbfaa48d9"
+                          },
+                          "Brand": {
+                            "type": "string",
+                            "example": "Jetsetter"
+                          },
+                          "Color": {
+                            "type": "string",
+                            "example": "Purple"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "curl",
+              "code": "curl -X GET \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records/102918 \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  \n# where org_id = s-999-999-999-999, salsify:id=102918, api_token = YOUR-AUTH-TOKEN",
+              "name": "cURL"
+            },
+            {
+              "language": "ruby",
+              "code": "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/records/102918\")\n\nhttp = Net::HTTP.new(url.host, url.port)\nhttp.use_ssl = true\nhttp.verify_mode = OpenSSL::SSL::VERIFY_NONE\n\nrequest = Net::HTTP::Get.new(url)\nrequest[\"authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\n\nresponse = http.request(request)\nputs response.read_body\n\n# where org_id = s-999-999-999-999, salsify:id=102918, api_token = YOUR-AUTH-TOKEN",
+              "name": "Ruby"
+            },
+            {
+              "language": "python",
+              "code": "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    }\n\nconn.request(\"GET\", \"/api/v1/orgs/s-999-999-999-999/records/102918\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=102918, api_token = YOUR-AUTH-TOKEN",
+              "name": "Python"
+            }
+          ],
+          "samples-languages": [
+            "curl",
+            "ruby",
+            "python"
+          ]
+        }
+      }
+    },
+    "/{org_id}/products": {
+      "get": {
+        "summary": "Bulk Read Products",
+        "description": "",
+        "operationId": "bulk-read-products",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Limit the scope of products returned from the endpoint. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of results per page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": null
+            }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n   \"data\": [\n     {\n       \"salsify:id\": \"4a4393f6-54d7-4963-a3c0-b3a083c2440c\",\n       \"Name\": \"My Product\"\n     }\n   ],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 1,\n       \"current_page\": 1\n   }\n}"
+                  },
+                  "Empty Response": {
+                    "value": "{\n   \"data\": [],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 0\n   }\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "salsify:id": {
+                                "type": "string",
+                                "example": "4a4393f6-54d7-4963-a3c0-b3a083c2440c"
+                              },
+                              "Name": {
+                                "type": "string",
+                                "example": "My Product"
+                              }
+                            }
+                          }
+                        },
+                        "meta": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer",
+                              "example": 100,
+                              "default": 0
+                            },
+                            "cursor": {},
+                            "total_entries": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "current_page": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Empty Response",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array"
+                        },
+                        "meta": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer",
+                              "example": 100,
+                              "default": 0
+                            },
+                            "cursor": {},
+                            "total_entries": {
+                              "type": "integer",
+                              "example": 0,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Invalid Filter": {
+                    "value": "{\n  \"errors\": [\n    \"Filter is invalid\"\n  ]\n}"
+                  },
+                  "Result Window Exceeded": {
+                    "value": "{\n  \"errors\": [\n    \"result_window limit of 10025 exceeded 10000\"\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Invalid Filter",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Filter is invalid"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Result Window Exceeded",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "result_window limit of 10025 exceeded 10000"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{org_id}/records": {
+      "get": {
+        "summary": "Bulk Read Records",
+        "description": "",
+        "operationId": "bulk-read-records",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Limit the scope of records returned from the endpoint. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of results per page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "record_type",
+            "in": "query",
+            "description": "Limit the scope to a specific record type",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n   \"data\": [\n     {\n       \"salsify:id\": \"4a4393f6-54d7-4963-a3c0-b3a083c2440c\",\n       \"Name\": \"My Record\"\n     }\n   ],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 1,\n       \"current_page\": 1\n   }\n}"
+                  },
+                  "Empty Results": {
+                    "value": "{\n   \"data\": [],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 0\n   }\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "salsify:id": {
+                                "type": "string",
+                                "example": "4a4393f6-54d7-4963-a3c0-b3a083c2440c"
+                              },
+                              "Name": {
+                                "type": "string",
+                                "example": "My Record"
+                              }
+                            }
+                          }
+                        },
+                        "meta": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer",
+                              "example": 100,
+                              "default": 0
+                            },
+                            "cursor": {},
+                            "total_entries": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "current_page": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Empty Results",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array"
+                        },
+                        "meta": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer",
+                              "example": 100,
+                              "default": 0
+                            },
+                            "cursor": {},
+                            "total_entries": {
+                              "type": "integer",
+                              "example": 0,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Invalid Filter": {
+                    "value": "{\n  \"errors\": [\n    \"Filter is invalid\"\n  ]\n}"
+                  },
+                  "Result Window Exceeded": {
+                    "value": "{\n  \"errors\": [\n    \"result_window limit of 10025 exceeded 10000\"\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Invalid Filter",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Filter is invalid"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Result Window Exceeded",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "result_window limit of 10025 exceeded 10000"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/{org_id}/digital_assets": {
+      "get": {
+        "summary": "Bulk Read Digital Assets",
+        "description": "",
+        "operationId": "bulk-read-digital-assets",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Limit the scope of digital assets returned from the endpoint. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of results per page",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n   \"data\": [\n     {\n       \"salsify:id\": \"4a4393f6-54d7-4963-a3c0-b3a083c2440c\",\n       \"Name\": \"My Digital Asset\"\n     }\n   ],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 1,\n       \"current_page\": 1\n   }\n}"
+                  },
+                  "Empty Result": {
+                    "value": "{\n   \"data\": [],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 0\n   }\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "salsify:id": {
+                                "type": "string",
+                                "example": "4a4393f6-54d7-4963-a3c0-b3a083c2440c"
+                              },
+                              "Name": {
+                                "type": "string",
+                                "example": "My Digital Asset"
+                              }
+                            }
+                          }
+                        },
+                        "meta": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer",
+                              "example": 100,
+                              "default": 0
+                            },
+                            "cursor": {},
+                            "total_entries": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            },
+                            "current_page": {
+                              "type": "integer",
+                              "example": 1,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Empty Result",
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array"
+                        },
+                        "meta": {
+                          "type": "object",
+                          "properties": {
+                            "per_page": {
+                              "type": "integer",
+                              "example": 100,
+                              "default": 0
+                            },
+                            "cursor": {},
+                            "total_entries": {
+                              "type": "integer",
+                              "example": 0,
+                              "default": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Invalid Filter": {
+                    "value": "{\n  \"errors\": [\n    \"Filter is invalid\"\n  ]\n}"
+                  },
+                  "Result Window Exceeded": {
+                    "value": "{\n  \"errors\": [\n    \"result_window limit of 10025 exceeded 10000\"\n  ]\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Invalid Filter",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "Filter is invalid"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Result Window Exceeded",
+                      "type": "object",
+                      "properties": {
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "result_window limit of 10025 exceeded 10000"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "x-readme": {
+    "headers": [
+      {
+        "value": "Bearer {api_key}",
+        "key": "Authorization"
+      }
+    ]
+  },
+  "x-readme-fauxas": true
+}

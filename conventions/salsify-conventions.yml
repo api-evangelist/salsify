@@ -1,0 +1,122 @@
+generated: '2026-08-02'
+method: searched
+source: https://developers.salsify.com/docs/overview
+docs:
+- https://developers.salsify.com/docs/overview
+- https://developers.salsify.com/docs/authentication-model
+- https://developers.salsify.com/docs/rate-limiting-1
+- https://developers.salsify.com/docs/organization-id
+- https://developers.salsify.com/reference/salsify-filtering-language-syntax
+media_type:
+  request: application/json
+  response: application/json
+  note: All request body data and response data are formatted as JSON.
+base_paths:
+- https://app.salsify.com/api/v1/orgs   # versioned REST surface
+- https://app.salsify.com/api/orgs      # non-v1 endpoints (imports, exports)
+- https://api.salsify.com/graphql       # GraphQL (early access)
+tenancy:
+  model: organization-scoped path parameter
+  parameter: org_id
+  description: >-
+    Every REST path is prefixed with the organization's unique identifier, taken from the
+    Salsify application URL immediately after /orgs/. Rate limits, permissions and data
+    isolation are all organization-scoped.
+  docs: https://developers.salsify.com/docs/organization-id
+authentication:
+  style: bearer-style token in the Authorization header
+  alternatives:
+  - access_token query parameter
+  - OAuth 2.0 Bearer access token (2 hour lifetime, single-use refresh tokens)
+  artifact: authentication/salsify-authentication.yml
+idempotency:
+  idempotency_key_header: false
+  supported: false
+  note: >-
+    Salsify publishes no Idempotency-Key header or request-replay contract, and none of the
+    three OpenAPI documents declares an idempotency parameter. What Salsify does offer is
+    idempotent-by-shape bulk upsert operations - PUT /{org_id}/products/_upsert,
+    PUT /{org_id}/records/_upsert, PUT /{organization_id}/properties/_upsert and
+    PUT /{organization_id}/digital_assets/_upsert - which converge on the same end state
+    when replayed with the same body. That is upsert semantics, not an idempotency-key
+    contract, so no Idempotency pointer is emitted in apis.yml.
+  upsert_operations:
+  - bulk-upsert-products
+  - bulk-upsert-records
+  - bulk-upsert-properties
+  - bulk-upsert-digital-assets
+pagination:
+  style: page-number
+  request_params:
+  - name: page
+    description: Page of results to return on bulk read operations.
+  - name: per_page
+    description: Number of records per page on bulk read operations.
+  verified_in:
+  - openapi/salsify-api-settings-openapi.json#bulk-read-products
+  - openapi/salsify-api-settings-openapi.json#bulk-read-records
+  - openapi/salsify-api-settings-openapi.json#bulk-read-digital-assets
+  note: >-
+    Bulk read operations (bulk-read-products, bulk-read-records, bulk-read-digital-assets)
+    page over result sets; large extracts are expected to go through the asynchronous
+    export-run surface (start-export-run / get-export-status) rather than paging the API.
+filtering:
+  language: Salsify Filtering Language
+  parameter: filter
+  docs: https://developers.salsify.com/reference/salsify-filtering-language-syntax
+  note: A dedicated query syntax used to select products, records and digital assets.
+field_selection:
+  supported: false
+  note: >-
+    No sparse-fieldset or field-expansion parameter is declared in the published OpenAPI
+    documents; bulk reads return the full product/record/digital-asset document narrowed
+    only by filter.
+identifiers:
+  namespace: 'salsify:'
+  examples:
+  - 'salsify:id'
+  - 'salsify:parent_id'
+  - 'salsify:destroyed_at'
+  - 'salsify:system_id'
+  note: >-
+    Salsify-managed fields are namespaced with a salsify: prefix to keep them distinct from
+    customer-defined properties. Path parameters in the OpenAPI use the literal
+    {salsify:id} form.
+versioning:
+  scheme: uri-path
+  current: v1
+  note: >-
+    The primary REST surface is /api/v1/orgs. A set of non-v1 endpoints (imports, exports)
+    is served at /api/orgs. The GraphQL API is unversioned and documented as early access,
+    liable to change.
+  artifact: lifecycle/salsify-lifecycle.yml
+errors:
+  envelope: JSON object with an errors array (or an error string on some legacy endpoints)
+  problem_json: false
+  content_types_observed:
+  - application/json
+  - text/plain
+  note: >-
+    Salsify does not use RFC 9457 application/problem+json. Several 400/403/404 responses in
+    the published specs return text/plain rather than JSON.
+  artifact: errors/salsify-problem-types.yml
+rate_limiting:
+  artifact: rate-limits/salsify-rate-limits.yml
+  headers:
+  - x-ratelimit-limit
+  - x-ratelimit-remaining
+  - x-ratelimit-reset
+  exceeded_status: 429
+request_tracing:
+  request_id_header: null
+  note: Salsify documents no request-id/correlation header for API responses.
+webhooks:
+  artifact: asyncapi/salsify-webhooks.yml
+  signature: X.509 certificate + SHA-256 asymmetric signature
+  retries: 15 attempts over 48 hours with exponential backoff
+async_jobs:
+  pattern: submit-then-poll
+  note: >-
+    Imports and exports are asynchronous. Callers start a run (starting-an-import-run,
+    start-export-run) and poll for completion (getting-the-status-of-an-import-run,
+    get-export-status), or subscribe to an import webhook.

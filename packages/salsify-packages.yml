@@ -1,0 +1,49 @@
+generated: '2026-08-02'
+method: searched
+source: npm registry search, RubyGems search, PyPI, github.com/salsify
+notes: >-
+  Salsify does not publish a general-purpose first-party REST API client SDK for the
+  app.salsify.com/api/v1/orgs surface. The one first-party package published to a public
+  registry is the browser-side Experiences SDK. Community and partner-built clients are
+  recorded here with official:false so they are not mistaken for vendor-supported libraries.
+packages:
+- language: javascript
+  registry: npm
+  name: salsify-experiences-sdk
+  url: https://www.npmjs.com/package/salsify-experiences-sdk
+  install: npm install salsify-experiences-sdk
+  version: 1.1.1
+  official: true
+  evidence: >-
+    Published by Salsify npm maintainers (salsify-jenkins-ci, dfreeman, kylemontag,
+    katrynmc); described as the SDK used by commerce websites to implement Salsify
+    product experiences.
+- language: ruby
+  registry: rubygems
+  name: salsify_ruby
+  url: https://rubygems.org/gems/salsify_ruby
+  install: gem install salsify_ruby
+  version: 0.1.0
+  official: false
+  evidence: 'Community gem, owner handle "thecdavis"; description: "Allows users to use Salsify''s REST API".'
+- language: javascript
+  registry: npm
+  name: gatsby-source-salsify
+  url: https://www.npmjs.com/package/gatsby-source-salsify
+  install: npm install gatsby-source-salsify
+  version: 1.1.0
+  official: false
+  evidence: Community Gatsby source plugin published by escaladesports; fetches data from the Salsify API.
+- language: javascript
+  registry: npm
+  name: salsify-image-downloader
+  url: https://www.npmjs.com/package/salsify-image-downloader
+  install: npm install salsify-image-downloader
+  version: 2.0.6
+  official: false
+  evidence: Community utility that fetches Salsify digital assets and resizes them for web.
+integrations:
+- name: Salsify MuleSoft Connector
+  url: https://github.com/salsify/salsify-mulesoft-docs
+  official: true
+  note: First-party MuleSoft connector documentation published in the Salsify GitHub organization.

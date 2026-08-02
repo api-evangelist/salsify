@@ -1,0 +1,60 @@
+generated: '2026-08-02'
+method: generated
+source: openapi/salsify-write-operations-openapi.json, openapi/salsify-api-settings-openapi.json,
+  openapi/salsify-non-v1-endpoints-openapi.json, conventions/salsify-conventions.yml,
+  errors/salsify-problem-types.yml, asyncapi/salsify-webhooks.yml
+note: >-
+  Every operationId referenced in these skills was verified verbatim against the harvested
+  OpenAPI documents. Salsify publishes no AGENTS.md or first-party agent skills.
+skills:
+- file: salsify-bulk-upsert-products.md
+  name: Bulk upsert Salsify products
+  api: openapi/salsify-write-operations-openapi.json
+  operations:
+  - bulk-upsert-products
+  - bulk-read-products
+  - read-product-record
+- file: salsify-run-json-import.md
+  name: Run a Salsify JSON import end to end
+  api: openapi/salsify-non-v1-endpoints-openapi.json
+  operations:
+  - create-a-mount-point
+  - creating-a-json-import-from-a-mount-point
+  - updating-an-import-to-point-at-a-new-mount-point
+  - starting-an-import-run
+  - getting-the-status-of-an-import-run
+- file: salsify-export-catalog.md
+  name: Export a Salsify catalog and collect the result
+  api: openapi/salsify-non-v1-endpoints-openapi.json
+  operations:
+  - start-export-run
+  - get-export-status
+- file: salsify-manage-digital-assets.md
+  name: Manage Salsify digital assets
+  api: openapi/salsify-write-operations-openapi.json
+  operations:
+  - create-a-digital-asset-metadata
+  - add-multiple-digital-assets
+  - get-digital-asset
+  - bulk-read-digital-assets
+  - refresh-digital-assets
+  - update-digital-asset-metadata
+  - update-multiple-digital-assets
+  - bulk-upsert-digital-assets
+  - delete-multiple-digital-assets
+- file: salsify-model-records-and-properties.md
+  name: Model Salsify records and properties
+  api: openapi/salsify-write-operations-openapi.json
+  operations:
+  - read-record-types
+  - bulk-create-new-properties
+  - read-property
+  - update-property
+  - bulk-upsert-properties
+  - bulk-delete-properties
+  - delete-property
+  - create-record
+  - bulk-create-records
+  - bulk-upsert-records
+  - read-record
+  - bulk-read-records

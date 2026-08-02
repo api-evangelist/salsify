@@ -1,0 +1,45 @@
+generated: '2026-08-02'
+method: searched
+source: https://developers.salsify.com/reference/graphql-schema-overview
+endpoint: https://api.salsify.com/graphql
+status: early access
+stability_note: >-
+  Salsify's own documentation states "The GraphQL APIs are in early access and are liable
+  to change."
+authentication:
+  required: true
+  scheme: 'Authorization: Bearer <API_TOKEN>'
+  docs: https://developers.salsify.com/docs/graphql-authorization
+introspection:
+  anonymous: false
+  probe:
+    url: https://api.salsify.com/graphql
+    method: POST
+    query: '{__schema{queryType{name}}}'
+    http_status: 401
+    body: '{"error":"You need to sign in before continuing."}'
+  note: >-
+    Introspection requires an authenticated bearer token, so no SDL could be captured.
+    The provider-published schema reference is mirrored verbatim instead - nothing was
+    reconstructed or inferred.
+published_schema:
+  file: salsify-graphql-schema-overview.md
+  source: https://developers.salsify.com/reference/graphql-schema-overview
+  fetched: '2026-08-02'
+  format: developer-hub markdown (HTML type tables), not SDL
+  updated_at_upstream: '2026-05-19'
+root_query_fields:
+- account
+- organization
+- accounts
+- organizations
+- provisionOrganizationRequest
+domains:
+- Accounts and account/organization membership
+- Organizations and organization provisioning requests
+- Configuration manifests (entity types, versions, installations)
+docs:
+- https://developers.salsify.com/docs/graphql-authorization
+- https://developers.salsify.com/docs/graphql-schema-overview
+- https://developers.salsify.com/docs/accounts-overview
+- https://developers.salsify.com/docs/configuration-manifests-overview
