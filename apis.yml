@@ -29,39 +29,12 @@ tags:
 - Data Management
 - SaaS
 apis:
-- aid: salsify:rest
-  name: Salsify REST API
-  description: 'The Salsify REST API gives programmatic access to everything in a Salsify
-    organization: products, records, properties, digital assets, list membership, imports
-    and export runs. All request and response bodies are JSON, requests are authenticated
-    with a per-user API key (or an OAuth 2.0 bearer token) in the Authorization header,
-    and every organization is limited to 10,000 requests per hour.'
-  humanURL: https://developers.salsify.com/reference
-  baseURL: https://app.salsify.com/api/v1/orgs
-  tags:
-  - Products
-  - Records
-  - Properties
-  - Digital Assets
-  - Imports
-  - Exports
-  properties:
-  - type: OpenAPI
-    url: openapi/salsify-api-settings-openapi.json
-  - type: OpenAPI
-    url: openapi/salsify-write-operations-openapi.json
-  - type: OpenAPI
-    url: openapi/salsify-non-v1-endpoints-openapi.json
-  - type: Documentation
-    url: https://developers.salsify.com/docs/overview
-  - type: APIReference
-    url: https://developers.salsify.com/reference
 - aid: salsify:graphql
   name: Salsify GraphQL API
-  description: 'Early-access public GraphQL API for operating on Salsify accounts, organizations,
-    configuration manifests and organization provisioning requests. Authenticated with
-    a bearer API token; introspection requires authentication, and the published schema
-    reference is mirrored in graphql/.'
+  description: >-
+    Early-access public GraphQL API for operating on Salsify accounts, organizations, configuration manifests
+    and organization provisioning requests. Authenticated with a bearer API token; introspection requires
+    authentication, and the published schema reference is mirrored in graphql/.
   humanURL: https://developers.salsify.com/reference/graphql-schema-overview
   baseURL: https://api.salsify.com/graphql
   tags:
@@ -77,10 +50,10 @@ apis:
     url: https://developers.salsify.com/docs/graphql-authorization
 - aid: salsify:mcp
   name: Salsify MCP Server
-  description: 'First-party remote Model Context Protocol server hosted by Salsify at
-    app.salsify.com/mcp. Streamable HTTP transport, protected by OAuth 2.1 with RFC 9728
-    protected-resource metadata pointing at the app.salsify.com authorization server;
-    tools/list requires an authenticated bearer token.'
+  description: >-
+    First-party remote Model Context Protocol server hosted by Salsify at app.salsify.com/mcp. Streamable
+    HTTP transport, protected by OAuth 2.1 with RFC 9728 protected-resource metadata pointing at the app.salsify.com
+    authorization server; tools/list requires an authenticated bearer token.
   humanURL: https://app.salsify.com/mcp
   baseURL: https://app.salsify.com/mcp
   tags:
@@ -91,6 +64,132 @@ apis:
     url: mcp/salsify-mcp.yml
   - type: ToolCrosswalk
     url: mcp/salsify-tool-crosswalk.yml
+- aid: salsify:salsify-digital-assets-api
+  name: Salsify Digital Assets API
+  description: The Digital Assets API from Salsify — 5 operation(s) for digital assets.
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - Digital Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-digital-assets-api-openapi.yml
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
+- aid: salsify:salsify-export-runs-api
+  name: Salsify Export Runs API
+  description: The Export Runs API from Salsify — 2 operation(s) for export runs.
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - Export Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-export-runs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
+- aid: salsify:salsify-imports-api
+  name: Salsify Imports API
+  description: The Imports API from Salsify — 5 operation(s) for imports.
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - Imports
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-imports-api-openapi.yml
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
+- aid: salsify:salsify-lists-api
+  name: Salsify Lists API
+  description: The Lists API from Salsify — 1 operation(s) for lists.
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-lists-api-openapi.yml
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
+- aid: salsify:salsify-org-id-api
+  name: Salsify <org ID> API
+  description: The <org ID> API from Salsify — 1 operation(s) for <org id>.
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - <org ID>
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-org-id-api-openapi.yml
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
+- aid: salsify:salsify-products-api
+  name: Salsify Products API
+  description: The Products API from Salsify — 5 operation(s) for products.
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-products-api-openapi.yml
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
+- aid: salsify:salsify-properties-api
+  name: Salsify Properties API
+  description: The Properties API from Salsify — 4 operation(s) for properties.
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-properties-api-openapi.yml
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
+- aid: salsify:salsify-record-types-api
+  name: Salsify Record Types API
+  description: The Record Types API from Salsify — 1 operation(s) for record types.
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - Record Types
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-record-types-api-openapi.yml
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
+- aid: salsify:salsify-records-api
+  name: Salsify Records API
+  description: The Records API from Salsify — 6 operation(s) for records.
+  humanURL: https://developers.salsify.com/reference
+  baseURL: https://app.salsify.com/api/v1/orgs
+  tags:
+  - Records
+  properties:
+  - type: OpenAPI
+    url: openapi/salsify-records-api-openapi.yml
+  - type: Documentation
+    url: https://developers.salsify.com/docs/overview
+  - type: APIReference
+    url: https://developers.salsify.com/reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
