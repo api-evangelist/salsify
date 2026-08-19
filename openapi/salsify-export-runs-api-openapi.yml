@@ -1,0 +1,265 @@
+openapi: 3.2.0
+info:
+  title: Non-v1 endpoints Export Runs API
+  version: '1.0'
+servers:
+- url: https://app.salsify.com/api/orgs
+security:
+- sec0: []
+tags:
+- name: Export Runs
+paths:
+  /{org_id}/export_runs:
+    post:
+      summary: Start Export Run
+      description: ''
+      operationId: start-export-run
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entity_type
+              properties:
+                entity_type:
+                  type: string
+                  description: 'Defines the type of entity you want to export. **Allowed Values**: `all` `product` `digital_asset` `attribute` `attribute_value`'
+                  default: all
+                format:
+                  type: string
+                  description: Format file is output in. If not specified, default format for all entity_types is `xlsx`. Note that for entity_type `all`, the only valid output formats are `json` and `jsonl`.  **Allowed Values:** `json` `jsonl` `csv` `xlsx`
+                  default: xlsx
+                compress:
+                  type: boolean
+                  description: If `true` is specified, returns a compressed file in gzip format. (.gz)
+                  default: false
+                include_all_columns:
+                  type: boolean
+                  description: Returns all content properties for product entities, or all custom metadata stored with digital asset entities. Default is `true`. Use `properties` to define the scope for `false`.
+                  default: true
+                include_all_content_locales:
+                  type: boolean
+                  description: If `true`, the export run will include data for every content locale; otherwise it will include data for the channel's content locale
+                  default: false
+                properties:
+                  type: string
+                  description: For exports where `include_all_columns` is `false`, specify property IDs for properties to be included in the export and formatted as a single value of single quote and comma-separated values. ie. `"'Property ID 1','Property ID 2',Property ID 3'"`
+                filter:
+                  type: string
+                  description: Limit the scope of entities included in export file based on filter specifications. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)
+                sort_order:
+                  type: string
+                  description: 'Sorts results in either ascending or descending order by. **Allowed Values**: `asc` `desc`'
+                sort_property:
+                  type: string
+                  description: Sorts results by the values stored in the Salsify Property ID specified.
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": 19350473,\n    \"status\": \"running\",\n    \"start_time\": \"2019-12-06T19:38:11.753Z\",\n    \"end_time\": null,\n    \"duration\": 0.044245656,\n    \"url\": \"\",\n    \"progress\": 10,\n    \"failure_reason\": null,\n    \"estimated_time_remaining\": \"\"\n}\n\n#where the export_run id = 19350473"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n  https://app.salsify.com/api/orgs/s-999-999-999-999/export_runs \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n    \"configuration\": {\n        \"entity_type\": \"all\",\n        \"filter\": \"=list:default\",\n        \"properties\": \"'\\''ID'\\'','\\''Product Name'\\'','\\''Brand'\\'','\\''Main Image'\\'','\\''Short Description'\\'','\\''Long Description'\\''\",\n        \"include_all_columns\": false,\n        \"sort_order\": \"desc\",\n        \"sort_property\": \"Brand\"\n    }\n}'\n# where org_id = s-999-999-999-999 and api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/orgs/s-999-999-999-999/export_runs")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Post.new(url)
+
+            request["Content-Type"] = ''application/json''
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["User-Agent"] = ''PostmanRuntime/7.19.0''
+
+            request["Accept"] = ''*/*''
+
+            request["Cache-Control"] = ''no-cache''
+
+            request["Host"] = ''app.salsify.com''
+
+            request["Accept-Encoding"] = ''gzip, deflate''
+
+            request["Content-Length"] = ''304''
+
+            request["Cookie"] = ''_cookie_id''
+
+            request["Connection"] = ''keep-alive''
+
+            request["cache-control"] = ''no-cache''
+
+            request.body = "{\n    \"configuration\": {\n        \"entity_type\": \"all\",\n        \"filter\": \"=list:default\",\n        \"properties\": \"''UPC'',''Product Name'',''Brand'',''Main Image'',''Short Description'',''Long Description''\",\n        \"include_all_columns\": false,\n        \"sort_order\": \"desc\",\n        \"sort_property\": \"Brand\"\n    }\n}"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN, and cookie id = _cookie_id'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"{\\n    \\\"configuration\\\": {\\n        \\\"entity_type\\\": \\\"all\\\",\\n        \\\"filter\\\": \\\"=list:default\\\",\\n        \\\"properties\\\": \\\"'UPC','Product Name','Brand','Main Image','Short Description','Long Description'\\\",\\n        \\\"include_all_columns\\\": false,\\n        \\\"sort_order\\\": \\\"desc\\\",\\n        \\\"sort_property\\\": \\\"Brand\\\"\\n    }\\n}\"\n\nheaders = {\n    'Content-Type': \"application/json\",\n    'Authorization': \"Bearer s-999-999-999-999\",\n    'User-Agent': \"PostmanRuntime/7.19.0\",\n    'Accept': \"*/*\",\n    'Cache-Control': \"no-cache\",\n    'Host': \"app.salsify.com\",\n    'Accept-Encoding': \"gzip, deflate\",\n    'Content-Length': \"304\",\n    'Cookie': \"_cookie_id\",\n    'Connection': \"keep-alive\",\n    'cache-control': \"no-cache\"\n    }\n\nconn.request(\"POST\", \"api,orgs,s-999-999-999-999,export_runs\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN, and cookie id = _cookie_id"
+        - language: csharp
+          code: 'using RestSharp;
+
+
+
+            var options = new RestClientOptions("https://app.salsify.com/api/orgs/org_id/export_runs");
+
+            var client = new RestClient(options);
+
+            var request = new RestRequest("");
+
+            request.AddHeader("accept", "application/json");
+
+            request.AddHeader("Authorization", "Bearer {api_key}");
+
+            request.AddJsonBody("{\"configuration\":{\"entity_type\":\"all\",\"format\":\"xlsx\",\"compress\":false,\"include_all_columns\":true,\"include_all_content_locales\":false}}", false);
+
+            var response = await client.PostAsync(request);
+
+
+            Console.WriteLine("{0}", response.Content);'
+        samples-languages:
+        - curl
+        - ruby
+        - python
+        - csharp
+      tags:
+      - Export Runs
+  /{org_id}/export_runs/{export_id}:
+    get:
+      summary: Get Export Status
+      description: ''
+      operationId: get-export-status
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: export_id
+        in: path
+        description: The ID for the export you want to retrieve status for. Found in the response from Start Export Run POST call.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": 19350473,\n    \"status\": \"completed\",\n    \"start_time\": \"2019-12-06T19:38:11.753Z\",\n    \"end_time\": \"2019-12-06T19:38:15.104Z\",\n    \"duration\": 3.350483,\n    \"url\": \"EXPORT-URL\",\n    \"progress\": 100,\n    \"includes_changes_before\": \"2019-12-06T19:38:07.518Z\",\n    \"failure_reason\": null,\n    \"estimated_time_remaining\": \"\"\n}\n\n#where the export_run id = 19350473 and EXPORT-URL is the URL to access the downloadable export file."
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X GET \\\n  https://app.salsify.com/api/orgs/s-999-999-999-999/export_runs/19350473 \\\n  -H 'Accept: */*' \\\n  -H 'Accept-Encoding: gzip, deflate' \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Connection: keep-alive' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Cookie: _cookie_id' \\\n  -H 'Host: app.salsify.com' \\\n  -H 'User-Agent: PostmanRuntime/7.19.0' \\\n  -H 'cache-control: no-cache'\n\n\n# where export_id = 19350473 org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN, cookie id = _cookie_id"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/orgs/s-999-999-999-999/export_runs/19350473")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Get.new(url)
+
+            request["Content-Type"] = ''application/json''
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["User-Agent"] = ''PostmanRuntime/7.19.0''
+
+            request["Accept"] = ''*/*''
+
+            request["Cache-Control"] = ''no-cache''
+
+            request["Host"] = ''app.salsify.com''
+
+            request["Accept-Encoding"] = ''gzip, deflate''
+
+            request["Cookie"] = ''_cookie_id''
+
+            request["Connection"] = ''keep-alive''
+
+            request["cache-control"] = ''no-cache''
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where export_id = 19350473 org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN, cookie id = _cookie_id'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"\"\n\nheaders = {\n    'Content-Type': \"application/json\",\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'User-Agent': \"PostmanRuntime/7.19.0\",\n    'Accept': \"*/*\",\n    'Cache-Control': \"no-cache\",\n    'Host': \"app.salsify.com\",\n    'Accept-Encoding': \"gzip, deflate\",\n    'Cookie': \"_cookie_id\",\n    'Connection': \"keep-alive\",\n    'cache-control': \"no-cache\"\n    }\n\nconn.request(\"GET\", \"api,orgs,s-999-999-999-999,export_runs,19350473\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where export_id = 19350473 org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN, cookie id = _cookie_id"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Export Runs
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+x-readme:
+  headers:
+  - value: Bearer {api_key}
+    key: Authorization
+x-readme-fauxas: true

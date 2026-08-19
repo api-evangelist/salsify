@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "No API Explorer (for destructive calls & not well defined parameters) Record Types API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Record Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read Record Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/record_types",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ]
+          },
+          "docs": "Used to query for all available record types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

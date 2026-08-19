@@ -1,0 +1,1164 @@
+openapi: 3.2.0
+info:
+  title: Salsify Products API
+  version: '1.0'
+  description: 'Operations tagged Products across 2 of this provider''s published API definitions: salsify-api-settings-openapi.json, salsify-write-operations-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://app.salsify.com/api/v1/orgs
+security:
+- sec0: []
+tags:
+- name: Products
+paths:
+  /{org_id}/products/{salsify:id}:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    get:
+      summary: Read Product Record
+      description: ''
+      operationId: read-product-record
+      parameters:
+      - name: org_id
+        in: path
+        description: Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: salsify:id
+        in: path
+        description: Salsify product ID
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"salsify:id\": \"102918\",\n    \"salsify:created_at\": \"2016-02-29T20:42:44.488Z\",\n    \"salsify:updated_at\": \"2017-11-28T17:24:45.515Z\",\n    \"salsify:version\": 61,\n    \"salsify:relations_updated_at\": \"2016-11-07T20:09:53.188Z\",\n    \"salsify:profile_asset_id\": null,\n    \"salsify:parent_id\": \"MCS269\",\n    \"salsify:system_id\": \"s-999-999-999-999\",\n    \"Product ID\": \"102918\",\n    \"Product Name\": \"Jetsetter Carry On Roller - Purple\",\n    \"Main Image\": \"8d538dcbfd2d5547f7080f2408e7457e96c0451a\",\n    \"UPC\": \"143287212918\",\n    \"Certifications\": \"TSA-Approved\",\n    \"Assembly Country of Origin\": \"US\",\n    \"Component Country of Origin\": \"China\",\n    \"Warnings\": \"<p>WARNING: To avoid danger of suffocation, keep inner plastic bag away from babies and children. Do not use bag in cribs, beds, carriages or play pens. This bag is not a toy.</p>\",\n    \"Active Date\": [\n        \"2015-05-01\",\n        \"2017-10-17\"\n    ],\n    \"HTML Description\": \"<p>The 21\\\" Spinner is part of the Jetsetter Collection. Pack away any travel worries and woes with the efficient design of the Jettsetter rolling bag. Features top and side carrying handles for easy lifting, dual-tube handle with push-button extension. Maneuvers easily on four 360 degree wheels. Easy upright rolling for minimal arm strain. Jetset in style!</p>\\n<ul>\\n\\t<li>Constructed of 100% polycarbonate material.</li>\\n\\t<li>Four spinner wheels provide a silent and smooth roll.</li>\\n\\t<li>Fully-lined interior with two compartments for organized packing.</li>\\n</ul>\",\n    \"Link\": \"http://salsify.com\",\n    \"YouTube video\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\",\n    \"Formatted Retail Price\": \"$100.74\",\n    \"Formatted Base Wholesale Price\": \"$89.45\",\n    \"Sellable Package Length - Metric\": \"54.991\",\n    \"Formatted MSRP\": \"$110.99\",\n    \"Variant Type\": \"Color\",\n    \"Manufacturer\": \"Wildflower, LLC\",\n    \"Sellable Package Width - Metric\": \"52.5018\",\n    \"Sellable Package Height - Metric\": \"63.1444\",\n    \"Warranty Length (in years)\": \"5\",\n    \"salsify:relations\": [\n        {\n            \"relation_type\": \"Cross-Sell\",\n            \"salsify:target_product_id\": \"241029\",\n            \"salsify:created_at\": \"2016-11-07T20:09:36.914Z\",\n            \"salsify:updated_at\": \"2016-11-07T20:09:36.914Z\"\n        }\n    ],\n    \"salsify:digital_assets\": [\n        {\n            \"salsify:id\": \"8d538dcbfd2d5547f7080f2408e7457e96c0451a\",\n            \"salsify:url\": \"http://images.salsify.com/image/upload/s--u92Eqptx--/u4lc6fg1w17qzturwna3.jpg\",\n            \"salsify:name\": \"purple-carryon.jpg\",\n            \"salsify:created_at\": \"2016-02-28T00:23:28.777Z\",\n            \"salsify:updated_at\": \"2017-05-21T03:18:00.302Z\",\n            \"salsify:status\": \"completed\",\n            \"salsify:asset_height\": 2000,\n            \"salsify:asset_width\": 2000,\n            \"salsify:asset_resource_type\": \"image\",\n            \"salsify:filename\": \"purple-carryon.jpg\",\n            \"salsify:bytes\": 231018,\n            \"salsify:format\": \"jpg\",\n            \"salsify:etag\": \"593ea8d4b29d40c1ed7ef339966a6408\",\n            \"salsify:system_id\": \"s-d94cfcde-cb76-403a-80d3-1d6cbfaa48d9\",\n            \"Brand\": \"Jetsetter\",\n            \"Color\": \"Purple\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  salsify:id:
+                    type: string
+                    example: '102918'
+                  salsify:created_at:
+                    type: string
+                    example: '2016-02-29T20:42:44.488Z'
+                  salsify:updated_at:
+                    type: string
+                    example: '2017-11-28T17:24:45.515Z'
+                  salsify:version:
+                    type: integer
+                    example: 61
+                    default: 0
+                  salsify:relations_updated_at:
+                    type: string
+                    example: '2016-11-07T20:09:53.188Z'
+                  salsify:profile_asset_id: {}
+                  salsify:parent_id:
+                    type: string
+                    example: MCS269
+                  salsify:system_id:
+                    type: string
+                    example: s-999-999-999-999
+                  Product ID:
+                    type: string
+                    example: '102918'
+                  Product Name:
+                    type: string
+                    example: Jetsetter Carry On Roller - Purple
+                  Main Image:
+                    type: string
+                    example: 8d538dcbfd2d5547f7080f2408e7457e96c0451a
+                  UPC:
+                    type: string
+                    example: '143287212918'
+                  Certifications:
+                    type: string
+                    example: TSA-Approved
+                  Assembly Country of Origin:
+                    type: string
+                    example: US
+                  Component Country of Origin:
+                    type: string
+                    example: China
+                  Warnings:
+                    type: string
+                    example: '<p>WARNING: To avoid danger of suffocation, keep inner plastic bag away from babies and children. Do not use bag in cribs, beds, carriages or play pens. This bag is not a toy.</p>'
+                  Active Date:
+                    type: array
+                    items:
+                      type: string
+                      example: '2015-05-01'
+                  HTML Description:
+                    type: string
+                    example: "<p>The 21\" Spinner is part of the Jetsetter Collection. Pack away any travel worries and woes with the efficient design of the Jettsetter rolling bag. Features top and side carrying handles for easy lifting, dual-tube handle with push-button extension. Maneuvers easily on four 360 degree wheels. Easy upright rolling for minimal arm strain. Jetset in style!</p>\n<ul>\n\t<li>Constructed of 100% polycarbonate material.</li>\n\t<li>Four spinner wheels provide a silent and smooth roll.</li>\n\t<li>Fully-lined interior with two compartments for organized packing.</li>\n</ul>"
+                  Link:
+                    type: string
+                    example: http://salsify.com
+                  YouTube video:
+                    type: string
+                    example: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                  Formatted Retail Price:
+                    type: string
+                    example: $100.74
+                  Formatted Base Wholesale Price:
+                    type: string
+                    example: $89.45
+                  Sellable Package Length - Metric:
+                    type: string
+                    example: '54.991'
+                  Formatted MSRP:
+                    type: string
+                    example: $110.99
+                  Variant Type:
+                    type: string
+                    example: Color
+                  Manufacturer:
+                    type: string
+                    example: Wildflower, LLC
+                  Sellable Package Width - Metric:
+                    type: string
+                    example: '52.5018'
+                  Sellable Package Height - Metric:
+                    type: string
+                    example: '63.1444'
+                  Warranty Length (in years):
+                    type: string
+                    example: '5'
+                  salsify:relations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        relation_type:
+                          type: string
+                          example: Cross-Sell
+                        salsify:target_product_id:
+                          type: string
+                          example: '241029'
+                        salsify:created_at:
+                          type: string
+                          example: '2016-11-07T20:09:36.914Z'
+                        salsify:updated_at:
+                          type: string
+                          example: '2016-11-07T20:09:36.914Z'
+                  salsify:digital_assets:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        salsify:id:
+                          type: string
+                          example: 8d538dcbfd2d5547f7080f2408e7457e96c0451a
+                        salsify:url:
+                          type: string
+                          example: http://images.salsify.com/image/upload/s--u92Eqptx--/u4lc6fg1w17qzturwna3.jpg
+                        salsify:name:
+                          type: string
+                          example: purple-carryon.jpg
+                        salsify:created_at:
+                          type: string
+                          example: '2016-02-28T00:23:28.777Z'
+                        salsify:updated_at:
+                          type: string
+                          example: '2017-05-21T03:18:00.302Z'
+                        salsify:status:
+                          type: string
+                          example: completed
+                        salsify:asset_height:
+                          type: integer
+                          example: 2000
+                          default: 0
+                        salsify:asset_width:
+                          type: integer
+                          example: 2000
+                          default: 0
+                        salsify:asset_resource_type:
+                          type: string
+                          example: image
+                        salsify:filename:
+                          type: string
+                          example: purple-carryon.jpg
+                        salsify:bytes:
+                          type: integer
+                          example: 231018
+                          default: 0
+                        salsify:format:
+                          type: string
+                          example: jpg
+                        salsify:etag:
+                          type: string
+                          example: 593ea8d4b29d40c1ed7ef339966a6408
+                        salsify:system_id:
+                          type: string
+                          example: s-d94cfcde-cb76-403a-80d3-1d6cbfaa48d9
+                        Brand:
+                          type: string
+                          example: Jetsetter
+                        Color:
+                          type: string
+                          example: Purple
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X GET \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/102918 \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  \n# where org_id = s-999-999-999-999, salsify:id=102918, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/102918")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+            http.use_ssl = true
+
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+
+            request = Net::HTTP::Get.new(url)
+
+            request["authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id=102918, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    }\n\nconn.request(\"GET\", \"/api/v1/orgs/s-999-999-999-999/products/102918\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=102918, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Products
+  /{org_id}/products:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    get:
+      summary: Bulk Read Products
+      description: ''
+      operationId: bulk-read-products
+      parameters:
+      - name: filter
+        in: query
+        description: Limit the scope of products returned from the endpoint. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number
+        schema:
+          type: integer
+          format: int32
+      - name: per_page
+        in: query
+        description: Number of results per page
+        schema:
+          type: integer
+          format: int32
+          default: null
+      - name: org_id
+        in: path
+        description: Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"data\": [\n     {\n       \"salsify:id\": \"4a4393f6-54d7-4963-a3c0-b3a083c2440c\",\n       \"Name\": \"My Product\"\n     }\n   ],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 1,\n       \"current_page\": 1\n   }\n}"
+                Empty Response:
+                  value: "{\n   \"data\": [],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 0\n   }\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          salsify:id:
+                            type: string
+                            example: 4a4393f6-54d7-4963-a3c0-b3a083c2440c
+                          Name:
+                            type: string
+                            example: My Product
+                    meta:
+                      type: object
+                      properties:
+                        per_page:
+                          type: integer
+                          example: 100
+                          default: 0
+                        cursor: {}
+                        total_entries:
+                          type: integer
+                          example: 1
+                          default: 0
+                        current_page:
+                          type: integer
+                          example: 1
+                          default: 0
+                - title: Empty Response
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                    meta:
+                      type: object
+                      properties:
+                        per_page:
+                          type: integer
+                          example: 100
+                          default: 0
+                        cursor: {}
+                        total_entries:
+                          type: integer
+                          example: 0
+                          default: 0
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Invalid Filter:
+                  value: "{\n  \"errors\": [\n    \"Filter is invalid\"\n  ]\n}"
+                Result Window Exceeded:
+                  value: "{\n  \"errors\": [\n    \"result_window limit of 10025 exceeded 10000\"\n  ]\n}"
+              schema:
+                oneOf:
+                - title: Invalid Filter
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Filter is invalid
+                - title: Result Window Exceeded
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: result_window limit of 10025 exceeded 10000
+      deprecated: false
+      tags:
+      - Products
+    delete:
+      summary: Bulk Delete Products
+      description: ''
+      operationId: bulk-delete-products
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - product_id
+              properties:
+                product_id:
+                  type: string
+                  description: Unique value that identifies product and stored in the property that holds the product identifier role in Salsify. Send as an array of product ID values; property id label is not sent.
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when content is successfully updated in Salsify.
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        \"Updates must be applied to existing assets.\"\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Updates must be applied to existing assets.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\"123\",\"456\"]'\n  \n  # where org_id = s-999-999-999-999, salsify:id= My New Product, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Delete.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request.body = "[\"123\",\"456\"]"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id= My New Product, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\\"123\\\",\\\"456\\\"]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\"\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-999-999-999-999/products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id= My New Product, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Products
+    post:
+      summary: Bulk Create Products
+      description: ''
+      operationId: bulk-create-products
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - product_ID
+              properties:
+                product_ID:
+                  type: string
+                  description: Property ID of the property that is set as the product ID role in Salsify. Product ID value cannot begin with  `=`, `_`, or `salsify`. Must be unique, and is case sensitive.
+                product_name:
+                  type: string
+                  description: Property ID for the property that is set as the product name role in Salsify. Product name will be left blank if not included.
+                additional_properties:
+                  type: string
+                  description: 'Additional information to store in properties associated with the product, sent in value pairs of `property_id : property_value`. Property IDs that don''t exist in the Salsify org will be created as default string data type. Accepts multiple property values as arrays.'
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "[\n    {\n        \"salsify:id\": \"123\",\n        \"salsify:created_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:updated_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:version\": 0,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-73cae1fc-f7c2-45c7-bce4-3cc8185ac5a5\",\n        \"Product ID\": \"123\",\n        \"Product Name\": \"Product 123\",\n        \"Short Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\",\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    },\n    {\n        \"salsify:id\": \"456\",\n        \"salsify:created_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:updated_at\": \"2018-10-04T22:30:03.910Z\",\n        \"salsify:version\": 0,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-d158ff9d-e327-4c8e-bc13-1139b250ed56\",\n        \"Product ID\": \"456\",\n        \"Product Name\": \"Product 456\",\n        \"Material\": \"plastic\",\n        \"Tags\": [\n            \"headphones\",\n            \"noise cancelling\"\n        ],\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    }\n]"
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    salsify:id:
+                      type: string
+                      example: '123'
+                    salsify:created_at:
+                      type: string
+                      example: '2018-10-04T22:30:03.910Z'
+                    salsify:updated_at:
+                      type: string
+                      example: '2018-10-04T22:30:03.910Z'
+                    salsify:version:
+                      type: integer
+                      example: 0
+                      default: 0
+                    salsify:profile_asset_id: {}
+                    salsify:system_id:
+                      type: string
+                      example: s-73cae1fc-f7c2-45c7-bce4-3cc8185ac5a5
+                    Product ID:
+                      type: string
+                      example: '123'
+                    Product Name:
+                      type: string
+                      example: Product 123
+                    Short Description:
+                      type: string
+                      example: These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.
+                    Manufacturer:
+                      type: string
+                      example: Wildflower Imports, Inc.
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Product ID property missing:
+                  value: "{\n    \"errors\": [\n        \"Missing required property your-product-id\"\n    ]\n}\n\n//where your-product-id is the property ID of the property that serves the salsify:id role."
+                Product ID value is not unique:
+                  value: "{\n    \"errors\": [\n        \"A product already exists with the same id.\"\n    ]\n}"
+              schema:
+                oneOf:
+                - title: Product ID property missing
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Missing required property your-product-id
+                - title: Product ID value is not unique
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: A product already exists with the same id.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n  {\n    \"Product ID\":\"123\",\n    \"Product Name\":\"Product 123\",\n    \"Short Description\":\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n  },\n  {\n    \"Product ID\":\"456\",\n    \"Product Name\":\"Product 456\",\n    \"Material\":\"plastic\",\n    \"Tags\":[\"headphones\",\"noise cancelling\"]\n  }\n]'\n\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+            http.use_ssl = true
+
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+
+            request = Net::HTTP::Post.new(url)
+
+            request["authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["content-type"] = ''application/json''
+
+            request.body = "{\n\t\"Product ID\":\"My New Product\",\n\t\"Product Name\":\"New Product Name\"\n}"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n  {\\n    \\\"Product ID\\\":\\\"123\\\",\\n    \\\"Product Name\\\":\\\"Product 123\\\",\\n    \\\"Short Description\\\":\\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\"\\n  },\\n  {\\n    \\\"Product ID\\\":\\\"456\\\",\\n    \\\"Product Name\\\":\\\"Product 456\\\",\\n    \\\"Material\\\":\\\"plastic\\\",\\n    \\\"Tags\\\":[\\\"headphones\\\",\\\"noise cancelling\\\"]\\n  }\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n\n    }\n\nconn.request(\"POST\", \"api,v1,orgs,s-492247e8-0e24-47e9-8af5-d07defe563dc,products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Products
+    put:
+      summary: Bulk Update Products
+      description: ''
+      operationId: bulk-update-products
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - product_id
+              properties:
+                product_id:
+                  type: string
+                  description: Value to identify product, stored in property with unique product identifier role in your Salsify organization.
+                properties:
+                  type: string
+                  description: 'Properties can be added in value pairs. {property_id} : {property_value} where property_id is a Salsify property, and property_value is the corresponding property value. If property_id does not exist in org, property will be created.'
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when content is successfully updated in Salsify.
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when salsify:id does not exist or org ID is incorrect.
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        [\n            \"Product '123' does not exist.\"\n        ],\n        []\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: string
+                        example: Product '123' does not exist.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n    \"Product ID\":\"123\",\n    \"Product Name\":\"My Test Product'\\''s Name\",\n    \"Brand\": null\n\t},\n\t{\n    \"Product ID\":\"456\",\n    \"Product Name\":\"Another Test Product\",\n    \"Short Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\",\n    \"Tags\": [\n        \"headphones\",\n        \"noise cancelling\",\n        \"wireless\"\n    \t]\n\t}\n]'\n\n# where org_id = s-999-999-999-999, product_id=123,456 api_token = YOUR-AUTH-TOKEN"
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n    \\\"Product ID\\\":\\\"123\\\",\\n    \\\"Product Name\\\":\\\"My Test Product's Name\\\",\\n    \\\"Brand\\\": null\\n\\t},\\n\\t{\\n    \\\"Product ID\\\":\\\"456\\\",\\n    \\\"Product Name\\\":\\\"Another Test Product\\\",\\n    \\\"Short Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\",\\n    \\\"Tags\\\": [\\n        \\\"headphones\\\",\\n        \\\"noise cancelling\\\",\\n        \\\"wireless\\\"\\n    \\t]\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n\n    }\n\nconn.request(\"PUT\", \"api,v1,orgs,s-999-999-999-999,products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Put.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request.body = "[\n\t{\n    \"Product ID\":\"123\",\n    \"Product Name\":\"My Test Product''s Name\",\n    \"Brand\": null\n\t},\n\t{\n    \"Product ID\":\"456\",\n    \"Product Name\":\"Another Test Product\",\n    \"Short Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\",\n    \"Tags\": [\n        \"headphones\",\n        \"noise cancelling\",\n        \"wireless\"\n    \t]\n\t}\n]"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN'
+        samples-languages:
+        - curl
+        - python
+        - ruby
+      tags:
+      - Products
+  /{org_id}/products/{product_id}:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    put:
+      summary: Update Product
+      description: ''
+      operationId: update-product
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                  description: Value to identify product, stored in property with unique product identifier role in your Salsify organization.
+                properties:
+                  type: string
+                  description: 'Properties can be added in value pairs. {property_id} : {property_value} where property_id is a Salsify property, and property_value is the corresponding property value. If property_id does not exist in org, property will be created.'
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when content is successfully updated in Salsify.
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when salsify:id does not exist or org ID is incorrect.
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        \"s-e62b9a19-6443-4f61-bfce-6540a86c511z is not a valid salsify uuid\"\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: s-e62b9a19-6443-4f61-bfce-6540a86c511z is not a valid salsify uuid
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-99/products/123 \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n    \"Product ID\":\"123\",\n    \"Product Name\":\"My Test Product'\\''s Name\",\n    \"Brand\": \"Miscellus\"\n\t}\n]'\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n    \\\"Product ID\\\":\\\"123\\\",\\n    \\\"Product Name\\\":\\\"My Test Product's Name\\\",\\n    \\\"Brand\\\": \\\"Miscellus\\\"\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"PUT\", \"api/v1/orgs/s-999-999-999-999/products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Put.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request.body = "[\n\t{\n    \"Product ID\":\"123\",\n    \"Product Name\":\"My Test Product''s Name\",\n    \"Brand\": \"Miscellus\"\n\t}\n]"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN'
+        samples-languages:
+        - curl
+        - python
+        - ruby
+      tags:
+      - Products
+    delete:
+      summary: Delete Product
+      description: ''
+      operationId: delete-product
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        required: true
+        schema:
+          type: string
+      - name: product_id
+        in: path
+        description: Unique value that identifies product and stored in the property that holds the product identifier role in Salsify. Send as an array of product ID values; property id label is not sent.
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when content is successfully updated in Salsify.
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        \"Updates must be applied to existing assets.\"\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Updates must be applied to existing assets.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/123 \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/x-www-form-urlencoded' \\\n  \n  # where org_id = s-999-999-999-999, salsify:id= 123, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/123")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Delete.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/x-www-form-urlencoded''
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, product_id= 123, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app,salsify,com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/x-www-form-urlencoded\",\n\n    }\n\nconn.request(\"DELETE\", \"api,v1,orgs,s-999-999-999-99,products,123\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, product_id= 123, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Products
+  /{org_id}/products/:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    post:
+      summary: Create Product
+      description: ''
+      operationId: add-a-product
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_name:
+                  type: string
+                  description: Property ID for the property that is set as the product name role in Salsify. Product name will be left blank if not included.
+                additional_properties:
+                  type: string
+                  description: 'Additional information to store in properties associated with the product, sent in value pairs of `property_id : property_value`. Property IDs that don''t exist in the Salsify org will be created as default string data type. Accepts multiple property values as arrays.'
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"salsify:id\": \"My New Product\",\n    \"salsify:created_at\": \"2017-12-04T16:29:38.181Z\",\n    \"salsify:updated_at\": \"2017-12-04T16:29:38.181Z\",\n    \"salsify:version\": 0,\n    \"salsify:profile_asset_id\": null,\n    \"salsify:system_id\": \"s-999-999-999-999\",\n    \"Product ID\": \"My New Product\",\n    \"Product Name\": \"New Product Name\",\n    \"Manufacturer\": \"Wildflower Imports, Inc.\"\n}"
+              schema:
+                type: object
+                properties:
+                  salsify:id:
+                    type: string
+                    example: My New Product
+                  salsify:created_at:
+                    type: string
+                    example: '2017-12-04T16:29:38.181Z'
+                  salsify:updated_at:
+                    type: string
+                    example: '2017-12-04T16:29:38.181Z'
+                  salsify:version:
+                    type: integer
+                    example: 0
+                    default: 0
+                  salsify:profile_asset_id: {}
+                  salsify:system_id:
+                    type: string
+                    example: s-999-999-999-999
+                  Product ID:
+                    type: string
+                    example: My New Product
+                  Product Name:
+                    type: string
+                    example: New Product Name
+                  Manufacturer:
+                    type: string
+                    example: Wildflower Imports, Inc.
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Product ID property missing:
+                  value: "{\n    \"errors\": [\n        \"Missing required property your-product-id\"\n    ]\n}\n\n//where your-product-id is the property ID of the property that serves the salsify:id role."
+                Product ID value is not unique:
+                  value: "{\n    \"errors\": [\n        \"A product already exists with the same id.\"\n    ]\n}"
+              schema:
+                oneOf:
+                - title: Product ID property missing
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Missing required property your-product-id
+                - title: Product ID value is not unique
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: A product already exists with the same id.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'content-type: application/json' \\\n  -d '{\n\t\"Product ID\":\"My New Product\",\n\t\"Product Name\":\"New Product Name\"\n}'\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+            http.use_ssl = true
+
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+
+            request = Net::HTTP::Post.new(url)
+
+            request["authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["content-type"] = ''application/json''
+
+            request.body = "{\n\t\"Product ID\":\"My New Product\",\n\t\"Product Name\":\"New Product Name\"\n}"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"{\\n\\t\\\"Product ID\\\":\\\"My New Product\\\",\\n\\t\\\"Product Name\\\":\\\"New Product Name\\\"\\n}\"\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'content-type': \"application/json\"\n    }\n\nconn.request(\"POST\", \"/api/v1/orgs/s-999-999-999-999/products\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n# where org_id = s-999-999-999-999, Product ID is the system product identifier, and api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Products
+  /{org_id}/products/_upsert:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    put:
+      summary: Bulk Upsert Products
+      description: Upserts allow you to update and create a product in the same call.
+      operationId: bulk-upsert-products
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                  description: Value to identify product, stored in property with unique product identifier role in your Salsify organization.
+                properties:
+                  type: string
+                  description: 'Properties can be added in value pairs. {property_id} : {property_value} where property_id is a Salsify property, and property_value is the corresponding property value. If property_id does not exist in org, property will be created.'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "[\n    {\n        \"salsify:id\": \"123\",\n        \"salsify:created_at\": \"2020-01-23T17:37:53.817Z\",\n        \"salsify:updated_at\": \"2020-06-23T15:16:49.838Z\",\n        \"salsify:version\": 14,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-0e218edb-6896-4bfd-ae5d-1b8186fa9f1f\",\n        \"Product ID\": \"2010028\",\n        \"Product Name\": \"Updating Existing Product\",\n        \"Category\": \"Accesories\",\n        \"Additional Product Images\": \"b1f8814701086a42e6a528858c2dde4095e0cc72\",\n        \"Color\": \"Blue\",\n        \"Cost\": \"14.99\",\n        \"Description\": \"Add edited description here.\"\n    },\n    {\n        \"salsify:id\": \"456\",\n        \"salsify:created_at\": \"2020-06-22T21:05:29.269Z\",\n        \"salsify:updated_at\": \"2020-06-23T15:16:49.844Z\",\n        \"salsify:version\": 0,\n        \"salsify:profile_asset_id\": null,\n        \"salsify:system_id\": \"s-7b50012e-0e34-4176-992a-8624ab44ba34\",\n        \"Product ID\": \"456\",\n        \"Product Name\": \"Creates New Product\",\n        \"Product Status\": \"In Process\",\n        \"Last Workflow Update\": \"2020-06-22\",\n        \"Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n    }\n]"
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    salsify:id:
+                      type: string
+                      example: '123'
+                    salsify:created_at:
+                      type: string
+                      example: '2020-01-23T17:37:53.817Z'
+                    salsify:updated_at:
+                      type: string
+                      example: '2020-06-23T15:16:49.838Z'
+                    salsify:version:
+                      type: integer
+                      example: 14
+                      default: 0
+                    salsify:profile_asset_id: {}
+                    salsify:system_id:
+                      type: string
+                      example: s-0e218edb-6896-4bfd-ae5d-1b8186fa9f1f
+                    Product ID:
+                      type: string
+                      example: '2010028'
+                    Product Name:
+                      type: string
+                      example: Updating Existing Product
+                    Category:
+                      type: string
+                      example: Accesories
+                    Additional Product Images:
+                      type: string
+                      example: b1f8814701086a42e6a528858c2dde4095e0cc72
+                    Color:
+                      type: string
+                      example: Blue
+                    Cost:
+                      type: string
+                      example: '14.99'
+                    Description:
+                      type: string
+                      example: Add edited description here.
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        [\n            \"A locale must be specified to update localizable property Short Description\"\n        ],\n        [\n            \"A locale must be specified to update localizable property Short Description\"\n        ]\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: string
+                        example: A locale must be specified to update localizable property Short Description
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request PUT 'https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/_upsert' \\\n--header 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n--header 'Content-Type: application/json' \\\n--data-raw '[\n  {\n    \"Product ID\": \"123\",\n    \"Product Name\": \"Updating Existing Product\",\n    \"Description\": \"Add edited description here.\"\n  },\n  {\n  \t\"Product ID\": \"456\",\n  \t\"Product Name\": \"Creates New Product\",\n    \"Brand\": null,\n    \"Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n  }\n]'\n\n# where org_id = s-999-999-999-999, product_id=123,456 api_token = YOUR-AUTH-TOKEN"
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\npayload = \"[\\n  {\\n    \\\"Product ID\\\": \\\"123\\\",\\n    \\\"Product Name\\\": \\\"Updating Existing Product\\\",\\n    \\\"Description\\\": \\\"Add edited description here.\\\"\\n  },\\n  {\\n  \\t\\\"Product ID\\\": \\\"456\\\",\\n  \\t\\\"Product Name\\\": \\\"Creates New Product\\\",\\n    \\\"Brand\\\": null,\\n    \\\"Description\\\": \\\"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\\\"\\n  }\\n]\"\n\nheaders = {\n  'Authorization': 'Bearer YOUR-AUTH-TOKEN',\n  'Content-Type': 'application/json'\n  \n}\n\nconn.request(\"PUT\", \"/api/v1/orgs/s-999-999-999-999/products/_upsert\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require "uri"
+
+            require "net/http"
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/products/_upsert")
+
+
+            https = Net::HTTP.new(url.host, url.port);
+
+            https.use_ssl = true
+
+
+            request = Net::HTTP::Put.new(url)
+
+            request["Content-Type"] = ["application/json", "application/json"]
+
+            request["Authorization"] = "Bearer YOUR-AUTH-TOKEN"
+
+            request.body = "[\n  {\n    \"Product ID\": \"123\",\n    \"Product Name\": \"Updating Existing Product\",\n    \"Description\": \"Add edited description here.\"\n  },\n  {\n  \t\"Product ID\": \"456\",\n  \t\"Product Name\": \"Creates New Product\",\n    \"Brand\": null,\n    \"Description\": \"These colorful Traveller headphones have a sturdy yet comfortable headband with padded ear cups for long term listening. The specially designed ear cups surround the ear cancelling out any ambient noise.\"\n  }\n]"
+
+
+            response = https.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, product_id=123, api_token = YOUR-AUTH-TOKEN'
+        samples-languages:
+        - curl
+        - python
+        - ruby
+      tags:
+      - Products
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      x-default: ''
+x-refined-from:
+- salsify-api-settings-openapi.json
+- salsify-write-operations-openapi.json
+x-readme:
+  headers:
+  - value: Bearer {api_key}
+    key: Authorization
+x-readme-fauxas: true

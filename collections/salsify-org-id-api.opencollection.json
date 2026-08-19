@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Settings <org ID> <org ID> API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "<org ID>",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Refresh Digital Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/v1/orgs/<org_ID>/digital_assets/refresh",
+            "params": [
+              {
+                "name": "salsify:id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier to use for the asset."
+              },
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ]
+          },
+          "docs": "Refresh Digital Assets"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,920 @@
+openapi: 3.2.0
+info:
+  title: Salsify Digital Assets API
+  version: '1.0'
+  description: 'Operations tagged Digital Assets across 2 of this provider''s published API definitions: salsify-api-settings-openapi.json, salsify-write-operations-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://app.salsify.com/api/v1/orgs
+security:
+- sec0: []
+tags:
+- name: Digital Assets
+paths:
+  /{org_id}/digital_assets/{asset_id}:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    get:
+      summary: Read Digital Asset Metadata
+      description: Where a user has permission and the digital asset exists, complete digital asset JSON object is returned with its most current information.
+      operationId: get-digital-asset
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.
+        required: true
+        schema:
+          type: string
+      - name: asset_id
+        in: path
+        description: Digital asset unique identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"salsify:id\": \"01d954267e703cb8f9a73c50928e4ca8ed98e115\",\n    \"salsify:url\": \"http://images.salsify.com/image/upload/s--CJemutyy--/cnpfpnp48unsd3n0ok5e.jpg\",\n    \"salsify:name\": \"pink_leather_tote.jpg\",\n    \"salsify:created_at\": \"2016-02-28T00:04:47.191Z\",\n    \"salsify:updated_at\": \"2017-05-21T05:18:34.244Z\",\n    \"salsify:status\": \"completed\",\n    \"salsify:asset_height\": 2795,\n    \"salsify:asset_width\": 2795,\n    \"salsify:asset_resource_type\": \"image\",\n    \"salsify:filename\": \"pink_leather_tote.jpg\",\n    \"salsify:bytes\": 1885251,\n    \"salsify:format\": \"jpg\",\n    \"salsify:etag\": \"5e212cf4ae709184aff2b35ec2d97278\",\n    \"salsify:system_id\": \"s-9999-9999-99999\",\n    \"Asset Keywords\": [\n        \"front view\",\n        \"white isolation\",\n        \"leather tote\"\n    ],\n    \"Asset Color\": \"Blush\",\n    \"Asset Created Date \": \"2016-05-02\",\n    \"Asset Photographer\": \"LB Jeffreys\",\n    \"Manufacturer\": \"Wildflower Imports, Inc.\"\n}"
+              schema:
+                type: object
+                properties:
+                  salsify:id:
+                    type: string
+                    example: 01d954267e703cb8f9a73c50928e4ca8ed98e115
+                  salsify:url:
+                    type: string
+                    example: http://images.salsify.com/image/upload/s--CJemutyy--/cnpfpnp48unsd3n0ok5e.jpg
+                  salsify:name:
+                    type: string
+                    example: pink_leather_tote.jpg
+                  salsify:created_at:
+                    type: string
+                    example: '2016-02-28T00:04:47.191Z'
+                  salsify:updated_at:
+                    type: string
+                    example: '2017-05-21T05:18:34.244Z'
+                  salsify:status:
+                    type: string
+                    example: completed
+                  salsify:asset_height:
+                    type: integer
+                    example: 2795
+                    default: 0
+                  salsify:asset_width:
+                    type: integer
+                    example: 2795
+                    default: 0
+                  salsify:asset_resource_type:
+                    type: string
+                    example: image
+                  salsify:filename:
+                    type: string
+                    example: pink_leather_tote.jpg
+                  salsify:bytes:
+                    type: integer
+                    example: 1885251
+                    default: 0
+                  salsify:format:
+                    type: string
+                    example: jpg
+                  salsify:etag:
+                    type: string
+                    example: 5e212cf4ae709184aff2b35ec2d97278
+                  salsify:system_id:
+                    type: string
+                    example: s-9999-9999-99999
+                  Asset Keywords:
+                    type: array
+                    items:
+                      type: string
+                      example: front view
+                  Asset Color:
+                    type: string
+                    example: Blush
+                  'Asset Created Date ':
+                    type: string
+                    example: '2016-05-02'
+                  Asset Photographer:
+                    type: string
+                    example: LB Jeffreys
+                  Manufacturer:
+                    type: string
+                    example: Wildflower Imports, Inc.
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"error\": \"You need to sign in before continuing.\"\n}"
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: You need to sign in before continuing.
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Asset ID does not exist in Salsify.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X GET \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/01d954267e703cb8f9a73c50928e4ca8ed98e115 \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n\n# where org_id = s-999-999-999-999, asset_id = 01d954267e703cb8f9a73c50928e4ca8ed98e115, and api_token = YOUR-AUTH-TOKEN\n"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/01d954267e703cb8f9a73c50928e4ca8ed98e115")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+            http.use_ssl = true
+
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+
+            request = Net::HTTP::Get.new(url)
+
+            request["authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, asset_id = 01d954267e703cb8f9a73c50928e4ca8ed98e115, and api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\"\n    }\n\nconn.request(\"GET\", \"/api/v1/orgs/s-999-999-999-999/digital_assets/01d954267e703cb8f9a73c50928e4ca8ed98e115\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, asset_id = 01d954267e703cb8f9a73c50928e4ca8ed98e115, and api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Digital Assets
+  /{org_id}/digital_assets:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    get:
+      summary: Bulk Read Digital Assets
+      description: ''
+      operationId: bulk-read-digital-assets
+      parameters:
+      - name: org_id
+        in: path
+        description: Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: filter
+        in: query
+        description: Limit the scope of digital assets returned from the endpoint. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number
+        schema:
+          type: integer
+          format: int32
+      - name: per_page
+        in: query
+        description: Number of results per page
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"data\": [\n     {\n       \"salsify:id\": \"4a4393f6-54d7-4963-a3c0-b3a083c2440c\",\n       \"Name\": \"My Digital Asset\"\n     }\n   ],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 1,\n       \"current_page\": 1\n   }\n}"
+                Empty Result:
+                  value: "{\n   \"data\": [],\n   \"meta\": {\n       \"per_page\": 100,\n       \"cursor\": null,\n       \"total_entries\": 0\n   }\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          salsify:id:
+                            type: string
+                            example: 4a4393f6-54d7-4963-a3c0-b3a083c2440c
+                          Name:
+                            type: string
+                            example: My Digital Asset
+                    meta:
+                      type: object
+                      properties:
+                        per_page:
+                          type: integer
+                          example: 100
+                          default: 0
+                        cursor: {}
+                        total_entries:
+                          type: integer
+                          example: 1
+                          default: 0
+                        current_page:
+                          type: integer
+                          example: 1
+                          default: 0
+                - title: Empty Result
+                  type: object
+                  properties:
+                    data:
+                      type: array
+                    meta:
+                      type: object
+                      properties:
+                        per_page:
+                          type: integer
+                          example: 100
+                          default: 0
+                        cursor: {}
+                        total_entries:
+                          type: integer
+                          example: 0
+                          default: 0
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Invalid Filter:
+                  value: "{\n  \"errors\": [\n    \"Filter is invalid\"\n  ]\n}"
+                Result Window Exceeded:
+                  value: "{\n  \"errors\": [\n    \"result_window limit of 10025 exceeded 10000\"\n  ]\n}"
+              schema:
+                oneOf:
+                - title: Invalid Filter
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Filter is invalid
+                - title: Result Window Exceeded
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: result_window limit of 10025 exceeded 10000
+      deprecated: false
+      tags:
+      - Digital Assets
+    delete:
+      summary: Delete Multiple Digital Assets
+      description: ''
+      operationId: delete-multiple-digital-assets
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - salsify:id
+              properties:
+                salsify:id:
+                  type: string
+                  description: The identifier to use for the asset. A randomly generated ID is assigned if not specified.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\"kitty.png\", \"9a7e78da65cae09786b8df124c8fcab942d4d5fa\"]'\n  \n# where org_id = s-999-999-999-999, salsify:id =kitty.png, 9a7e78da65cae09786b8df124c8fcab942d4d5fa, and api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Delete.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request.body = "[\"kitty.png\", \"9a7e78da65cae09786b8df124c8fcab942d4d5fa\"]"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id =kitty.png, 9a7e78da65cae09786b8df124c8fcab942d4d5fa, and api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\\"kitty.png\\\", \\\"9a7e78da65cae09786b8df124c8fcab942d4d5fa\\\"]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-999-999-999-999/digital_assets\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id =kitty.png, 9a7e78da65cae09786b8df124c8fcab942d4d5fa, and api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Digital Assets
+    post:
+      summary: Create Multiple Digital Assets
+      description: ''
+      operationId: add-multiple-digital-assets
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - salsify:source_URL
+              properties:
+                salsify:source_URL:
+                  type: string
+                  description: A public-facing HTTP(S) URL for the digital asset file.
+                salsify:id:
+                  type: string
+                  description: The identifier to use for the asset. A randomly generated ID is assigned if not specified.
+                salsify:name:
+                  type: string
+                  description: Digital asset name. The filename is used if not specified.
+                additional_metadata:
+                  type: string
+                  description: 'Additional optional metadata ([system](https://salsify.readme.io/v1.0/reference#section-digital-asset-metadata-attributes) or custom) can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created.'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "[\n    {\n        \"salsify:id\": \"kitty.png\",\n        \"salsify:source_url\": \"https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png\",\n        \"salsify:name\": \"kitten-cat-fluffy-cat-cute-62321.jpeg\",\n        \"salsify:created_at\": \"2018-04-19T20:24:43.855Z\",\n        \"salsify:updated_at\": \"2018-04-19T20:24:43.855Z\",\n        \"salsify:status\": \"in_progress\",\n        \"salsify:asset_resource_type\": \"raw\",\n        \"salsify:system_id\": \"s-999-999-999-999\",\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    },\n    {\n        \"salsify:id\": \"9a7e78da65cae09786b8df124c8fcab942d4d5fa\",\n        \"salsify:source_url\": \"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\",\n        \"salsify:name\": \"pexels-photo-774731.jpeg\",\n        \"salsify:created_at\": \"2018-04-19T20:24:43.855Z\",\n        \"salsify:updated_at\": \"2018-04-19T20:24:43.855Z\",\n        \"salsify:status\": \"in_progress\",\n        \"salsify:asset_resource_type\": \"raw\",\n        \"salsify:system_id\": \"s-999-999-999-999\",\n        \"Manufacturer\": \"Wildflower Imports, Inc.\"\n    }\n]"
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    salsify:id:
+                      type: string
+                      example: kitty.png
+                    salsify:source_url:
+                      type: string
+                      example: https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png
+                    salsify:name:
+                      type: string
+                      example: kitten-cat-fluffy-cat-cute-62321.jpeg
+                    salsify:created_at:
+                      type: string
+                      example: '2018-04-19T20:24:43.855Z'
+                    salsify:updated_at:
+                      type: string
+                      example: '2018-04-19T20:24:43.855Z'
+                    salsify:status:
+                      type: string
+                      example: in_progress
+                    salsify:asset_resource_type:
+                      type: string
+                      example: raw
+                    salsify:system_id:
+                      type: string
+                      example: s-999-999-999-999
+                    Manufacturer:
+                      type: string
+                      example: Wildflower Imports, Inc.
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n  {\n    \"salsify:id\": \"kitty.png\",\n    \"salsify:source_url\": \"https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png\"\n  },\n  {\n    \"salsify:source_url\": \"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\"\n  }\n]\n'\n# where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Post.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request.body = "[\n  {\n    \"salsify:id\": \"kitty.png\",\n    \"salsify:source_url\": \"https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png\"\n  },\n  {\n    \"salsify:source_url\": \"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\"\n  }\n]\n"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n  {\\n    \\\"salsify:id\\\": \\\"kitty.png\\\",\\n    \\\"salsify:source_url\\\": \\\"https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png\\\"\\n  },\\n  {\\n    \\\"salsify:source_url\\\": \\\"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\\\"\\n  }\\n]\\n\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"POST\", \"/api/v1/orgs/s-999-999-999-999/digital_assets\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Digital Assets
+    put:
+      summary: Update Multiple Digital Assets
+      description: ''
+      operationId: update-multiple-digital-assets
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - salsify:id
+              properties:
+                salsify:id:
+                  type: string
+                  description: The identifier to use for the asset. A randomly generated ID is assigned if not specified.
+                source_URL:
+                  type: string
+                  description: An HTTP(S) URL of a public image on the Internet.
+                salsify:name:
+                  type: string
+                  description: Digital asset name. The filename is used if not specified.
+                additional_metadata:
+                  type: string
+                  description: 'Additional optional metadata can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created.'
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when content is successfully updated in Salsify.
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-99/digital_assets \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n\t\t\"salsify:id\":\"9864e3935012248a88bbada36448cea6bcd5a899\",\n\t\t\"salsify:name\":\"dandelion_test_update\",\n\t\t\"Asset Use\":\"Print Catalog\"\n\t},\n\t{\n\t\t\"salsify:id\":\"2b58bb47c3cb6d85d002bf92824010e09b0bcae5\",\n    \t\"salsify:name\":\"dandelion_flower_print\",\n    \t\"Asset Use\":\"Print Catalog\"\n\t}\n]'\n'\n# where org_id = s-999-999-999-999, salsify:id = 9864e3935012248a88bbada36448cea6bcd5a899 and 2b58bb47c3cb6d85d002bf92824010e09b0bcae5, and api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Put.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request["Cache-Control"] = ''no-cache''
+
+            request.body = "[\n\t{\n\t\t\"salsify:id\":\"9864e3935012248a88bbada36448cea6bcd5a899\",\n\t\t\"salsify:name\":\"dandelion_test_update\",\n\t\t\"Asset Use\":\"Print Catalog\"\n\t},\n\t{\n\t\t\"salsify:id\":\"2b58bb47c3cb6d85d002bf92824010e09b0bcae5\",\n    \t\"salsify:name\":\"dandelion_flower_print\",\n    \t\"Asset Use\":\"Print Catalog\"\n\t}\n]"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+            # where org_id = s-999-999-999-999, salsify:id= 9864e3935012248a88bbada36448cea6bcd5a899, 2b58bb47c3cb6d85d002bf92824010e09b0bcae5, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n\\t\\t\\\"salsify:id\\\":\\\"9864e3935012248a88bbada36448cea6bcd5a899\\\",\\n\\t\\t\\\"salsify:name\\\":\\\"dandelion_test_update\\\",\\n\\t\\t\\\"Asset Use\\\":\\\"Print Catalog\\\"\\n\\t},\\n\\t{\\n\\t\\t\\\"salsify:id\\\":\\\"2b58bb47c3cb6d85d002bf92824010e09b0bcae5\\\",\\n    \\t\\\"salsify:name\\\":\\\"dandelion_flower_print\\\",\\n    \\t\\\"Asset Use\\\":\\\"Print Catalog\\\"\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer = YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    'Cache-Control': \"no-cache\",\n    }\n\nconn.request(\"PUT\", \"/api/v1/orgs/s-999-999-999-999/digital_assets\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id= 9864e3935012248a88bbada36448cea6bcd5a899 and 2b58bb47c3cb6d85d002bf92824010e09b0bcae5, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Digital Assets
+  /{org_id}/digital_assets/{salsify:id}:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    put:
+      summary: Update Digital Asset Metadata
+      description: ''
+      operationId: update-digital-asset-metadata
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        required: true
+        schema:
+          type: string
+      - name: salsify:id
+        in: path
+        description: The identifier for the digital asset you want to replace.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                source_url:
+                  type: string
+                  description: Public-facing, non-login URL for the location of the digital asset you want to replace the current asset with. Don't include if you aren't making an update to the digital asset's source.
+                additional_custom_metadata:
+                  type: string
+                  description: 'Additional optional custom metadata can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created.'
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: //Returned when content is successfully updated in Salsify.
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        \"Invalid reference to category Asset Photographer = 'Seymour Parrish'\"\n    ]\n}\n\n//occurs where you attempt an update to an enumerated property type, but the value isn't in the enumerated list. Add the value to the property itself, then associate the property value to the digital asset."
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Updates must be applied to existing assets.
+                - type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Invalid reference to category Asset Photographer = 'Seymour Parrish'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/dandelion_new_10002 \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'content-type: application/json' \\\n  -d '{ \n    \"salsify:source_url\":\"https://img.epochtimes.com.tw/upload/images/2016/05/03/195413_medium.jpg\",\n    \"salsify:name\":\"dandelion_flower_angle\",\n    \"Asset Use\":\"Print Catalog\"\n}'\n# where org_id = s-999-999-999-999, salsify:id=dandelion_new_10002, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/dandelion_new_10002")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Put.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request.body = "{ \n    \"salsify:name\":\"dandelion_flower_print\",\n    \"Asset Use\":\"Print Catalog\"\n}"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id=dandelion_new_10002, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"{ \\n    \\\"salsify:name\\\":\\\"dandelion_flower_print\\\",\\n    \\\"Asset Use\\\":\\\"Print Catalog\\\"\\n}\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\"\n    }\n\nconn.request(\"PUT\", \"/api/v1/orgs/s-999-999-999-999/digital_assets/dandelion_new_10002\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=dandelion_new_10002, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Digital Assets
+  /{organization_id}/digital_assets:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    post:
+      summary: Create a Digital Asset & Metadata
+      description: ''
+      operationId: create-a-digital-asset-metadata
+      parameters:
+      - name: organization_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - salsify:source_url
+              properties:
+                salsify:source_url:
+                  type: string
+                  description: An HTTP(S) URL of a public image on the Internet.
+                salsify:id:
+                  type: string
+                  description: The identifier to use for the asset. A randomly generated ID is assigned if not specified.
+                additional_metadata:
+                  type: string
+                  description: 'Additional optional metadata ([system](https://salsify.readme.io/v1.0/reference#section-digital-asset-metadata-attributes) or custom) can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created.'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"salsify:id\": \"dandelion_new_10002\",\n    \"salsify:source_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg\",\n    \"salsify:name\": \"dandelion_flower.png\",\n    \"salsify:created_at\": \"2017-11-28T19:18:17.913Z\",\n    \"salsify:updated_at\": \"2017-11-28T19:18:17.913Z\",\n    \"salsify:status\": \"in_progress\",\n    \"salsify:asset_resource_type\": \"raw\",\n    \"salsify:system_id\": \"s-999-999-999-999\",\n    \"Asset Photographer\": \"LB Jeffreys\"\n}"
+              schema:
+                type: object
+                properties:
+                  salsify:id:
+                    type: string
+                    example: dandelion_new_10002
+                  salsify:source_url:
+                    type: string
+                    example: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg
+                  salsify:name:
+                    type: string
+                    example: dandelion_flower.png
+                  salsify:created_at:
+                    type: string
+                    example: '2017-11-28T19:18:17.913Z'
+                  salsify:updated_at:
+                    type: string
+                    example: '2017-11-28T19:18:17.913Z'
+                  salsify:status:
+                    type: string
+                    example: in_progress
+                  salsify:asset_resource_type:
+                    type: string
+                    example: raw
+                  salsify:system_id:
+                    type: string
+                    example: s-999-999-999-999
+                  Asset Photographer:
+                    type: string
+                    example: LB Jeffreys
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        \"Given external id (dandelion_new_10002) already exists\"\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Given external id (dandelion_new_10002) already exists
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets \\\n  -H 'authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'content-type: application/json' \\\n  -d '{ \n    \"salsify:source_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg\",\n    \"salsify:name\":\"dandelion_flower.png\",\n    \"salsify:id\":\"dandelion_new_10002\",\n    \"Asset Photographer\":\"LB Jeffreys\"\n}'\n# where org_id = s-999-999-999-999, salsify:id = dandelion_new_1002, and api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+            http.use_ssl = true
+
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+
+            request = Net::HTTP::Post.new(url)
+
+            request["authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["content-type"] = ''application/json''
+
+            request.body = "{ \n    \"salsify:source_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg\",\n    \"salsify:name\":\"dandelion_flower.png\",\n    \"salsify:id\":\"dandelion_new_10002\",\n    \"Asset Photographer\":\"LB Jeffreys\"\n}"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id = dandelion_new_1002, and api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"{ \\n    \\\"salsify:source_url\\\": \\\"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg\\\",\\n    \\\"salsify:name\\\":\\\"dandelion_flower.png\\\",\\n    \\\"salsify:id\\\":\\\"dandelion_new_10002\\\",\\n    \\\"Asset Photographer\\\":\\\"LB Jeffreys\\\"\\n}\"\n\nheaders = {\n    'authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'content-type': \"application/json\"\n    }\n\nconn.request(\"POST\", \"/api/v1/orgs/s-999-999-999-999/digital_assets\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id = dandelion_new_1002, and api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Digital Assets
+  /{organization_id}/digital_assets/_upsert:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    put:
+      summary: Bulk Upsert Digital Assets
+      description: ''
+      operationId: bulk-upsert-digital-assets
+      parameters:
+      - name: organization_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                salsify:id:
+                  type: string
+                  description: The identifier to use for the asset. A randomly generated ID is assigned if not specified.
+                salsify:url:
+                  type: string
+                  description: An HTTP(S) URL of a public image on the Internet.
+                salsify:name:
+                  type: string
+                  description: Digital asset name. The filename is used if not specified.
+                additional_metadata:
+                  type: string
+                  description: 'Additional optional metadata can be added in value pairs. {metadata_id} : {metadata_value} where metadata_id is a Salsify property, and metadata_value is the corresponding property value. If metadata_id does not exist in org, property will be created.'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "[\n    null,\n    null\n]"
+              schema:
+                type: array
+                items: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request PUT 'https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/_upsert' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n--data-raw '[\n  {\n    \"salsify:id\": \"a951636a612b403636a162a69fb0228a52fb90cf\",\n    \"salsify:url\": \"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\",\n    \"salsify:name\": \"Update Digital Asset\"\n  },\n  {\n    \"salsify:url\": \"https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n  \t\"salsify:name\": \"New Image Upload\"\n  }\n]'\n\n# where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require "uri"
+
+            require "net/http"
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/_upsert")
+
+
+            https = Net::HTTP.new(url.host, url.port);
+
+            https.use_ssl = true
+
+
+            request = Net::HTTP::Put.new(url)
+
+            request["Content-Type"] = "application/json"
+
+            request["Authorization"] = "Bearer YOUR-AUTH-TOKEN"
+
+            request.body = "[\n  {\n    \"salsify:id\": \"a951636a612b403636a162a69fb0228a52fb90cf\",\n    \"salsify:url\": \"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\",\n    \"salsify:name\": \"Update Digital Asset\"\n  },\n  {\n    \"salsify:url\": \"https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n  \t\"salsify:name\": \"New Image Upload\"\n  }\n]"
+
+
+            response = https.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, and api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"[\\n  {\\n    \\\"salsify:id\\\": \\\"a951636a612b403636a162a69fb0228a52fb90cf\\\",\\n    \\\"salsify:url\\\": \\\"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\\\",\\n    \\\"salsify:name\\\": \\\"Update Digital Asset\\\"\\n  },\\n  {\\n    \\\"salsify:url\\\": \\\"https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\\\",\\n  \\t\\\"salsify:name\\\": \\\"New Image Upload\\\"\\n  }\\n]\"\nheaders = {\n  'Content-Type': 'application/json',\n  'Authorization': 'Bearer jX9UZ8L3XVXLgry8wC7zPS3e7UDG0XGULfeS7YaOHNY'\n}\nconn.request(\"PUT\", \"/api/v1/orgs/s-085029dd-4e06-45ef-a61a-85ac1e80a33d/digital_assets/_upsert\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Digital Assets
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      x-default: ''
+x-refined-from:
+- salsify-api-settings-openapi.json
+- salsify-write-operations-openapi.json
+x-readme:
+  headers:
+  - value: Bearer {api_key}
+    key: Authorization
+x-readme-fauxas: true

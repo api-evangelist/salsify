@@ -1,0 +1,441 @@
+openapi: 3.2.0
+info:
+  title: Non-v1 endpoints Imports API
+  version: '1.0'
+servers:
+- url: https://app.salsify.com/api/orgs
+security:
+- sec0: []
+tags:
+- name: Imports
+paths:
+  /{org_id}/imports/upload_mounts:
+    post:
+      summary: Create a Mount Point
+      description: ''
+      operationId: create-a-mount-point
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: 'Authorization: Bearer'
+        in: header
+        description: User API Key
+        required: true
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"url\": \"https://salsify-dandelion.s3-external-1.amazonaws.com\",\n    \"form_data\": {\n        \"key\": \"1/16569/user_data_import/1/2018/05/08/22:34:49-fe493802\",\n        \"x-amz-server-side-encryption\": \"aws:kms\",\n        \"acl\": \"private\",\n        \"policy\": \"...\",\n        \"x-amz-credential\": \"AKIARRX37GWVL5YUBHGV/20221021/us-east-1/s3/aws4_request\",\n        \"x-amz-algorithm\": \"AWS4-HMAC-SHA256\",\n        \"x-amz-date\": \"20221021T183947Z\",\n        \"x-amz-signature\": \"ABCDEFGHIJKLMNOPQRSTUVWXYZZYXWUTSRQPOMNLKJIHGFDECBA\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: https://salsify-dandelion.s3-external-1.amazonaws.com
+                  form_data:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        example: 1/16569/user_data_import/1/2018/05/08/22:34:49-fe493802
+                      x-amz-server-side-encryption:
+                        type: string
+                        example: aws:kms
+                      acl:
+                        type: string
+                        example: private
+                      policy:
+                        type: string
+                        example: '...'
+                      x-amz-credential:
+                        type: string
+                        example: AKIARRX37GWVL5YUBHGV/20221021/us-east-1/s3/aws4_request
+                      x-amz-algorithm:
+                        type: string
+                        example: AWS4-HMAC-SHA256
+                      x-amz-date:
+                        type: string
+                        example: 20221021T183947Z
+                      x-amz-signature:
+                        type: string
+                        example: ABCDEFGHIJKLMNOPQRSTUVWXYZZYXWUTSRQPOMNLKJIHGFDECBA
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"error\": \"You need to sign in before continuing.\"\n}\n\n# This indicates that an invalid Bearer Token was provided"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n  https://app.salsify.com/api/orgs/s-999-999-999-999/imports/upload_mounts \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n\n# where org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/orgs/s-999-999-999-999/imports/upload_mounts")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Post.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    }\n\nconn.request(\"POST\", \"api/orgs/s-999-999-999-999/imports/upload_mounts\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, api_token = YOUR-AUTH-TOKEN\n"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Imports
+  /{org_id}/imports:
+    post:
+      summary: Creating a JSON Import from a Mount Point
+      description: ''
+      operationId: creating-a-json-import-from-a-mount-point
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: 'Authorization: Bearer:'
+        in: header
+        description: User API Key
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                import:
+                  type: object
+                  required:
+                  - name
+                  properties:
+                    name:
+                      type: string
+                      description: Name of the import
+                    import_format:
+                      type: object
+                      required:
+                      - type
+                      properties:
+                        type:
+                          type: string
+                          description: JSON or JSONL import format
+                          enum:
+                          - json_import_format
+                          - jsonl_import_format
+                          - schema_json_import_format
+                          - schema_jsonl_import_format
+                    import_source:
+                      type: object
+                      required:
+                      - file
+                      - upload_path
+                      properties:
+                        file:
+                          type: string
+                          description: Import filename
+                        type:
+                          type: string
+                          default: upload_import_source
+                        upload_path:
+                          type: string
+                          description: Upload path, key from mount point form data
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": 2699416,\n    \"system_id\": \"s-90603baa-11e1-4411-bb66-c6110dcdc0ac\",\n    \"name\": \"JSON Import\",\n    \"import_source\": {\n        \"type\": \"upload_import_source\",\n        \"type_label\": \"Upload\",\n        \"file\": \"test.json\",\n        \"upload_path\": \"1/16569/user_data_import/1/2021/07/26/13:50:10-d7006a32\"\n    },\n    \"import_format\": {\n        \"type\": \"json_import_format\",\n        \"type_label\": \"JSON\"\n    },\n    \"webhook_notification\": null,\n    \"email_notification\": null,\n    \"schedule\": null,\n    \"last_import_run\": null\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 2699416
+                    default: 0
+                  system_id:
+                    type: string
+                    example: s-90603baa-11e1-4411-bb66-c6110dcdc0ac
+                  name:
+                    type: string
+                    example: JSON Import
+                  import_source:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: upload_import_source
+                      type_label:
+                        type: string
+                        example: Upload
+                      file:
+                        type: string
+                        example: test.json
+                      upload_path:
+                        type: string
+                        example: 1/16569/user_data_import/1/2021/07/26/13:50:10-d7006a32
+                  import_format:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: json_import_format
+                      type_label:
+                        type: string
+                        example: JSON
+                  webhook_notification: {}
+                  email_notification: {}
+                  schedule: {}
+                  last_import_run: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "{\n  \"import\": {\n    \"name\": \"JSON Import\",\n    \"import_source\": {\n      \"file\": \"{filename}\",\n      \"type\": \"upload_import_source\",\n      \"upload_path\": \"1/16569/user_data_import/1/2021/07/26/13:50:10-d7006a32\"\n    },\n    \"import_format\": {\n      \"type\": \"json_import_format\"\n    }\n  }\n}\n\n#Replace {filename} with your import file name and the upload path with your key"
+          name: Example Body Parameter Configuration
+        samples-languages:
+        - curl
+      tags:
+      - Imports
+  /{org_id}/imports/{import_id}/runs:
+    post:
+      summary: Starting an Import Run
+      description: ''
+      operationId: starting-an-import-run
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: import_id
+        in: path
+        description: Identifier for the import run either created manually in the application for a csv/excel import or generated with a mount point creation.
+        schema:
+          type: string
+        required: true
+      - name: 'Authorization: Bearer'
+        in: header
+        description: User API Key
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"id\":856,\n  \"status\":\"running\",\n  \"start_time\":\"2013-10-17T17:56:21.585Z\",\n  \"end_time\":null,\n  \"duration\":0.240623376,\n  \"failure_reason\":null,\n  \"progress\":0,\n  \"stage_data\":[\n    {\n      \"id\":\"schema\",\n      \"statistics\":[...],\n      \"messages\":[],\n      \"total_errors\":0,\n      \"progress\":0,\n      \"begin\":\"2013-10-17T17:56:21Z\",\n      \"end\":null,\n      \"duration\":1\n    }\n  ],\n  \"import\":{\n    \"id\":462,\n    \"import_source\":{\n      \"type\":\"cloud_import_source\",\n      \"type_label\":\"Upload\",\n      \"file\":\"export (13).xlsx\",\n      \"upload_path\":\"1/103/user_data_import/1/2013/10/17/17:56:12-6c1b4797\"\n    },\n    \"import_format\":{\n      \"type\":\"attribute_import_format\",\n      \"import_mode\":\"upsert\",\n      \"type_label\":\"Schema\"\n    }\n  }\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{ "errors": ["Your import queue is full. Please wait until an import finishes to queue another"] }'
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Your import queue is full. Please wait until an import finishes to queue another
+      deprecated: false
+      tags:
+      - Imports
+  /{org_id}/imports/{import_id}:
+    put:
+      summary: Updating an Import to Point at a New Mount Point
+      description: ''
+      operationId: updating-an-import-to-point-at-a-new-mount-point
+      parameters:
+      - name: import_id
+        in: path
+        description: Identifier for the import run either created manually in the App for a csv/excel import or generated with a mount point creation.
+        schema:
+          type: string
+        required: true
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: 'Authorization: Bearer'
+        in: header
+        description: User API Key
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                import:
+                  type: object
+                  required:
+                  - file
+                  - upload_path
+                  properties:
+                    file:
+                      type: string
+                      description: Import filename
+                    type:
+                      type: string
+                      default: upload_import_source
+                    upload_path:
+                      type: string
+                      description: Upload path, key from mount point form data
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: ''
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "{\n  \"import\": {\n    \"import_source\": {\n      \"file\": \"{filename}\",\n      \"type\": \"upload_import_source\",\n      \"type_label\": \"Upload\",\n      \"upload_path\": \"{key_from_form_data}\"\n    }\n  }\n}\n# replace the key_from_form_data with the new mount point key"
+          name: Example Request Body Content
+        samples-languages:
+        - curl
+      tags:
+      - Imports
+  /{org_id}/imports/runs/{import_run_id}:
+    get:
+      summary: Getting the Status of an Import Run
+      description: ''
+      operationId: getting-the-status-of-an-import-run
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: import_run_id
+        in: path
+        description: the ID of the import run to retrieve status for
+        schema:
+          type: string
+        required: true
+      - name: 'Authorization: Bearer'
+        in: header
+        description: User API Key
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": 1017693,\n    \"system_id\": \"s-d76fae6d-4c20-401b-ab4a-57b7d8ae317e\",\n    \"status\": \"completed\",\n    \"status_summary\": \"\",\n    \"start_time\": \"2022-10-21T15:44:28.997Z\",\n    \"end_time\": \"2022-10-21T15:46:29.736Z\",\n    \"duration\": 120.739104,\n    \"failure_reason\": null,\n    \"progress\": 100,\n    \"stage_data\": [...],\n    \"import_source_filename\": \"/Testing/molly_test/folder/full_test.json\",\n    \"import\": {\n        \"id\": 626956,\n        \"system_id\": \"s-9fa034e1-46ad-4cf0-82b8-a459bc9223fc\",\n        \"name\": \"test.json\",\n        \"import_source\": {\n            ...\n        },\n        \"import_format\": {\n            \"type\": \"json_import_format\",\n            \"type_label\": \"JSON\"\n        },\n        \"webhook_notification\": null,\n        \"email_notification\": null,\n        \"schedule\": null\n    }\n}"
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: Returned when the given import ID cannot be found.
+      deprecated: false
+      tags:
+      - Imports
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+x-readme:
+  headers:
+  - value: Bearer {api_key}
+    key: Authorization
+x-readme-fauxas: true

@@ -1,0 +1,201 @@
+openapi: 3.2.0
+info:
+  title: No API Explorer (for destructive calls & not well defined parameters) Lists API
+  version: '1.0'
+servers:
+- url: https://app.salsify.com/api/v1/orgs
+security:
+- sec0: []
+tags:
+- name: Lists
+paths:
+  /{org_id}/lists/{list_id}/members:
+    put:
+      summary: Add List Members
+      description: ''
+      operationId: add-list-members
+      parameters:
+      - name: org_id
+        in: path
+        description: Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: list_id
+        in: path
+        description: Identifier for the list being updated. List ID can be found by navigating to the Salsify list; ID follows `product_lists` or `digital_asset_lists`. See List Membership Overview for how to find the list ID.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                member_id:
+                  type: string
+                  description: Salsify product ID for the products to be added to the list.
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        \"985050 could not be found or is not a product\",\n        \"981929 could not be found or is not a product\"\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: 985050 could not be found or is not a product
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-492247e8-0e24-47e9-8af5-d07defe563dc/lists/121718/members \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"data\" : {\n    \"member_ids\" : [\"985050\",\"981929\"]\n  }\n}\n\n# where org_id = s-999-999-999-999, member_ids=985050 and 981929, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/lists/121718/members")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Put.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request.body = "{\n  \"data\" : {\n    \"member_ids\" : [\"985050\",\"981929\"]\n  }\n}\n"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, list_id=121718, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"{\\n  \\\"data\\\" : {\\n    \\\"member_ids\\\" : [\\\"985050\\\",\\\"981929\\\"]\\n  }\\n}\\n\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"PUT\", \"api/v1/orgs/s-999-999-999-999/lists/121718/members\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, list_id=121718, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Lists
+    delete:
+      summary: Delete List Members
+      description: ''
+      operationId: add-list-members-1
+      parameters:
+      - name: org_id
+        in: path
+        description: Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: list_id
+        in: path
+        description: Identifier for the list being updated. List ID can be found by navigating to the Salsify list; ID follows `product_lists` or `digital_asset_lists`
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        \"985050 could not be found or is not a product\",\n        \"981929 could not be found or is not a product\"\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: 985050 could not be found or is not a product
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/lists/182215/members \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"data\" : {\n    \"member_ids\" : [\"985050\",\"981929\"]\n  }\n}\n'\n\n# where org_id = s-999-999-999-999, salsify:id=985050 and 981929, list ID=182215, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/lists/182215/members")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Delete.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request["Cache-Control"] = ''no-cache''
+
+            request.body = "{\n  \"data\" : {\n    \"member_ids\" : [\"985050\",\"981929\"]\n  }\n}\n"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id=985050 and 981929, list ID=182215, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"{\\n  \\\"data\\\" : {\\n    \\\"member_ids\\\" : [\\\"985050\\\",\\\"981929\\\"]\\n  }\\n}\\n\"\n\nheaders = {\n    'Authorization': \"Bearer 7f96387bcfbc9a4777f70c77db165f222e6f07d5a2a1cf317d7a743e7bf7277e\",\n    'Content-Type': \"application/json\",\n    'Cache-Control': \"no-cache\",\n    'Postman-Token': \"735e5117-bdff-4e75-b312-5a60403b66aa\"\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-492247e8-0e24-47e9-8af5-d07defe563dc/lists/182215/members\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Lists
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+x-readme:
+  headers:
+  - key: Authorization
+    value: Bearer {api_key}
+x-readme-fauxas: true

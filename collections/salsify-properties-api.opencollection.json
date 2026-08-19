@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salsify Properties API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_ID/properties/:salsify:id",
+            "params": [
+              {
+                "name": "salsify:id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the property. Used in report headers, channel mapping, etc."
+              },
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ]
+          },
+          "docs": "Read Property"
+        },
+        {
+          "info": {
+            "name": "Bulk Create New Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/properties",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Create New Properties"
+        },
+        {
+          "info": {
+            "name": "Bulk Delete Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/properties",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Delete Properties"
+        },
+        {
+          "info": {
+            "name": "Update Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/properties/:salsify:id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+              },
+              {
+                "name": "salsify:id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the property. Used in report headers, channel mapping, etc."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Property"
+        },
+        {
+          "info": {
+            "name": "Delete Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/properties/:salsify:id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "salsify:id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the property. Used in report headers, channel mapping, etc."
+              }
+            ]
+          },
+          "docs": "Delete Property"
+        },
+        {
+          "info": {
+            "name": "Bulk Upsert Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:organization_id/properties/_upsert",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Upsert Properties"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

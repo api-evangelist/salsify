@@ -1,0 +1,232 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salsify Digital Assets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Digital Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read Digital Asset Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/digital_assets/:asset_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+              },
+              {
+                "name": "asset_id",
+                "value": "",
+                "type": "path",
+                "description": "Digital asset unique identifier."
+              }
+            ]
+          },
+          "docs": "Where a user has permission and the digital asset exists, complete digital asset JSON object is returned with its most current information."
+        },
+        {
+          "info": {
+            "name": "Bulk Read Digital Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/digital_assets",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Limit the scope of digital assets returned from the endpoint. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Bulk Read Digital Assets"
+        },
+        {
+          "info": {
+            "name": "Create Multiple Digital Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/digital_assets",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Multiple Digital Assets"
+        },
+        {
+          "info": {
+            "name": "Update Multiple Digital Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/digital_assets",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Multiple Digital Assets"
+        },
+        {
+          "info": {
+            "name": "Delete Multiple Digital Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/digital_assets",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete Multiple Digital Assets"
+        },
+        {
+          "info": {
+            "name": "Update Digital Asset Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/digital_assets/:salsify:id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "salsify:id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier for the digital asset you want to replace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Digital Asset Metadata"
+        },
+        {
+          "info": {
+            "name": "Create a Digital Asset & Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/v1/orgs/:organization_id/digital_assets",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Digital Asset & Metadata"
+        },
+        {
+          "info": {
+            "name": "Bulk Upsert Digital Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:organization_id/digital_assets/_upsert",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Upsert Digital Assets"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

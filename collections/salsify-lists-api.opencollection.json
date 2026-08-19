@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "No API Explorer (for destructive calls & not well defined parameters) Lists API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add List Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/lists/:list_id/members",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier for the list being updated. List ID can be found by navigating to the Salsify list; ID follows `product_lists` or `digital_asset_lists`. See List Membership Overview for how to find the list ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add List Members"
+        },
+        {
+          "info": {
+            "name": "Delete List Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/lists/:list_id/members",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "list_id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier for the list being updated. List ID can be found by navigating to the Salsify list; ID follows `product_lists` or `digital_asset_lists`"
+              }
+            ]
+          },
+          "docs": "Delete List Members"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

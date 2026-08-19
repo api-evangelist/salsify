@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Non-v1 endpoints Export Runs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Export Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Export Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/orgs/:org_id/export_runs",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start Export Run"
+        },
+        {
+          "info": {
+            "name": "Get Export Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/orgs/:org_id/export_runs/:export_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "export_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID for the export you want to retrieve status for. Found in the response from Start Export Run POST call."
+              }
+            ]
+          },
+          "docs": "Get Export Status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

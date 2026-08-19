@@ -1,0 +1,41 @@
+{
+  "provider": "salsify",
+  "sources": [
+    "salsify-digital-assets-api-openapi.yml",
+    "salsify-export-runs-api-openapi.yml",
+    "salsify-imports-api-openapi.yml",
+    "salsify-lists-api-openapi.yml",
+    "salsify-org-id-api-openapi.yml",
+    "salsify-products-api-openapi.yml",
+    "salsify-properties-api-openapi.yml",
+    "salsify-record-types-api-openapi.yml",
+    "salsify-records-api-openapi.yml"
+  ],
+  "outputs": [
+    "salsify-digital-assets-api-openapi.yml",
+    "salsify-export-runs-api-openapi.yml",
+    "salsify-imports-api-openapi.yml",
+    "salsify-lists-api-openapi.yml",
+    "salsify-org-id-api-openapi.yml",
+    "salsify-products-api-openapi.yml",
+    "salsify-properties-api-openapi.yml",
+    "salsify-record-types-api-openapi.yml",
+    "salsify-records-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "salsify-digital-assets-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "salsify-export-runs-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "salsify-imports-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "salsify-lists-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "salsify-org-id-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "salsify-products-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "salsify-properties-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "salsify-record-types-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "salsify-records-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

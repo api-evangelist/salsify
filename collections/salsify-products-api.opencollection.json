@@ -1,0 +1,251 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salsify Products API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read Product Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/products/:salsify:id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "salsify:id",
+                "value": "",
+                "type": "path",
+                "description": "Salsify product ID"
+              }
+            ]
+          },
+          "docs": "Read Product Record"
+        },
+        {
+          "info": {
+            "name": "Bulk Read Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/products",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Limit the scope of products returned from the endpoint. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ]
+          },
+          "docs": "Bulk Read Products"
+        },
+        {
+          "info": {
+            "name": "Bulk Create Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/products",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Create Products"
+        },
+        {
+          "info": {
+            "name": "Bulk Update Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/products",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Update Products"
+        },
+        {
+          "info": {
+            "name": "Bulk Delete Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/products",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Delete Products"
+        },
+        {
+          "info": {
+            "name": "Update Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/products/:product_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Product"
+        },
+        {
+          "info": {
+            "name": "Delete Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/products/:product_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique value that identifies product and stored in the property that holds the product identifier role in Salsify. Send as an array of product ID values; property id label is not sent."
+              }
+            ]
+          },
+          "docs": "Delete Product"
+        },
+        {
+          "info": {
+            "name": "Create Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/products/",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Product"
+        },
+        {
+          "info": {
+            "name": "Bulk Upsert Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/products/_upsert",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upserts allow you to update and create a product in the same call."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,273 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salsify Records API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/records/:salsify:id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "salsify_id",
+                "value": "",
+                "type": "path",
+                "description": "Salsify record ID for uniquely identifying a record."
+              }
+            ]
+          },
+          "docs": "Read Record"
+        },
+        {
+          "info": {
+            "name": "Bulk Read Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/records",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Limit the scope of records returned from the endpoint. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "record_type",
+                "value": "",
+                "type": "query",
+                "description": "Limit the scope to a specific record type"
+              }
+            ]
+          },
+          "docs": "Bulk Read Records"
+        },
+        {
+          "info": {
+            "name": "Bulk Create Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/records",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Create Records"
+        },
+        {
+          "info": {
+            "name": "Bulk Update Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/records",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Update Records"
+        },
+        {
+          "info": {
+            "name": "Bulk Delete Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/records",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk Delete Records"
+        },
+        {
+          "info": {
+            "name": "Create Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/records/",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Record"
+        },
+        {
+          "info": {
+            "name": "Update Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/records/:record_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "Value to identify record, stored in property with unique record identifier role in your Salsify organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Record"
+        },
+        {
+          "info": {
+            "name": "Bulk Upsert Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/records/_upsert",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upsert allows you to update and create a record in the same call."
+        },
+        {
+          "info": {
+            "name": "Delete Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.salsify.com/api/v1/orgs/:org_id/records/:product_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique value that identifies records and stored in the property that holds the record identifier role in Salsify."
+              }
+            ]
+          },
+          "docs": "Delete Record"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

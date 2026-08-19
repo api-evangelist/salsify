@@ -1,0 +1,197 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Non-v1 endpoints Imports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Imports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Mount Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/orgs/:org_id/imports/upload_mounts",
+            "headers": [
+              {
+                "name": "Authorization: Bearer",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ]
+          },
+          "docs": "Create a Mount Point"
+        },
+        {
+          "info": {
+            "name": "Creating a JSON Import from a Mount Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/orgs/:org_id/imports",
+            "headers": [
+              {
+                "name": "Authorization: Bearer:",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creating a JSON Import from a Mount Point"
+        },
+        {
+          "info": {
+            "name": "Starting an Import Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.salsify.com/api/orgs/:org_id/imports/:import_id/runs",
+            "headers": [
+              {
+                "name": "Authorization: Bearer",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "import_id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier for the import run either created manually in the application for a csv/excel import or generated with a mount point creation."
+              }
+            ]
+          },
+          "docs": "Starting an Import Run"
+        },
+        {
+          "info": {
+            "name": "Updating an Import to Point at a New Mount Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.salsify.com/api/orgs/:org_id/imports/:import_id",
+            "headers": [
+              {
+                "name": "Authorization: Bearer",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "import_id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier for the import run either created manually in the App for a csv/excel import or generated with a mount point creation."
+              },
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updating an Import to Point at a New Mount Point"
+        },
+        {
+          "info": {
+            "name": "Getting the Status of an Import Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.salsify.com/api/orgs/:org_id/imports/runs/:import_run_id",
+            "headers": [
+              {
+                "name": "Authorization: Bearer",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+              },
+              {
+                "name": "import_run_id",
+                "value": "",
+                "type": "path",
+                "description": "the ID of the import run to retrieve status for"
+              }
+            ]
+          },
+          "docs": "Getting the Status of an Import Run"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

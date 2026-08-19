@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  title: Settings <org ID> <org ID> API
+  version: '1.0'
+servers:
+- url: https://app.salsify.com/api/v1/orgs
+security:
+- sec0: []
+tags:
+- name: <org ID>
+paths:
+  /<org_ID>/digital_assets/refresh:
+    post:
+      summary: Refresh Digital Assets
+      description: ''
+      operationId: refresh-digital-assets
+      parameters:
+      - name: salsify:id
+        in: path
+        description: The identifier to use for the asset.
+        schema:
+          type: string
+        required: true
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/refresh \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Cache-Control: no-cache' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\"dandelion_new_10001\"]'\n\n# where org_id = s-999-999-999-999, asset_id = dandelion_new_10001, and api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/digital_assets/refresh")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Post.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request["Cache-Control"] = ''no-cache''
+
+            request.body = "[\"dandelion_new_10001\"]"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, asset_id = dandelion_new_10001, and api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"[\\\"dandelion_new_10001\\\"]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    'Cache-Control': \"no-cache\",\n    }\n\nconn.request(\"POST\", \"/api/v1/orgs/s-999-999-999-999/digital_assets/refresh\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, asset_id = dandelion_new_10001, and api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - <org ID>
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      x-default: ''
+x-readme:
+  headers:
+  - value: Bearer {api_key}
+    key: Authorization
+x-readme-fauxas: true

@@ -1,0 +1,1588 @@
+{
+  "item": [
+    {
+      "id": "09364f61-6084-4694-864d-0ebf1489686e",
+      "name": "Digital Assets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7831188a-f31d-4fbb-92ac-64d024703929",
+          "name": "Read Digital Asset Metadata",
+          "request": {
+            "name": "Read Digital Asset Metadata",
+            "description": {
+              "content": "Where a user has permission and the digital asset exists, complete digital asset JSON object is returned with its most current information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "digital_assets",
+                ":asset_id"
+              ],
+              "host": [
+                "{{org_id-digital_assets-asset_id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "asset_id",
+                  "description": "(Required) Digital asset unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad6d1ff0-6007-4aa2-ba78-4b93a4716ce1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets",
+                    ":asset_id"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-asset_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_id",
+                      "description": "(Required) Digital asset unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"salsify:id\\\": \\\"01d954267e703cb8f9a73c50928e4ca8ed98e115\\\",\\n    \\\"salsify:url\\\": \\\"http://images.salsify.com/image/upload/s--CJemutyy--/cnpfpnp48unsd3n0ok5e.jpg\\\",\\n    \\\"salsify:name\\\": \\\"pink_leather_tote.jpg\\\",\\n    \\\"salsify:created_at\\\": \\\"2016-02-28T00:04:47.191Z\\\",\\n    \\\"salsify:updated_at\\\": \\\"2017-05-21T05:18:34.244Z\\\",\\n    \\\"salsify:status\\\": \\\"completed\\\",\\n    \\\"salsify:asset_height\\\": 2795,\\n    \\\"salsify:asset_width\\\": 2795,\\n    \\\"salsify:asset_resource_type\\\": \\\"image\\\",\\n    \\\"salsify:filename\\\": \\\"pink_leather_tote.jpg\\\",\\n    \\\"salsify:bytes\\\": 1885251,\\n    \\\"salsify:format\\\": \\\"jpg\\\",\\n    \\\"salsify:etag\\\": \\\"5e212cf4ae709184aff2b35ec2d97278\\\",\\n    \\\"salsify:system_id\\\": \\\"s-9999-9999-99999\\\",\\n    \\\"Asset Keywords\\\": [\\n        \\\"front view\\\",\\n        \\\"white isolation\\\",\\n        \\\"leather tote\\\"\\n    ],\\n    \\\"Asset Color\\\": \\\"Blush\\\",\\n    \\\"Asset Created Date \\\": \\\"2016-05-02\\\",\\n    \\\"Asset Photographer\\\": \\\"LB Jeffreys\\\",\\n    \\\"Manufacturer\\\": \\\"Wildflower Imports, Inc.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebfaab5a-141b-4dce-95f4-5eded403996d",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets",
+                    ":asset_id"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-asset_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_id",
+                      "description": "(Required) Digital asset unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"error\\\": \\\"You need to sign in before continuing.\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6f49cb4-abdb-43ee-8c47-516f1e256aee",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets",
+                    ":asset_id"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-asset_id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "asset_id",
+                      "description": "(Required) Digital asset unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Asset ID does not exist in Salsify.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4d06902-8e50-4a49-9fd4-b1b9aeb6523a",
+          "name": "Bulk Read Digital Assets",
+          "request": {
+            "name": "Bulk Read Digital Assets",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "digital_assets"
+              ],
+              "host": [
+                "{{org_id-digital_assets-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Limit the scope of digital assets returned from the endpoint. Details on how to build filters are available [here](https://developers.salsify.com/reference/salsify-filtering-language-syntax)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2bb0acd4-8cd7-42ee-8d25-310b9c56d0c8",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n   \\\"data\\\": [\\n     {\\n       \\\"salsify:id\\\": \\\"4a4393f6-54d7-4963-a3c0-b3a083c2440c\\\",\\n       \\\"Name\\\": \\\"My Digital Asset\\\"\\n     }\\n   ],\\n   \\\"meta\\\": {\\n       \\\"per_page\\\": 100,\\n       \\\"cursor\\\": null,\\n       \\\"total_entries\\\": 1,\\n       \\\"current_page\\\": 1\\n   }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ad2fe5f-c485-403c-a969-321871f6727e",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"errors\\\": [\\n    \\\"Filter is invalid\\\"\\n  ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0078ea09-21e1-4bcc-bdc0-96ba96388476",
+          "name": "Delete Multiple Digital Assets",
+          "request": {
+            "name": "Delete Multiple Digital Assets",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "digital_assets"
+              ],
+              "host": [
+                "{{org_id-digital_assets-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salsify:id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08171ac0-65c2-4b51-9f55-a77769de3d34",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa87a5e9-2d3f-4666-b998-662177d4d162",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "452cadc1-81be-4817-8845-9b2b4befcb0a",
+          "name": "Create Multiple Digital Assets",
+          "request": {
+            "name": "Create Multiple Digital Assets",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "digital_assets"
+              ],
+              "host": [
+                "{{org_id-digital_assets-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salsify:source_URL\": \"<string>\",\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "23d89f73-3058-41de-bf3c-7a0da6c310be",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:source_URL\": \"<string>\",\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n    {\\n        \\\"salsify:id\\\": \\\"kitty.png\\\",\\n        \\\"salsify:source_url\\\": \\\"https://images.pexels.com/photos/62321/kitten-cat-fluffy-cat-cute-62321.jpeg?auto=compress&cs=tinysrgb&h=650&w=940.png\\\",\\n        \\\"salsify:name\\\": \\\"kitten-cat-fluffy-cat-cute-62321.jpeg\\\",\\n        \\\"salsify:created_at\\\": \\\"2018-04-19T20:24:43.855Z\\\",\\n        \\\"salsify:updated_at\\\": \\\"2018-04-19T20:24:43.855Z\\\",\\n        \\\"salsify:status\\\": \\\"in_progress\\\",\\n        \\\"salsify:asset_resource_type\\\": \\\"raw\\\",\\n        \\\"salsify:system_id\\\": \\\"s-999-999-999-999\\\",\\n        \\\"Manufacturer\\\": \\\"Wildflower Imports, Inc.\\\"\\n    },\\n    {\\n        \\\"salsify:id\\\": \\\"9a7e78da65cae09786b8df124c8fcab942d4d5fa\\\",\\n        \\\"salsify:source_url\\\": \\\"https://images.pexels.com/photos/774731/pexels-photo-774731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\\\",\\n        \\\"salsify:name\\\": \\\"pexels-photo-774731.jpeg\\\",\\n        \\\"salsify:created_at\\\": \\\"2018-04-19T20:24:43.855Z\\\",\\n        \\\"salsify:updated_at\\\": \\\"2018-04-19T20:24:43.855Z\\\",\\n        \\\"salsify:status\\\": \\\"in_progress\\\",\\n        \\\"salsify:asset_resource_type\\\": \\\"raw\\\",\\n        \\\"salsify:system_id\\\": \\\"s-999-999-999-999\\\",\\n        \\\"Manufacturer\\\": \\\"Wildflower Imports, Inc.\\\"\\n    }\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "551fc87e-f218-4810-8613-62434d86841e",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:source_URL\": \"<string>\",\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eae839a7-0778-4f73-b183-b096301cd71f",
+          "name": "Update Multiple Digital Assets",
+          "request": {
+            "name": "Update Multiple Digital Assets",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "digital_assets"
+              ],
+              "host": [
+                "{{org_id-digital_assets-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"source_URL\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c0f45a8-2c6d-4f3f-8708-697cc5fc189e",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"source_URL\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Returned when content is successfully updated in Salsify.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f27c66f4-db90-426a-ab35-19e809f168bd",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"source_URL\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71a984e9-71ea-4dfe-8ac7-44d83260ef81",
+          "name": "Update Digital Asset Metadata",
+          "request": {
+            "name": "Update Digital Asset Metadata",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "digital_assets",
+                ":salsify:id"
+              ],
+              "host": [
+                "{{org_id-digital_assets-salsify:id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "salsify:id",
+                  "description": "(Required) The identifier for the digital asset you want to replace."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_url\": \"<string>\",\n  \"additional_custom_metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1d4c005c-b671-4efe-b033-a0ea8fefd228",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets",
+                    ":salsify:id"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-salsify:id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salsify:id",
+                      "description": "(Required) The identifier for the digital asset you want to replace."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_url\": \"<string>\",\n  \"additional_custom_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"//Returned when content is successfully updated in Salsify.\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e68493a-a063-47f3-ba48-264ad8880357",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "digital_assets",
+                    ":salsify:id"
+                  ],
+                  "host": [
+                    "{{org_id-digital_assets-salsify:id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salsify:id",
+                      "description": "(Required) The identifier for the digital asset you want to replace."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_url\": \"<string>\",\n  \"additional_custom_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        \\\"Invalid reference to category Asset Photographer = 'Seymour Parrish'\\\"\\n    ]\\n}\\n\\n//occurs where you attempt an update to an enumerated property type, but the value isn't in the enumerated list. Add the value to the property itself, then associate the property value to the digital asset.\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e80d246c-51d9-482c-87eb-b6c3c0a6bdd8",
+          "name": "Create a Digital Asset & Metadata",
+          "request": {
+            "name": "Create a Digital Asset & Metadata",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":organization_id",
+                "digital_assets"
+              ],
+              "host": [
+                "{{organization_id-digital_assets-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salsify:source_url\": \"<string>\",\n  \"salsify:id\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8b7e370-d80a-43fc-9f5b-c54a2d54d285",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":organization_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{organization_id-digital_assets-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:source_url\": \"<string>\",\n  \"salsify:id\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"salsify:id\\\": \\\"dandelion_new_10002\\\",\\n    \\\"salsify:source_url\\\": \\\"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/DandelionFlower.jpg/440px-DandelionFlower.jpg\\\",\\n    \\\"salsify:name\\\": \\\"dandelion_flower.png\\\",\\n    \\\"salsify:created_at\\\": \\\"2017-11-28T19:18:17.913Z\\\",\\n    \\\"salsify:updated_at\\\": \\\"2017-11-28T19:18:17.913Z\\\",\\n    \\\"salsify:status\\\": \\\"in_progress\\\",\\n    \\\"salsify:asset_resource_type\\\": \\\"raw\\\",\\n    \\\"salsify:system_id\\\": \\\"s-999-999-999-999\\\",\\n    \\\"Asset Photographer\\\": \\\"LB Jeffreys\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "932c5214-a129-4aa4-a2d7-0fd207420572",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":organization_id",
+                    "digital_assets"
+                  ],
+                  "host": [
+                    "{{organization_id-digital_assets-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:source_url\": \"<string>\",\n  \"salsify:id\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        \\\"Given external id (dandelion_new_10002) already exists\\\"\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "096092ba-b21b-436c-8322-9a591242cc53",
+          "name": "Bulk Upsert Digital Assets",
+          "request": {
+            "name": "Bulk Upsert Digital Assets",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":organization_id",
+                "digital_assets",
+                "_upsert"
+              ],
+              "host": [
+                "{{organization_id-digital_assets-_upsert-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:url\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "abb79f70-e66e-4667-b8ed-26602bede9be",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":organization_id",
+                    "digital_assets",
+                    "_upsert"
+                  ],
+                  "host": [
+                    "{{organization_id-digital_assets-_upsert-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:url\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n    null,\\n    null\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "994b18c8-a4ac-41fd-808c-c27c81d66d38",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":organization_id",
+                    "digital_assets",
+                    "_upsert"
+                  ],
+                  "host": [
+                    "{{organization_id-digital_assets-_upsert-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:url\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"additional_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "org_id-digital_assets-asset_id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "org_id-digital_assets-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "org_id-digital_assets-salsify:id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "organization_id-digital_assets-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "organization_id-digital_assets-_upsert-Url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "19bdb391-21f0-46a5-86cd-d34927f06148",
+    "name": "Salsify Digital Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Digital Assets across 2 of this provider's published API definitions: salsify-api-settings-openapi.json, salsify-write-operations-openapi.json. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

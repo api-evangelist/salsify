@@ -1,0 +1,197 @@
+{
+  "item": [
+    {
+      "id": "a1538a28-11a5-46a8-9e30-21844b9cb1e0",
+      "name": "Record Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5b6e096-50f7-4b9d-af41-771f4648ee61",
+          "name": "Read Record Types",
+          "request": {
+            "name": "Read Record Types",
+            "description": {
+              "content": "Used to query for all available record types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "record_types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df52f719-9c39-4831-ae4d-2fda217d73f2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "record_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"data\\\": [\\n        {\\n            \\\"salsify:id\\\": \\\"Products\\\",\\n            \\\"salsify:name\\\": \\\"Products\\\",\\n            \\\"salsify:created_at\\\": \\\"2021-09-03T14:42:49.970Z\\\",\\n            \\\"salsify:updated_at\\\": \\\"2021-09-03T14:42:49.970Z\\\"\\n        },\\n        {\\n            \\\"salsify:id\\\": \\\"Colors\\\",\\n            \\\"salsify:name\\\": \\\"Colors\\\",\\n            \\\"salsify:created_at\\\": \\\"2021-09-03T14:43:02.107Z\\\",\\n            \\\"salsify:updated_at\\\": \\\"2021-09-03T14:43:02.107Z\\\"\\n        }\\n    ],\\n    \\\"meta\\\": {\\n        \\\"current_page\\\": 1,\\n        \\\"per_page\\\": 30,\\n        \\\"total_entries\\\": 2\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3006fd8-c3ec-440a-9e58-700e13f142f2",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "record_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Returned when a request is malformed and cannot be found",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f9e3ba97-76cf-402b-9a25-a261c064d22d",
+    "name": "No API Explorer (for destructive calls & not well defined parameters) Record Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

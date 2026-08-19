@@ -1,0 +1,1209 @@
+{
+  "item": [
+    {
+      "id": "405186a4-76de-422a-b416-63e291faa1aa",
+      "name": "Properties",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1990ca24-d0b3-40b4-8755-53790a5ca868",
+          "name": "Read Property",
+          "request": {
+            "name": "Read Property",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_ID",
+                "properties",
+                ":salsify:id"
+              ],
+              "host": [
+                "{{org_ID-properties-salsify:id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "salsify:id",
+                  "description": "(Required) Unique identifier for the property. Used in report headers, channel mapping, etc."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b77787ff-de32-45a9-b7d7-7769d7d503d1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_ID",
+                    "properties",
+                    ":salsify:id"
+                  ],
+                  "host": [
+                    "{{org_ID-properties-salsify:id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salsify:id",
+                      "description": "(Required) Unique identifier for the property. Used in report headers, channel mapping, etc."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"salsify:id\\\": \\\"ASIN\\\",\\n    \\\"salsify:name\\\": \\\"ASIN\\\",\\n    \\\"salsify:data_type\\\": \\\"string\\\",\\n    \\\"salsify:entity_types\\\": [\\n        \\\"products\\\"\\n    ],\\n    \\\"salsify:is_facetable\\\": true,\\n    \\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\\"salsify:position\\\": null,\\n    \\\"salsify:help_text\\\": null,\\n    \\\"salsify:manage_permissions\\\": null,\\n    \\\"salsify:read_permissions\\\": null,\\n    \\\"salsify:hidden_permissions\\\": null,\\n    \\\"salsify:created_at\\\": \\\"2017-12-18T14:44:06.991Z\\\",\\n    \\\"salsify:updated_at\\\": \\\"2017-12-18T14:46:09.370Z\\\",\\n    \\\"salsify:type\\\": \\\"property\\\",\\n    \\\"salsify:system_id\\\": \\\"s-999-999-999-999\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "540cdab6-5570-4e7b-bef7-cada4b332b45",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_ID",
+                    "properties",
+                    ":salsify:id"
+                  ],
+                  "host": [
+                    "{{org_ID-properties-salsify:id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salsify:id",
+                      "description": "(Required) Unique identifier for the property. Used in report headers, channel mapping, etc."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3e7400e-2a63-4ca7-b46f-15b15efb13fb",
+          "name": "Bulk Create New Properties",
+          "request": {
+            "name": "Bulk Create New Properties",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "properties"
+              ],
+              "host": [
+                "{{org_id-properties-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"system_metadata\": \"<string>\",\n  \"custom_metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67cfaa9c-0cf6-4ccd-b70d-cd7795ce91a7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "properties"
+                  ],
+                  "host": [
+                    "{{org_id-properties-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"system_metadata\": \"<string>\",\n  \"custom_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n    {\\n        \\\"salsify:id\\\": \\\"test_ID\\\",\\n        \\\"salsify:name\\\": \\\"test_name\\\",\\n        \\\"salsify:data_type\\\": \\\"string\\\",\\n        \\\"salsify:entity_types\\\": [],\\n        \\\"salsify:is_facetable\\\": true,\\n        \\\"salsify:attribute_group\\\": \\\"General\\\",\\n        \\\"salsify:position\\\": null,\\n        \\\"salsify:help_text\\\": \\\"This is a test property\\\",\\n        \\\"salsify:manage_permissions\\\": null,\\n        \\\"salsify:read_permissions\\\": null,\\n        \\\"salsify:hidden_permissions\\\": null,\\n        \\\"salsify:created_at\\\": \\\"2018-09-10T13:43:12.128Z\\\",\\n        \\\"salsify:updated_at\\\": \\\"2018-09-10T13:43:12.128Z\\\",\\n        \\\"salsify:type\\\": \\\"property\\\",\\n        \\\"salsify:system_id\\\": \\\"s-999-999-999-999\\\"\\n    },\\n    {\\n        \\\"salsify:id\\\": \\\"test_ID2\\\",\\n        \\\"salsify:name\\\": \\\"test_name2\\\",\\n        \\\"salsify:data_type\\\": \\\"string\\\",\\n        \\\"salsify:entity_types\\\": [],\\n        \\\"salsify:is_facetable\\\": true,\\n        \\\"salsify:attribute_group\\\": \\\"General\\\",\\n        \\\"salsify:position\\\": null,\\n        \\\"salsify:help_text\\\": \\\"This is a test property\\\",\\n        \\\"salsify:manage_permissions\\\": null,\\n        \\\"salsify:read_permissions\\\": null,\\n        \\\"salsify:hidden_permissions\\\": null,\\n        \\\"salsify:created_at\\\": \\\"2018-09-10T13:43:12.128Z\\\",\\n        \\\"salsify:updated_at\\\": \\\"2018-09-10T13:43:12.128Z\\\",\\n        \\\"salsify:type\\\": \\\"property\\\",\\n        \\\"salsify:system_id\\\": \\\"s-999-999-999-999\\\"\\n    }\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fd3e4e9-f5ee-4246-8386-2b28e3e11d45",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "properties"
+                  ],
+                  "host": [
+                    "{{org_id-properties-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"system_metadata\": \"<string>\",\n  \"custom_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7d2b4e2-cbe5-4685-86a0-28e8bb3e4886",
+          "name": "Bulk Delete Properties",
+          "request": {
+            "name": "Bulk Delete Properties",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "properties"
+              ],
+              "host": [
+                "{{org_id-properties-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salsify:id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9715077d-1c77-4152-b0d8-f115b031158b",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "properties"
+                  ],
+                  "host": [
+                    "{{org_id-properties-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Returned when content is successfully updated in Salsify.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "141f0e08-b0a7-402c-8474-7f847271acde",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "properties"
+                  ],
+                  "host": [
+                    "{{org_id-properties-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dced0e6c-299c-446c-9ca4-842e367209f3",
+          "name": "Delete Property",
+          "request": {
+            "name": "Delete Property",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "properties",
+                ":salsify:id"
+              ],
+              "host": [
+                "{{org_id-properties-salsify:id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "salsify:id",
+                  "description": "(Required) Unique identifier for the property. Used in report headers, channel mapping, etc."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3dc0a7c7-a67d-41a0-9a67-d6b0cb18d4f8",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "properties",
+                    ":salsify:id"
+                  ],
+                  "host": [
+                    "{{org_id-properties-salsify:id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salsify:id",
+                      "description": "(Required) Unique identifier for the property. Used in report headers, channel mapping, etc."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Returned when content is successfully updated in Salsify.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec6591ba-acd7-4ec7-9290-b14b513c2b4e",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "properties",
+                    ":salsify:id"
+                  ],
+                  "host": [
+                    "{{org_id-properties-salsify:id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salsify:id",
+                      "description": "(Required) Unique identifier for the property. Used in report headers, channel mapping, etc."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "799026fa-2c67-4200-a1a5-70c429c6f795",
+          "name": "Update Property",
+          "request": {
+            "name": "Update Property",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "properties",
+                ":salsify:id"
+              ],
+              "host": [
+                "{{org_id-properties-salsify:id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "salsify:id",
+                  "description": "(Required) Unique identifier for the property. Used in report headers, channel mapping, etc."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metadata_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f0a6932-153c-432b-9fa8-4b3ec4226fb6",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "properties",
+                    ":salsify:id"
+                  ],
+                  "host": [
+                    "{{org_id-properties-salsify:id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salsify:id",
+                      "description": "(Required) Unique identifier for the property. Used in report headers, channel mapping, etc."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metadata_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Returned when content is successfully updated in Salsify.",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "814d1e94-1fa1-434d-a78a-4f65b662d8b7",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "properties",
+                    ":salsify:id"
+                  ],
+                  "host": [
+                    "{{org_id-properties-salsify:id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "salsify:id",
+                      "description": "(Required) Unique identifier for the property. Used in report headers, channel mapping, etc."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metadata_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b96984e-4d5c-48cb-8450-db8f83d7ecc3",
+          "name": "Bulk Upsert Properties",
+          "request": {
+            "name": "Bulk Upsert Properties",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":organization_id",
+                "properties",
+                "_upsert"
+              ],
+              "host": [
+                "{{organization_id-properties-_upsert-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organization_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"salsify:system_metadata\": \"<string>\",\n  \"salsify:custom_metadata\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64507737-2711-4a44-8f87-828f2e4c4eb2",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":organization_id",
+                    "properties",
+                    "_upsert"
+                  ],
+                  "host": [
+                    "{{organization_id-properties-_upsert-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"salsify:system_metadata\": \"<string>\",\n  \"salsify:custom_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"[\\n    null,\\n    null\\n]\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b214bd52-a04a-4e73-9230-0259d4dce705",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":organization_id",
+                    "properties",
+                    "_upsert"
+                  ],
+                  "host": [
+                    "{{organization_id-properties-_upsert-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"salsify:system_metadata\": \"<string>\",\n  \"salsify:custom_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97a3cdf4-c249-48cc-b6eb-98338c89a0ce",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":organization_id",
+                    "properties",
+                    "_upsert"
+                  ],
+                  "host": [
+                    "{{organization_id-properties-_upsert-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organization_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"salsify:id\": \"<string>\",\n  \"salsify:name\": \"<string>\",\n  \"salsify:system_metadata\": \"<string>\",\n  \"salsify:custom_metadata\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"errors\\\": [\\n        [],\\n        [\\n        \\\"salsify:data_type must be in string, rich_text, link, html, enumerated, \\tdigital_asset, boolean, number, date, compound, complex, product, quantified_product\\\"\\n        ]\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "org_ID-properties-salsify:id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "org_id-properties-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "org_id-properties-salsify:id-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/v1/orgs",
+      "key": "organization_id-properties-_upsert-Url"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "67e491ea-c484-4f1e-8be6-cd941dfc7b95",
+    "name": "Salsify Properties API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Properties across 2 of this provider's published API definitions: salsify-api-settings-openapi.json, salsify-write-operations-openapi.json. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

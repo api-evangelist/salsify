@@ -1,0 +1,1071 @@
+{
+  "item": [
+    {
+      "id": "eaf2ec8b-a829-4841-9d3e-c2e08357b848",
+      "name": "Imports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "499eef70-6102-4b0a-98c3-7dc316cade74",
+          "name": "Create a Mount Point",
+          "request": {
+            "name": "Create a Mount Point",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "imports",
+                "upload_mounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) User API Key",
+                "key": "Authorization: Bearer",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "597df33f-1c24-4e6e-8fbe-cfe8ed69b905",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports",
+                    "upload_mounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) User API Key",
+                    "key": "Authorization: Bearer",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"url\\\": \\\"https://salsify-dandelion.s3-external-1.amazonaws.com\\\",\\n    \\\"form_data\\\": {\\n        \\\"key\\\": \\\"1/16569/user_data_import/1/2018/05/08/22:34:49-fe493802\\\",\\n        \\\"x-amz-server-side-encryption\\\": \\\"aws:kms\\\",\\n        \\\"acl\\\": \\\"private\\\",\\n        \\\"policy\\\": \\\"...\\\",\\n        \\\"x-amz-credential\\\": \\\"AKIARRX37GWVL5YUBHGV/20221021/us-east-1/s3/aws4_request\\\",\\n        \\\"x-amz-algorithm\\\": \\\"AWS4-HMAC-SHA256\\\",\\n        \\\"x-amz-date\\\": \\\"20221021T183947Z\\\",\\n        \\\"x-amz-signature\\\": \\\"ABCDEFGHIJKLMNOPQRSTUVWXYZZYXWUTSRQPOMNLKJIHGFDECBA\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38342375-05fa-4943-bc3f-67e77ee1c76a",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports",
+                    "upload_mounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) User API Key",
+                    "key": "Authorization: Bearer",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"error\\\": \\\"You need to sign in before continuing.\\\"\\n}\\n\\n# This indicates that an invalid Bearer Token was provided\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26cbe70d-3439-4842-9d41-5b8fb27fd771",
+          "name": "Creating a JSON Import from a Mount Point",
+          "request": {
+            "name": "Creating a JSON Import from a Mount Point",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "imports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "User API Key",
+                "key": "Authorization: Bearer:",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"import\": {\n    \"name\": \"<string>\",\n    \"import_format\": {\n      \"type\": \"<string>\"\n    },\n    \"import_source\": {\n      \"file\": \"<string>\",\n      \"upload_path\": \"<string>\",\n      \"type\": \"upload_import_source\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "359cb268-f895-4ce1-882b-a4cd5ad3fa0f",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "User API Key",
+                    "key": "Authorization: Bearer:",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"import\": {\n    \"name\": \"<string>\",\n    \"import_format\": {\n      \"type\": \"<string>\"\n    },\n    \"import_source\": {\n      \"file\": \"<string>\",\n      \"upload_path\": \"<string>\",\n      \"type\": \"upload_import_source\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"id\\\": 2699416,\\n    \\\"system_id\\\": \\\"s-90603baa-11e1-4411-bb66-c6110dcdc0ac\\\",\\n    \\\"name\\\": \\\"JSON Import\\\",\\n    \\\"import_source\\\": {\\n        \\\"type\\\": \\\"upload_import_source\\\",\\n        \\\"type_label\\\": \\\"Upload\\\",\\n        \\\"file\\\": \\\"test.json\\\",\\n        \\\"upload_path\\\": \\\"1/16569/user_data_import/1/2021/07/26/13:50:10-d7006a32\\\"\\n    },\\n    \\\"import_format\\\": {\\n        \\\"type\\\": \\\"json_import_format\\\",\\n        \\\"type_label\\\": \\\"JSON\\\"\\n    },\\n    \\\"webhook_notification\\\": null,\\n    \\\"email_notification\\\": null,\\n    \\\"schedule\\\": null,\\n    \\\"last_import_run\\\": null\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f749bed6-14f0-4692-a068-07a680c82af1",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "User API Key",
+                    "key": "Authorization: Bearer:",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"import\": {\n    \"name\": \"<string>\",\n    \"import_format\": {\n      \"type\": \"<string>\"\n    },\n    \"import_source\": {\n      \"file\": \"<string>\",\n      \"upload_path\": \"<string>\",\n      \"type\": \"upload_import_source\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41fb6495-805c-4281-af56-cd407d349a4b",
+          "name": "Starting an Import Run",
+          "request": {
+            "name": "Starting an Import Run",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "imports",
+                ":import_id",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "import_id",
+                  "description": "(Required) Identifier for the import run either created manually in the application for a csv/excel import or generated with a mount point creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "User API Key",
+                "key": "Authorization: Bearer",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e775893-23c0-49ec-80ea-d238eb7e6f87",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports",
+                    ":import_id",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "import_id",
+                      "description": "(Required) Identifier for the import run either created manually in the application for a csv/excel import or generated with a mount point creation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "User API Key",
+                    "key": "Authorization: Bearer",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"id\\\":856,\\n  \\\"status\\\":\\\"running\\\",\\n  \\\"start_time\\\":\\\"2013-10-17T17:56:21.585Z\\\",\\n  \\\"end_time\\\":null,\\n  \\\"duration\\\":0.240623376,\\n  \\\"failure_reason\\\":null,\\n  \\\"progress\\\":0,\\n  \\\"stage_data\\\":[\\n    {\\n      \\\"id\\\":\\\"schema\\\",\\n      \\\"statistics\\\":[...],\\n      \\\"messages\\\":[],\\n      \\\"total_errors\\\":0,\\n      \\\"progress\\\":0,\\n      \\\"begin\\\":\\\"2013-10-17T17:56:21Z\\\",\\n      \\\"end\\\":null,\\n      \\\"duration\\\":1\\n    }\\n  ],\\n  \\\"import\\\":{\\n    \\\"id\\\":462,\\n    \\\"import_source\\\":{\\n      \\\"type\\\":\\\"cloud_import_source\\\",\\n      \\\"type_label\\\":\\\"Upload\\\",\\n      \\\"file\\\":\\\"export (13).xlsx\\\",\\n      \\\"upload_path\\\":\\\"1/103/user_data_import/1/2013/10/17/17:56:12-6c1b4797\\\"\\n    },\\n    \\\"import_format\\\":{\\n      \\\"type\\\":\\\"attribute_import_format\\\",\\n      \\\"import_mode\\\":\\\"upsert\\\",\\n      \\\"type_label\\\":\\\"Schema\\\"\\n    }\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c568e545-f08e-40c3-87c3-34a8a59033c2",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports",
+                    ":import_id",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "import_id",
+                      "description": "(Required) Identifier for the import run either created manually in the application for a csv/excel import or generated with a mount point creation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "User API Key",
+                    "key": "Authorization: Bearer",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bc9af3d-75bf-46df-90ae-c53bbc17a1f0",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports",
+                    ":import_id",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "import_id",
+                      "description": "(Required) Identifier for the import run either created manually in the application for a csv/excel import or generated with a mount point creation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "User API Key",
+                    "key": "Authorization: Bearer",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{ \\\"errors\\\": [\\\"Your import queue is full. Please wait until an import finishes to queue another\\\"] }\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94266925-afe2-42cf-93d3-65957f994386",
+          "name": "Updating an Import to Point at a New Mount Point",
+          "request": {
+            "name": "Updating an Import to Point at a New Mount Point",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "imports",
+                ":import_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "import_id",
+                  "description": "(Required) Identifier for the import run either created manually in the App for a csv/excel import or generated with a mount point creation."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "User API Key",
+                "key": "Authorization: Bearer",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"import\": {\n    \"file\": \"<string>\",\n    \"upload_path\": \"<string>\",\n    \"type\": \"upload_import_source\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "255bfd26-d598-4276-abec-cceda14ab439",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports",
+                    ":import_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "import_id",
+                      "description": "(Required) Identifier for the import run either created manually in the App for a csv/excel import or generated with a mount point creation."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "User API Key",
+                    "key": "Authorization: Bearer",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"import\": {\n    \"file\": \"<string>\",\n    \"upload_path\": \"<string>\",\n    \"type\": \"upload_import_source\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be7c1c1c-201c-44f7-9268-b49c73efb1fe",
+          "name": "Getting the Status of an Import Run",
+          "request": {
+            "name": "Getting the Status of an Import Run",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":org_id",
+                "imports",
+                "runs",
+                ":import_run_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org_id",
+                  "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "import_run_id",
+                  "description": "(Required) the ID of the import run to retrieve status for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "User API Key",
+                "key": "Authorization: Bearer",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7bb89ff-c27f-49e5-a16d-ad6cbd5c6fa9",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports",
+                    "runs",
+                    ":import_run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "import_run_id",
+                      "description": "(Required) the ID of the import run to retrieve status for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "User API Key",
+                    "key": "Authorization: Bearer",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"id\\\": 1017693,\\n    \\\"system_id\\\": \\\"s-d76fae6d-4c20-401b-ab4a-57b7d8ae317e\\\",\\n    \\\"status\\\": \\\"completed\\\",\\n    \\\"status_summary\\\": \\\"\\\",\\n    \\\"start_time\\\": \\\"2022-10-21T15:44:28.997Z\\\",\\n    \\\"end_time\\\": \\\"2022-10-21T15:46:29.736Z\\\",\\n    \\\"duration\\\": 120.739104,\\n    \\\"failure_reason\\\": null,\\n    \\\"progress\\\": 100,\\n    \\\"stage_data\\\": [...],\\n    \\\"import_source_filename\\\": \\\"/Testing/molly_test/folder/full_test.json\\\",\\n    \\\"import\\\": {\\n        \\\"id\\\": 626956,\\n        \\\"system_id\\\": \\\"s-9fa034e1-46ad-4cf0-82b8-a459bc9223fc\\\",\\n        \\\"name\\\": \\\"test.json\\\",\\n        \\\"import_source\\\": {\\n            ...\\n        },\\n        \\\"import_format\\\": {\\n            \\\"type\\\": \\\"json_import_format\\\",\\n            \\\"type_label\\\": \\\"JSON\\\"\\n        },\\n        \\\"webhook_notification\\\": null,\\n        \\\"email_notification\\\": null,\\n        \\\"schedule\\\": null\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f41151ce-b832-4507-915b-d8268da0be9c",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":org_id",
+                    "imports",
+                    "runs",
+                    ":import_run_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org_id",
+                      "description": "(Required) The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "import_run_id",
+                      "description": "(Required) the ID of the import run to retrieve status for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "User API Key",
+                    "key": "Authorization: Bearer",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Returned when the given import ID cannot be found.\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.salsify.com/api/orgs",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "51eb1b22-3054-491e-a742-106c3eb079dd",
+    "name": "Non-v1 endpoints Imports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

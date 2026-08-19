@@ -1,0 +1,571 @@
+openapi: 3.2.0
+info:
+  title: Salsify Properties API
+  version: '1.0'
+  description: 'Operations tagged Properties across 2 of this provider''s published API definitions: salsify-api-settings-openapi.json, salsify-write-operations-openapi.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://app.salsify.com/api/v1/orgs
+security:
+- sec0: []
+tags:
+- name: Properties
+paths:
+  /{org_ID}/properties/{salsify:id}:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    get:
+      summary: Read Property
+      description: ''
+      operationId: read-property
+      parameters:
+      - name: salsify:id
+        in: path
+        description: Unique identifier for the property. Used in report headers, channel mapping, etc.
+        schema:
+          type: string
+        required: true
+      - name: org_id
+        in: path
+        description: Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"salsify:id\": \"ASIN\",\n    \"salsify:name\": \"ASIN\",\n    \"salsify:data_type\": \"string\",\n    \"salsify:entity_types\": [\n        \"products\"\n    ],\n    \"salsify:is_facetable\": true,\n    \"salsify:attribute_group\": \"General\",\n    \"salsify:position\": null,\n    \"salsify:help_text\": null,\n    \"salsify:manage_permissions\": null,\n    \"salsify:read_permissions\": null,\n    \"salsify:hidden_permissions\": null,\n    \"salsify:created_at\": \"2017-12-18T14:44:06.991Z\",\n    \"salsify:updated_at\": \"2017-12-18T14:46:09.370Z\",\n    \"salsify:type\": \"property\",\n    \"salsify:system_id\": \"s-999-999-999-999\"\n}"
+              schema:
+                type: object
+                properties:
+                  salsify:id:
+                    type: string
+                    example: ASIN
+                  salsify:name:
+                    type: string
+                    example: ASIN
+                  salsify:data_type:
+                    type: string
+                    example: string
+                  salsify:entity_types:
+                    type: array
+                    items:
+                      type: string
+                      example: products
+                  salsify:is_facetable:
+                    type: boolean
+                    example: true
+                    default: true
+                  salsify:attribute_group:
+                    type: string
+                    example: General
+                  salsify:position: {}
+                  salsify:help_text: {}
+                  salsify:manage_permissions: {}
+                  salsify:read_permissions: {}
+                  salsify:hidden_permissions: {}
+                  salsify:created_at:
+                    type: string
+                    example: '2017-12-18T14:44:06.991Z'
+                  salsify:updated_at:
+                    type: string
+                    example: '2017-12-18T14:46:09.370Z'
+                  salsify:type:
+                    type: string
+                    example: property
+                  salsify:system_id:
+                    type: string
+                    example: s-999-999-999-999
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X GET \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/ASIN \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN\n\n"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/ASIN")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Get.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n}\n\nconn.request(\"GET\", \"api/v1/orgs/s-999-999-999-999/properties,ASIN\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Properties
+  /{org_id}/properties:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    post:
+      summary: Bulk Create New Properties
+      description: ''
+      operationId: bulk-create-new-properties
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - salsify:id
+              properties:
+                salsify:id:
+                  type: string
+                  description: Unique identifier for property. Used in report headers, channel mapping, etc. Cannot start with `salsify`,  `=`, or `_`. Case sensitive.
+                salsify:name:
+                  type: string
+                  description: Property name, if different from ID. Best practice is for property ID and name to match. If not specified, property name will be filled with property ID value.
+                system_metadata:
+                  type: string
+                  description: Include values for any system metadata you want to set for the property. See Properties Overview for full list.
+                custom_metadata:
+                  type: string
+                  description: Set any custom metadata you want to include with the property.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "[\n    {\n        \"salsify:id\": \"test_ID\",\n        \"salsify:name\": \"test_name\",\n        \"salsify:data_type\": \"string\",\n        \"salsify:entity_types\": [],\n        \"salsify:is_facetable\": true,\n        \"salsify:attribute_group\": \"General\",\n        \"salsify:position\": null,\n        \"salsify:help_text\": \"This is a test property\",\n        \"salsify:manage_permissions\": null,\n        \"salsify:read_permissions\": null,\n        \"salsify:hidden_permissions\": null,\n        \"salsify:created_at\": \"2018-09-10T13:43:12.128Z\",\n        \"salsify:updated_at\": \"2018-09-10T13:43:12.128Z\",\n        \"salsify:type\": \"property\",\n        \"salsify:system_id\": \"s-999-999-999-999\"\n    },\n    {\n        \"salsify:id\": \"test_ID2\",\n        \"salsify:name\": \"test_name2\",\n        \"salsify:data_type\": \"string\",\n        \"salsify:entity_types\": [],\n        \"salsify:is_facetable\": true,\n        \"salsify:attribute_group\": \"General\",\n        \"salsify:position\": null,\n        \"salsify:help_text\": \"This is a test property\",\n        \"salsify:manage_permissions\": null,\n        \"salsify:read_permissions\": null,\n        \"salsify:hidden_permissions\": null,\n        \"salsify:created_at\": \"2018-09-10T13:43:12.128Z\",\n        \"salsify:updated_at\": \"2018-09-10T13:43:12.128Z\",\n        \"salsify:type\": \"property\",\n        \"salsify:system_id\": \"s-999-999-999-999\"\n    }\n]"
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    salsify:id:
+                      type: string
+                      example: test_ID
+                    salsify:name:
+                      type: string
+                      example: test_name
+                    salsify:data_type:
+                      type: string
+                      example: string
+                    salsify:entity_types:
+                      type: array
+                    salsify:is_facetable:
+                      type: boolean
+                      example: true
+                      default: true
+                    salsify:attribute_group:
+                      type: string
+                      example: General
+                    salsify:position: {}
+                    salsify:help_text:
+                      type: string
+                      example: This is a test property
+                    salsify:manage_permissions: {}
+                    salsify:read_permissions: {}
+                    salsify:hidden_permissions: {}
+                    salsify:created_at:
+                      type: string
+                      example: '2018-09-10T13:43:12.128Z'
+                    salsify:updated_at:
+                      type: string
+                      example: '2018-09-10T13:43:12.128Z'
+                    salsify:type:
+                      type: string
+                      example: property
+                    salsify:system_id:
+                      type: string
+                      example: s-999-999-999-999
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '[\n\t{\n\t\t\"salsify:id\": \"test_ID\",\n\t\t\"salsify:name\": \"test_name\",\n\t\t\"salsify:data_type\": \"string\",\n\t\t\"salsify:is_facetable\": true,\n    \t\"salsify:attribute_group\": \"General\",\n    \t\"salsify:position\": null,\n    \t\"salsify:help_text\": \"This is a test property\",\n    \t\"salsify:manage_permissions\": null,\n    \t\"salsify:read_permissions\": null,\n    \t\"salsify:hidden_permissions\": null,\n    \t\"salsify:type\": \"property\"\n\t},\n\t{\n    \t\"salsify:id\": \"test_ID2\",\n    \t\"salsify:name\": \"test_name2\",\n    \t\"salsify:data_type\": \"string\",\n    \t\"salsify:is_facetable\": true,\n    \t\"salsify:attribute_group\": \"General\",\n    \t\"salsify:position\": null,\n    \t\"salsify:help_text\": \"This is a test property\",\n    \t\"salsify:manage_permissions\": null,\n    \t\"salsify:read_permissions\": null,\n    \t\"salsify:hidden_permissions\": null,\n    \t\"salsify:type\": \"property\"\n\t}\n]'\n# where org_id = s-999-999-999-999, salsify:id=test_ID, api_token = YOUR-AUTH-TOKEN\n"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Post.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request.body = "[\n\t{\n\t\t\"salsify:id\": \"test_ID\",\n\t\t\"salsify:name\": \"test_name\",\n\t\t\"salsify:data_type\": \"string\",\n\t\t\"salsify:is_facetable\": true,\n    \t\"salsify:attribute_group\": \"General\",\n    \t\"salsify:position\": null,\n    \t\"salsify:help_text\": \"This is a test property\",\n    \t\"salsify:manage_permissions\": null,\n    \t\"salsify:read_permissions\": null,\n    \t\"salsify:hidden_permissions\": null,\n    \t\"salsify:type\": \"property\"\n\t},\n\t{\n    \t\"salsify:id\": \"test_ID2\",\n    \t\"salsify:name\": \"test_name2\",\n    \t\"salsify:data_type\": \"string\",\n    \t\"salsify:is_facetable\": true,\n    \t\"salsify:attribute_group\": \"General\",\n    \t\"salsify:position\": null,\n    \t\"salsify:help_text\": \"This is a test property\",\n    \t\"salsify:manage_permissions\": null,\n    \t\"salsify:read_permissions\": null,\n    \t\"salsify:hidden_permissions\": null,\n    \t\"salsify:type\": \"property\"\n\t}\n]"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id=test_ID, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"[\\n\\t{\\n\\t\\t\\\"salsify:id\\\": \\\"test_ID\\\",\\n\\t\\t\\\"salsify:name\\\": \\\"test_name\\\",\\n\\t\\t\\\"salsify:data_type\\\": \\\"string\\\",\\n\\t\\t\\\"salsify:is_facetable\\\": true,\\n    \\t\\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\t\\\"salsify:position\\\": null,\\n    \\t\\\"salsify:help_text\\\": \\\"This is a test property\\\",\\n    \\t\\\"salsify:manage_permissions\\\": null,\\n    \\t\\\"salsify:read_permissions\\\": null,\\n    \\t\\\"salsify:hidden_permissions\\\": null,\\n    \\t\\\"salsify:type\\\": \\\"property\\\"\\n\\t},\\n\\t{\\n    \\t\\\"salsify:id\\\": \\\"test_ID2\\\",\\n    \\t\\\"salsify:name\\\": \\\"test_name2\\\",\\n    \\t\\\"salsify:data_type\\\": \\\"string\\\",\\n    \\t\\\"salsify:is_facetable\\\": true,\\n    \\t\\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\t\\\"salsify:position\\\": null,\\n    \\t\\\"salsify:help_text\\\": \\\"This is a test property\\\",\\n    \\t\\\"salsify:manage_permissions\\\": null,\\n    \\t\\\"salsify:read_permissions\\\": null,\\n    \\t\\\"salsify:hidden_permissions\\\": null,\\n    \\t\\\"salsify:type\\\": \\\"property\\\"\\n\\t}\\n]\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"POST\", \"api/v1/orgs/s-999-999-999-999/properties\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=test_ID, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Properties
+    delete:
+      summary: Bulk Delete Properties
+      description: ''
+      operationId: bulk-delete-properties
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - salsify:id
+              properties:
+                salsify:id:
+                  type: string
+                  description: Unique identifier for each property, sent as an array.
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when content is successfully updated in Salsify.
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n  \"ids\": [\n    \"delete-property-id\",\n    \"test_ID\"\n  ]\n}'\n\n  # where org_id = s-999-999-999-999, salsify:id=delete-property-id & test_ID, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/delete-property-id\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\n\nresponse = http.request(request)\nputs response.read_body\n\n  # where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-999-999-999-999/properties/delete-property-id\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Properties
+  /{org_id}/properties/{salsify:id}:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    delete:
+      summary: Delete Property
+      description: ''
+      operationId: delete-property
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      - name: salsify:id
+        in: path
+        description: Unique identifier for the property. Used in report headers, channel mapping, etc.
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when content is successfully updated in Salsify.
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X DELETE \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/delete-property-id \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n\n  # where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: "require 'uri'\nrequire 'net/http'\n\nurl = URI(\"https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/delete-property-id\")\n\nhttp = Net::HTTP.new(url.host, url.port)\n\nrequest = Net::HTTP::Delete.new(url)\nrequest[\"Authorization\"] = 'Bearer YOUR-AUTH-TOKEN'\n\nresponse = http.request(request)\nputs response.read_body\n\n  # where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    }\n\nconn.request(\"DELETE\", \"api/v1/orgs/s-999-999-999-999/properties/delete-property-id\", headers=headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=delete-property-id, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Properties
+    put:
+      summary: Update Property
+      description: ''
+      operationId: update-property
+      parameters:
+      - name: org_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/.
+        schema:
+          type: string
+        required: true
+      - name: salsify:id
+        in: path
+        description: Unique identifier for the property. Used in report headers, channel mapping, etc.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                metadata_id:
+                  type: string
+                  description: 'Property metadata can be added in value pairs. `{metadata_id} : {metadata_value}` where `metadata_id` is the metadata id being associated with the Salsify property, and `metadata_value` is the corresponding metadata value. If `metadata_id` does not exist in org, metadata property will be created.'
+      responses:
+        '204':
+          description: '204'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Returned when content is successfully updated in Salsify.
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X PUT \\\n  https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/ASIN \\\n  -H 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n  -H 'Content-Type: application/json' \\\n  -d '{\n\"salsify:help_text\":\"Amazon Unique Identifier\"\n}\n'\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/ASIN")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+
+            request = Net::HTTP::Put.new(url)
+
+            request["Authorization"] = ''Bearer YOUR-AUTH-TOKEN''
+
+            request["Content-Type"] = ''application/json''
+
+            request.body = "{\n\"salsify:help_text\":\"Amazon Unique Identifier\"\n}\n"
+
+
+            response = http.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPConnection(\"app.salsify.com\")\n\npayload = \"{\\n\\\"salsify:help_text\\\":\\\"Amazon Unique Identifier\\\"\\n}\\n\"\n\nheaders = {\n    'Authorization': \"Bearer YOUR-AUTH-TOKEN\",\n    'Content-Type': \"application/json\",\n    }\n\nconn.request(\"PUT\", \"api/v1/orgs/s-999-999-999-999/properties/ASIN\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=ASIN, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Properties
+  /{organization_id}/properties/_upsert:
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
+    put:
+      summary: Bulk Upsert Properties
+      description: ''
+      operationId: bulk-upsert-properties
+      parameters:
+      - name: organization_id
+        in: path
+        description: The Salsify organization's unique identifier. Visit your Salsify organization and pull from the URL path, immediately following /orgs/
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                salsify:id:
+                  type: string
+                  description: Unique identifier for property. Used in report headers, channel mapping, etc. Cannot start with `salsify`,  `=`, or `_`. Case sensitive.
+                salsify:name:
+                  type: string
+                  description: Property name, if different from ID. Best practice is for property ID and name to match. If not specified, property name will be filled with property ID value.
+                salsify:system_metadata:
+                  type: string
+                  description: Include values for any system metadata you want to set for the property. See Properties Overview for full list.
+                salsify:custom_metadata:
+                  type: string
+                  description: Set any custom metadata you want to include with the property.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "[\n    null,\n    null\n]"
+              schema:
+                type: array
+                items: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"errors\": [\n        [],\n        [\n        \"salsify:data_type must be in string, rich_text, link, html, enumerated, \tdigital_asset, boolean, number, date, compound, complex, product, quantified_product\"\n        ]\n    ]\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request PUT 'https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/_upsert' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer YOUR-AUTH-TOKEN' \\\n--data-raw '[\n  {\n    \"salsify:id\": \"Formatted Retail Price\",\n    \"salsify:name\": \"Formatted Retail Price\",\n    \"salsify:help_text\": \"Update the property'\\''s Help Text here.\"\n  },\n  {\n  \t\"salsify:id\": \"testProperty_ID\",\n  \t\"salsify:name\": \"testProperty_Name\",\n    \"salsify:data_type\": \"digital_asset\",\n    \"salsify:attribute_group\": \"General\",\n    \"salsify:position\": null,\n    \"salsify:help_text\": \"This is a new property\",\n    \"salsify:manage_permissions\": null,\n    \"salsify:read_permissions\": null,\n    \"salsify:hidden_permissions\": null,\n    \"salsify:type\": \"property\"\n  }\n]'\n\n# where org_id = s-999-999-999-999, salsify:id=testProperty_ID, api_token = YOUR-AUTH-TOKEN"
+        - language: ruby
+          code: 'require "uri"
+
+            require "net/http"
+
+
+            url = URI("https://app.salsify.com/api/v1/orgs/s-999-999-999-999/properties/_upsert")
+
+
+            https = Net::HTTP.new(url.host, url.port);
+
+            https.use_ssl = true
+
+
+            request = Net::HTTP::Put.new(url)
+
+            request["Content-Type"] = "application/json"
+
+            request["Authorization"] = "Bearer YOUR-AUTH-TOKEN"
+
+            request.body = "[\n  {\n    \"salsify:id\": \"Formatted Retail Price\",\n    \"salsify:name\": \"Formatted Retail Price\",\n    \"salsify:help_text\": \"Update the property''s Help Text here.\"\n  },\n  {\n  \t\"salsify:id\": \"testProperty_ID\",\n  \t\"salsify:name\": \"testProperty_Name\",\n    \"salsify:data_type\": \"digital_asset\",\n    \"salsify:attribute_group\": \"General\",\n    \"salsify:position\": null,\n    \"salsify:help_text\": \"This is a new property\",\n    \"salsify:manage_permissions\": null,\n    \"salsify:read_permissions\": null,\n    \"salsify:hidden_permissions\": null,\n    \"salsify:type\": \"property\"\n  }\n]"
+
+
+            response = https.request(request)
+
+            puts response.read_body
+
+
+            # where org_id = s-999-999-999-999, salsify:id=testProperty_ID, api_token = YOUR-AUTH-TOKEN'
+        - language: python
+          code: "import http.client\n\nconn = http.client.HTTPSConnection(\"app.salsify.com\")\n\npayload = \"[\\n  {\\n    \\\"salsify:id\\\": \\\"Formatted Retail Price\\\",\\n    \\\"salsify:name\\\": \\\"Formatted Retail Price\\\",\\n    \\\"salsify:help_text\\\": \\\"Update the property's Help Text here.\\\"\\n  },\\n  {\\n  \\t\\\"salsify:id\\\": \\\"testProperty_ID\\\",\\n  \\t\\\"salsify:name\\\": \\\"testProperty_Name\\\",\\n    \\\"salsify:data_type\\\": \\\"digital_asset\\\",\\n    \\\"salsify:attribute_group\\\": \\\"General\\\",\\n    \\\"salsify:position\\\": null,\\n    \\\"salsify:help_text\\\": \\\"This is a new property\\\",\\n    \\\"salsify:manage_permissions\\\": null,\\n    \\\"salsify:read_permissions\\\": null,\\n    \\\"salsify:hidden_permissions\\\": null,\\n    \\\"salsify:type\\\": \\\"property\\\"\\n  }\\n]\"\nheaders = {\n  'Content-Type': 'application/json',\n  'Authorization': 'Bearer YOUR-AUTH-TOKEN'\n}\nconn.request(\"PUT\", \"/api/v1/orgs/s-999-999-999-999/properties/_upsert\", payload, headers)\n\nres = conn.getresponse()\ndata = res.read()\n\nprint(data.decode(\"utf-8\"))\n\n# where org_id = s-999-999-999-999, salsify:id=testProperty_ID, api_token = YOUR-AUTH-TOKEN"
+        samples-languages:
+        - curl
+        - ruby
+        - python
+      tags:
+      - Properties
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: Authorization
+      x-bearer-format: bearer
+      x-default: ''
+x-refined-from:
+- salsify-api-settings-openapi.json
+- salsify-write-operations-openapi.json
+x-readme:
+  headers:
+  - value: Bearer {api_key}
+    key: Authorization
+x-readme-fauxas: true
