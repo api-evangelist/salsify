@@ -27,6 +27,16 @@ tags:
 - Retail
 - Syndication
 - Data Management
+- Software-as-a-Service
+tags_raw:
+- Company
+- Product Experience Management
+- Product Information Management
+- Digital Asset Management
+- Commerce
+- Retail
+- Syndication
+- Data Management
 - SaaS
 apis:
 - aid: salsify:graphql
@@ -38,6 +48,10 @@ apis:
   humanURL: https://developers.salsify.com/reference/graphql-schema-overview
   baseURL: https://api.salsify.com/graphql
   tags:
+  - GraphQL
+  - Account
+  - Organization
+  tags_raw:
   - GraphQL
   - Accounts
   - Organizations
@@ -112,6 +126,8 @@ apis:
   humanURL: https://developers.salsify.com/reference
   baseURL: https://app.salsify.com/api/v1/orgs
   tags:
+  - List
+  tags_raw:
   - Lists
   properties:
   - type: OpenAPI
@@ -140,6 +156,8 @@ apis:
   humanURL: https://developers.salsify.com/reference
   baseURL: https://app.salsify.com/api/v1/orgs
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
