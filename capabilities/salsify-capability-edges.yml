@@ -1,0 +1,55 @@
+slug: salsify
+provider: Salsify
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Retail & Consumer Goods
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Products
+  spec_file: salsify-products-api-openapi.yml
+  capability_id: BC-2370.10
+  capability_id_l1: BC-2370
+  capability_name: Item Master Data Management
+  confidence: 0.85
+  evidence: GET /{org_id}/products/{salsify:id} read-product-record Read Product Record; PUT /{org_id}/products/_upsert
+    bulk-upsert-products Bulk Upsert Products
+  reason: Bulk create/read/update/upsert of product records in a product-experience-management platform
+    is authoritative item master data management for product data.
+- tag: Digital Assets
+  spec_file: salsify-digital-assets-api-openapi.yml
+  capability_id: BC-2370.20
+  capability_id_l1: BC-2370
+  capability_name: Product Content Authoring Management
+  confidence: 0.75
+  evidence: POST /{organization_id}/digital_assets create-a-digital-asset-metadata Create a Digital Asset
+    & Metadata; PUT .../digital_assets/{salsify:id} Update Digital Asset Metadata
+  reason: Salsify is a PXM platform and these operations manage product digital assets (imagery/rich media)
+    and their metadata — product content authoring/asset management rather than item attribute mastering.
+- tag: Properties
+  spec_file: salsify-properties-api-openapi.yml
+  capability_id: BC-2370.10
+  capability_id_l1: BC-2370
+  capability_name: Item Master Data Management
+  confidence: 0.75
+  evidence: POST /{org_id}/properties  bulk-create-new-properties — on a platform to 'centralize product
+    content'; properties are product attribute definitions
+  reason: Salsify properties are the attribute definitions of the product master record; CRUD on them
+    is item master data / product information management. Slight ambiguity vs generic master data management,
+    but vendor context is explicitly product content.
+- tag: Records
+  spec_file: salsify-records-api-openapi.yml
+  capability_id: BC-2370.10
+  capability_id_l1: BC-2370
+  capability_name: Item Master Data Management
+  confidence: 0.75
+  evidence: DELETE /{org_id}/records/{product_id}  delete-record — records are keyed by product_id
+  reason: Records CRUD on Salsify's product content platform, with the delete path parameter literally
+    named product_id, indicates management of the canonical product records.
