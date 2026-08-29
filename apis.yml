@@ -10,6 +10,18 @@ description: 'Salsify is a product experience management (PXM) and supplier expe
   with X.509/SHA-256 signature verification, and an OAuth 2.0 authorization server
   plus a first-party Model Context Protocol server at app.salsify.com/mcp.'
 url: https://raw.githubusercontent.com/api-evangelist/salsify/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.salsify.com/hubfs/Salsify%20-%20Product%20Experience%20Management%20PXM%20-%20Feature%20Image.png
 x-type: company
 x-source: harvest:secondary-market
