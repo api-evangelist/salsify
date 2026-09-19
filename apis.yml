@@ -139,6 +139,8 @@ apis:
   humanURL: https://developers.salsify.com/reference
   baseURL: https://app.salsify.com/api/v1/orgs
   tags:
+  - Import
+  tags_raw:
   - Imports
   properties:
   - type: OpenAPI
