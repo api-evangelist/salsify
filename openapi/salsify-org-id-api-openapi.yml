@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Settings <org ID> <org ID> API
+  title: Settings API
   version: '1.0'
 servers:
 - url: https://app.salsify.com/api/v1/orgs

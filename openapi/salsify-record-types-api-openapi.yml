@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: No API Explorer (for destructive calls & not well defined parameters) Record Types API
+  title: No API Explorer (for destructive calls & not well defined…
   version: '1.0'
 servers:
 - url: https://app.salsify.com/api/v1/orgs

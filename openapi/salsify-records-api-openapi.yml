@@ -11,8 +11,6 @@ tags:
 - name: Records
 paths:
   /{org_id}/records/{salsify:id}:
-    servers:
-    - url: https://app.salsify.com/api/v1/orgs
     get:
       summary: Read Record
       description: ''
@@ -238,9 +236,9 @@ paths:
         - python
       tags:
       - Records
-  /{org_id}/records:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/records:
     get:
       summary: Bulk Read Records
       description: ''
@@ -721,9 +719,9 @@ paths:
         - python
       tags:
       - Records
-  /{org_id}/records/:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/records/:
     post:
       summary: Create Record
       description: ''
@@ -858,9 +856,9 @@ paths:
         - python
       tags:
       - Records
-  /{org_id}/records/{record_id}:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/records/{record_id}:
     put:
       summary: Update Record
       description: ''
@@ -973,9 +971,9 @@ paths:
         - python
       tags:
       - Records
-  /{org_id}/records/_upsert:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/records/_upsert:
     put:
       summary: Bulk Upsert Records
       description: Upsert allows you to update and create a record in the same call.
@@ -1118,9 +1116,9 @@ paths:
         - python
       tags:
       - Records
-  /{org_id}/records/{product_id}:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/records/{product_id}:
     delete:
       summary: Delete Record
       description: ''
@@ -1198,6 +1196,8 @@ paths:
         - python
       tags:
       - Records
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
 components:
   securitySchemes:
     sec0:

@@ -11,8 +11,6 @@ tags:
 - name: Properties
 paths:
   /{org_ID}/properties/{salsify:id}:
-    servers:
-    - url: https://app.salsify.com/api/v1/orgs
     get:
       summary: Read Property
       description: ''
@@ -125,9 +123,9 @@ paths:
         - python
       tags:
       - Properties
-  /{org_id}/properties:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/properties:
     post:
       summary: Bulk Create New Properties
       description: ''
@@ -314,9 +312,9 @@ paths:
         - python
       tags:
       - Properties
-  /{org_id}/properties/{salsify:id}:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/properties/{salsify:id}:
     delete:
       summary: Delete Property
       description: ''
@@ -451,9 +449,9 @@ paths:
         - python
       tags:
       - Properties
-  /{organization_id}/properties/_upsert:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{organization_id}/properties/_upsert:
     put:
       summary: Bulk Upsert Properties
       description: ''
@@ -553,6 +551,8 @@ paths:
         - python
       tags:
       - Properties
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
 components:
   securitySchemes:
     sec0:

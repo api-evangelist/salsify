@@ -11,8 +11,6 @@ tags:
 - name: Digital Assets
 paths:
   /{org_id}/digital_assets/{asset_id}:
-    servers:
-    - url: https://app.salsify.com/api/v1/orgs
     get:
       summary: Read Digital Asset Metadata
       description: Where a user has permission and the digital asset exists, complete digital asset JSON object is returned with its most current information.
@@ -163,9 +161,9 @@ paths:
         - python
       tags:
       - Digital Assets
-  /{org_id}/digital_assets:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/digital_assets:
     get:
       summary: Bulk Read Digital Assets
       description: ''
@@ -576,9 +574,9 @@ paths:
         - python
       tags:
       - Digital Assets
-  /{org_id}/digital_assets/{salsify:id}:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/digital_assets/{salsify:id}:
     put:
       summary: Update Digital Asset Metadata
       description: ''
@@ -679,9 +677,9 @@ paths:
         - python
       tags:
       - Digital Assets
-  /{organization_id}/digital_assets:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{organization_id}/digital_assets:
     post:
       summary: Create a Digital Asset & Metadata
       description: ''
@@ -807,9 +805,9 @@ paths:
         - python
       tags:
       - Digital Assets
-  /{organization_id}/digital_assets/_upsert:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{organization_id}/digital_assets/_upsert:
     put:
       summary: Bulk Upsert Digital Assets
       description: ''
@@ -902,6 +900,8 @@ paths:
         - python
       tags:
       - Digital Assets
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
 components:
   securitySchemes:
     sec0:

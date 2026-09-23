@@ -11,8 +11,6 @@ tags:
 - name: Products
 paths:
   /{org_id}/products/{salsify:id}:
-    servers:
-    - url: https://app.salsify.com/api/v1/orgs
     get:
       summary: Read Product Record
       description: ''
@@ -252,9 +250,9 @@ paths:
         - python
       tags:
       - Products
-  /{org_id}/products:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/products:
     get:
       summary: Bulk Read Products
       description: ''
@@ -695,9 +693,9 @@ paths:
         - ruby
       tags:
       - Products
-  /{org_id}/products/{product_id}:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/products/{product_id}:
     put:
       summary: Update Product
       description: ''
@@ -869,9 +867,9 @@ paths:
         - python
       tags:
       - Products
-  /{org_id}/products/:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/products/:
     post:
       summary: Create Product
       description: ''
@@ -1003,9 +1001,9 @@ paths:
         - python
       tags:
       - Products
-  /{org_id}/products/_upsert:
     servers:
     - url: https://app.salsify.com/api/v1/orgs
+  /{org_id}/products/_upsert:
     put:
       summary: Bulk Upsert Products
       description: Upserts allow you to update and create a product in the same call.
@@ -1146,6 +1144,8 @@ paths:
         - ruby
       tags:
       - Products
+    servers:
+    - url: https://app.salsify.com/api/v1/orgs
 components:
   securitySchemes:
     sec0:
