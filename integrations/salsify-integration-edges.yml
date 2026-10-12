@@ -1,0 +1,22 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/salsify/integrations
+checked:
+- https://composio.dev/toolkits/salsify
+- https://monid.ai/tools/salsify
+- https://n8n.io/integrations/salsify/
+- https://zapier.com/apps/salsify/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: salsify
+  url: https://zapier.com/apps/salsify/integrations
+  external_url: https://www.salsify.com/
+  partner_tier: null
+  triggers: []
+  actions: []
+  searches: []
+edges: []
+templates: []
