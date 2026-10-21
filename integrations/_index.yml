@@ -160,3 +160,15 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: salsify-amazon-selling-partner-appstore
+  label: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_name: Amazon Selling Partner Appstore
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.77c9e6e9-c017-413e-8ba4-6dd932890b14
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
